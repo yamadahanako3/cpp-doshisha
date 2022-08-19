@@ -6,17 +6,34 @@ import { auth } from '../firebase';
 const SignIn = () => {
     const navigate = useNavigate();
     const [error, setError] = useState('');
-
+    const RegExpUsernotFound = /user-not-found/g;
+    const RegExpWrongPassword = /wrong-password/g;
+    const RegExpNetworkRequestFailed = /network-request-failed/g;
+    const RegExpInvalidEmail = /invalid-email/g;
+    const RegExpInternalError = /internal-error/g;
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
         const { email, password } = event.target.elements;
-        try {
-            await signInWithEmailAndPassword(auth, email.value, password.value);
+        await signInWithEmailAndPassword(auth, email.value, password.value).then(()=>{
             navigate('/');
-        } catch (error) {
-            console.log(error);
-            setError(error.message);
-        };
+        }).catch((e)=>{
+            let error_message = "";
+            if (RegExpWrongPassword.test(e.message)) {
+                error_message = "パスワードが間違っています";
+            } else if (RegExpUsernotFound.test(e.message)) {
+                error_message = "ユーザーが存在しません";
+            } else if (RegExpNetworkRequestFailed.test(e.message)) {
+                error_message = "ネットワークが不安定です";
+            } else if (RegExpInvalidEmail.test(e.message)) {
+                error_message = "メールアドレスが間違っています";
+            } else if (RegExpInternalError.test(e.message)) {
+                error_message = "パスワードを入力してください";
+            } else {
+                error_message = e.message;
+            }
+            setError(error_message);
+        });
     };
 
     return (
