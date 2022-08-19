@@ -6,13 +6,41 @@ import { Link, useNavigate } from 'react-router-dom';
 const SignUp = () => {
     const navigate = useNavigate();
     const [error, setError] = useState('');
+    const RegExpInvalidEmail = /invalid-email/g;
+    const RegExpNetworkRequestFailed = /network-request-failed/g;
+    const RegExpInternalError = /internal-error/g;
+    const RegExpWeakPassword = /weak-password/g;
+    const RegExpEmailAlreadyInUse = /email-already-in-use/g;
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const { name, email, password } = event.currentTarget.elements;
+        if (name.value.length === 0) {
+            setError('ユーザー名を入力してください');
+            return;
+        }
         try {
-            await createUserWithEmailAndPassword(auth, email.value, password.value);
-            navigate('/');
+            await createUserWithEmailAndPassword(auth, email.value, password.value).then(()=>{
+                navigate('/');
+            }).catch((e)=>{
+                console.log(e.message);
+                let error_message = "";
+
+                if (RegExpInvalidEmail.test(e.message)) {
+                    error_message = "メールアドレスを入力してください";
+                } else if (RegExpNetworkRequestFailed.test(e.message)) {
+                    error_message = "ネットワークが不安定です";
+                } else if (RegExpInternalError.test(e.message)) {
+                    error_message = "パスワードを入力してください";
+                } else if (RegExpWeakPassword.test(e.message)) {
+                    error_message = "パスワードは６文字以上に設定してください";
+                } else if (RegExpEmailAlreadyInUse.test(e.message)) {
+                    error_message = "このメールアドレスは既に使用されています";
+                } else {
+                    error_message = e.message;
+                }
+                    setError(error_message);
+                })
         } catch (error) {
             console.log(error.message);
         }
@@ -21,6 +49,7 @@ const SignUp = () => {
     return(
         <div>
             <h1>SignUp</h1>
+            {error && <p style={{color:"red"}}>{error}</p>}
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>ユーザー名</label>
@@ -33,9 +62,6 @@ const SignUp = () => {
                 <div>
                     <label>パスワード</label>
                     <input name="password" type="password" placeholder="password" />
-                </div>
-                <div>
-                    <p>{error}</p>
                 </div>
                 <div>
                     <button>register</button>
