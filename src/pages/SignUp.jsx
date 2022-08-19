@@ -12,7 +12,7 @@ const SignUp = () => {
         const { name, email, password } = event.currentTarget.elements;
         try {
             await createUserWithEmailAndPassword(auth, email.value, password.value);
-            navigate('/home');
+            navigate('/');
         } catch (error) {
             console.log(error.message);
         }
@@ -20,7 +20,7 @@ const SignUp = () => {
 
     return(
         <div>
-            <h1>SitnUp</h1>
+            <h1>SignUp</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>ユーザー名</label>
@@ -42,7 +42,7 @@ const SignUp = () => {
                 </div>
             </form>
             <div>
-                アカウントをお持ちの方は<Link to={'/'}>こちら</Link>から
+                アカウントをお持ちの方は<Link to={'/signin'}>こちら</Link>から
             </div>
         </div>
     )
