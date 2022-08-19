@@ -12,7 +12,7 @@ const SignIn = () => {
         const { email, password } = event.target.elements;
         try {
             await signInWithEmailAndPassword(auth, email.value, password.value);
-            navigate('/home');
+            navigate('/');
         } catch (error) {
             console.log(error);
             setError(error.message);
