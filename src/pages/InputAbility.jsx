@@ -26,7 +26,7 @@ const InputAbility = () => {
     }
 
     return (
-        <div>
+        <div style={{backgroundColor:"#F4F6F9"}}>
             <Header />
             <div style={body}>
                 <div style={title}>自分自身を評価しよう</div>

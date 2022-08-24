@@ -4,10 +4,10 @@ const CreateButton = (props) => {
     const text = props.text;
     const link = props.link;
     const button = {
-        alignItems:"left",
+        textAlign: "left",
         padding: "15px",
-        paddingLeft: "50px",
-        paddingRight: "150px",
+        width: "280px",
+        marginBottom: "20px",
         fontSize: "16px",
         color: "#1A4F83",
         border: "none",
