@@ -1,7 +1,8 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
  
 const SendingMail = () => {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const hundleGoLogin = () => {
     navigate('/signin');
@@ -9,7 +10,7 @@ const SendingMail = () => {
 
   return (
     <div>
-      <h1>メールを送信しました</h1>
+      <h1>{location.state.title}</h1>
       <button onClick={hundleGoLogin}>ログイン画面へ戻る</button>
     </div>
   )

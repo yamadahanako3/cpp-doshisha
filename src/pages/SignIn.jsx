@@ -82,7 +82,7 @@ const SignIn = () => {
                     <input style={box} name="password" type="password" placeholder="パスワード" />
                     <button style={button} >ログイン</button>
                 </form>
-                <a style={content}>パスワードを忘れた場合</a>
+                <Link style={content} to={'/resetpassword'}>パスワードを忘れた場合</Link>
                 <div style={content}>
                     ユーザ登録は<Link style={content} to={'/signup'}>こちら</Link>から
                 </div>
