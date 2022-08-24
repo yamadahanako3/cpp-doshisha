@@ -1,5 +1,5 @@
 import { auth } from '../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -21,7 +21,8 @@ const SignUp = () => {
         }
         try {
             await createUserWithEmailAndPassword(auth, email.value, password.value).then(()=>{
-                navigate('/');
+                sendEmailVerification(auth.currentUser);
+                navigate('/sendingmail');
             }).catch((e)=>{
                 console.log(e.message);
                 let error_message = "";
