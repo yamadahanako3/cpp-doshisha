@@ -1,5 +1,6 @@
 const Header = () => {
     const header = {
+        padding: "10px",
         color: "#43CBC3",
         fontWeight: "bold",
         fontSize: "20px",
