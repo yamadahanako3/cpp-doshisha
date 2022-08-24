@@ -54,11 +54,10 @@ const Home = () => {
                         <p style={sub}>これは例文です。これは例文です。これは例文です。</p>
                         <CreateRadarCharts data1={userData1} data2={userData2} />
                     </div>
-                    <CreateButton text="目標と評価" link="/signup" />
+                    <CreateButton text="目標と評価" link="/goalandevaluation" />
                     <CreateButton text="今の自分についての記録" link="/signup" />
                     <CreateButton text="これまでとこれから" link="/signup" />
                 </div>  
-                
                 <button onClick={handleLogout}>ログアウト</button>
                 <Footer />
             </div>

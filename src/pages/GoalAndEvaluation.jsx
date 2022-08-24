@@ -1,11 +1,17 @@
 import React from 'react';
 import { Header, Footer, GoalCard } from '../molecules/index';
 import { CreateButton } from '../atoms/index';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Navigation, Pagination } from 'swiper';
 
 const GoalAndEvaluation = () => {
     const title = {
         fontSize: "23px",
-        color: "rgba(26, 79, 131, 1)"
+        color: "rgba(26, 79, 131, 1)",
+        marginLeft: "calc(50% - 140px)",
+        marginTop: "20px",
+        marginBottom: "30px"
     }
     const buttons = {
         marginTop: "30px",
@@ -16,17 +22,21 @@ const GoalAndEvaluation = () => {
     }
 
     return (
-        <div style={{height: "100vh", backgroundColor: "#F4F6F9"}}>
+        <div style={{backgroundColor: "#F4F6F9"}}>
             <Header />
-            <div style={{marginLeft: "calc(50% - 140px)"}}>
-
-            <div style={title}>目標と評価</div>
-            <GoalCard />
+            <div>
+                <div style={title}>目標と評価</div>
+                <Swiper modules={[Navigation, Pagination]} >
+                    <SwiperSlide style={{display: "flex",justifyContent: "center"}}><GoalCard /></SwiperSlide>
+                    <SwiperSlide style={{display: "flex",justifyContent: "center"}}><GoalCard /></SwiperSlide>
+                    <SwiperSlide style={{display: "flex",justifyContent: "center"}}><GoalCard /></SwiperSlide>
+                    <SwiperSlide style={{display: "flex",justifyContent: "center"}}><GoalCard /></SwiperSlide>
+                    <SwiperSlide style={{display: "flex",justifyContent: "center"}}><GoalCard /></SwiperSlide>
+                </Swiper>
             </div>
             <Footer />
             <div style={buttons}>
-
-                <CreateButton text="目標カレンダー" link="/signin" />
+                <CreateButton text="目標カレンダー" link='/signin' />
             </div>
         </div>
     );
