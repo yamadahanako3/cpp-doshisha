@@ -22,7 +22,7 @@ const SignUp = () => {
         try {
             await createUserWithEmailAndPassword(auth, email.value, password.value).then(()=>{
                 sendEmailVerification(auth.currentUser);
-                navigate('/sendingmail');
+                navigate('/sendingmail', { state: { title: '認証用メールを送信しました' } });
             }).catch((e)=>{
                 console.log(e.message);
                 let error_message = "";
