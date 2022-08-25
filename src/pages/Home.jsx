@@ -2,12 +2,12 @@ import { auth } from '../firebase';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuthContext } from '../context/Authcontext';
 import { Header, Footer} from '../molecules/index';
-import { CreateButton, CreateRadarCharts } from '../atoms/index';
+import { CreateButton, RadarChart } from '../atoms/index';
 
 const Home = () => {
     const navigate = useNavigate();
-    const userData1 = [5, 3, 3, 4, 4, 4];
-    const userData2 = [2, 3, 2, 2, 2, 2];
+    const userData1 = [5, 3, 3, 4, 4];
+    const userData2 = [1, 3, 5, 5, 2];
     const { user } = useAuthContext();
     const body = {
         display: "flex",
@@ -52,7 +52,7 @@ const Home = () => {
                     <div style={main}>
                         <div style={mainTitle}>高校一年生</div>
                         <p style={sub}>これは例文です。これは例文です。これは例文です。</p>
-                        <CreateRadarCharts data1={userData1} data2={userData2} />
+                        <RadarChart data1={userData1} data2={userData2} />
                     </div>
                     <CreateButton text="目標と評価" link="/signup" />
                     <CreateButton text="今の自分についての記録" link="/signup" />
