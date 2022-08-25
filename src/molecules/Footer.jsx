@@ -1,6 +1,11 @@
+import { useState } from 'react';
+import { CreateButton } from '../atoms/index';
+
 const Footer = () => {
+    const [judge, setJudge] = useState(true);
     const footer = {
         width: "100vw",
+        height: "50px",
         position: "fixed",
         display: "flex",
         justifyContent: "center",
@@ -9,6 +14,7 @@ const Footer = () => {
         borderTop: "1px solid white",
         backgroundColor: "#F4F6F9",
         boxShadow: "1px 2px 9px rgba(0, 0, 0, .3)",
+        zIndex: "5"
     };
     const humburger = {
         position: "relative",
@@ -36,7 +42,7 @@ const Footer = () => {
         backgroundColor: "white",
         boxShadow: '0px -2px 5px -3px rgba(0, 0, 0, .3) inset',
     };
-    const button = {
+    const [button, setButton] = useState({
         width: "50px",
         height: "50px",
         borderRadius: "50%",
@@ -44,7 +50,7 @@ const Footer = () => {
         backgroundColor: "rgba(26, 79, 131, .25)",
         border: "none",
         boxShadow: "0px 0px 5px rgba(26, 79, 131, .1) inset",
-    };
+    });
     const line1 = {
         position: "absolute",
         top: "calc(50% - 7.5px)",
@@ -61,20 +67,106 @@ const Footer = () => {
         height: "3px",
         backgroundColor: "white"
     };
+    const [inputMenu, setInputMenu] = useState({
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100vw",
+        height: "100vh",
+        backgroundColor: "#F4F6F9",
+        position: "absolute",
+        top: "0",
+        opacity: "0",
+        transition: ".3s",
+    });
+    const ul = {
+        listStyleType: "none",
+        padding:0
+    }
 
+    const displayInputMenu = () => {
+        if (judge) {
+            setJudge(false);
+
+            setButton({
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+                margin: "5px",
+                backgroundColor: "rgba(234, 49, 101, .75)",
+                border: "none",
+                boxShadow: "0px 0px 5px rgba(26, 79, 131, .1) inset",
+                transform: "rotate(135deg)",
+                transition: ".3s",
+            });
+
+            setInputMenu({
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "absolute",
+                width: "100vw",
+                height: "100vh",
+                backgroundColor: "#F4F6F9",
+                opacity: "1",
+                top: 0,
+                transition: ".3s",
+            });
+        } else {
+            setJudge(true);
+
+            setButton({
+                width: "50px",
+                height: "50px",
+                borderRadius: "50%",
+                margin: "5px",
+                backgroundColor: "rgba(26, 79, 131, .25)",
+                border: "none",
+                boxShadow: "0px 0px 5px rgba(26, 79, 131, .1) inset",
+                transform: "rotate(0deg)",
+                transition: ".3s",
+            });
+
+            setInputMenu({
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                width: "100vw",
+                height: "100vh",
+                backgroundColor: "#F4F6F9",
+                position: "absolute",
+                top: "0",        
+                opacity: "0",
+                transition: ".3s",
+            });
+        };
+        
+        return button;
+    };
 
     return (
-        <div style={footer}>
-            <div style={humburger}>
-                <div style={line}></div>
-                <div style={line}></div>
-                <div style={line}></div>
+        <div>
+            <div style={footer}>
+                <div style={humburger}>
+                    <div style={line}></div>
+                    <div style={line}></div>
+                    <div style={line}></div>
+                </div>
+                <div style={arroundButton}>
+                    <button style={button} onClick={displayInputMenu}>
+                        <div style={line1}></div>
+                        <div style={line2}></div>
+                    </button>
+                </div>
             </div>
-            <div style={arroundButton}>
-                <button style={button}>
-                    <div style={line1}></div>
-                    <div style={line2}></div>
-                </button>
+            <div style={inputMenu}>
+                <ul style={ul}>
+                    <li><CreateButton text="目標を立てる" link='./signin' /></li>
+                    <li><CreateButton text="自分を評価する" link='./signin' /></li>
+                    <li><CreateButton text="これまでを振り返る" link='./signin' /></li>
+                    <li><CreateButton text="今の自分を記録する" link='./signin' /></li>
+                    <li><CreateButton text="将来を考える" link='./signin' /></li>
+                </ul>
             </div>
         </div>
     );

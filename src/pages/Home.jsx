@@ -46,7 +46,7 @@ const Home = () => {
         return <Navigate to='/signin' />;
     } else {
         return (
-            <div style={{backgroundColor:"#F4F6F9"}}>
+            <div style={{backgroundColor:"#F4F6F9",height: "100vh"}}>
                 <Header />
                 <div style={body}>
                     <div style={main}>

@@ -4,7 +4,8 @@ const Header = () => {
         color: "#43CBC3",
         fontWeight: "bold",
         fontSize: "20px",
-        textAlign: "center"
+        textAlign: "center",
+        zIndex: "10",
     };
 
     return (
