@@ -1,8 +1,11 @@
 import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../molecules/index';
+import { db } from '../firebase';
+import { collection, setDoc, doc } from 'firebase/firestore';
+import Code from '../DbDoshisha.json';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -16,7 +19,16 @@ const SignUp = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const { name, email, password } = event.currentTarget.elements;
+        const { name, email, password, grade, firstClass, number } = event.currentTarget.elements;
+        const userDocumentRef = doc(collection(db, 'users'));
+        const userData = Code.users.id;
+        userData.name = name.value;
+        userData.email = email.value;
+        userData.uid = userDocumentRef.id;
+        userData.student_info.first_grader = grade.value;
+        userData.student_info.first_grader_class = firstClass.value;
+        userData.student_info.first_grader_number = number.value;
+
         if (name.value.length === 0) {
             setError('ユーザー名を入力してください');
             return;
@@ -24,6 +36,11 @@ const SignUp = () => {
         try {
             await createUserWithEmailAndPassword(auth, email.value, password.value).then(()=>{
                 sendEmailVerification(auth.currentUser);
+                setDoc(userDocumentRef, userData).then((event)=>{
+                    console.log(event);
+                }).catch((error)=>{
+                    console.log(error);
+                });
                 navigate('/sendingmail', { state: { title: '認証用メールを送信しました' } });
             }).catch((e)=>{
                 console.log(e.message);
@@ -43,7 +60,7 @@ const SignUp = () => {
                     error_message = e.message;
                 };
                     setError(error_message);
-                })
+                });
         } catch (error) {
             console.log(error.message);
         };
@@ -107,7 +124,7 @@ const SignUp = () => {
                     <div style={schoolInfo}>
                         <div style={{margin:"0 5px"}}>
                             <div style={label}>学年</div>
-                            <select style={pullDown} name="prefecture">
+                            <select style={pullDown} name="grade">
                                 <option></option>
                                 <option>1</option>
                                 <option>1</option>
@@ -116,7 +133,7 @@ const SignUp = () => {
                         </div>
                         <div style={{margin:"0 5px"}}>
                             <div style={label}>組</div>
-                            <select style={pullDown} name="prefecture">
+                            <select style={pullDown} name="firstClass">
                                 <option></option>
                                 <option>1</option>
                                 <option>1</option>
@@ -125,7 +142,7 @@ const SignUp = () => {
                         </div>
                         <div style={{margin:"0 5px"}}>
                             <div style={label}>番号</div>
-                            <select style={pullDown} name="prefecture">
+                            <select style={pullDown} name="number">
                                 <option></option>
                                 <option>1</option>
                                 <option>1</option>
