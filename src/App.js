@@ -8,10 +8,10 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/signup' element={<SignUp />} />
-          <Route exact path='/' element={<Home />} />
+          <Route exact path='/home' element={<Home />} />
           <Route path='/signin' element={<SignIn />} />
           <Route path='/failedauth' element={<FailedAuth />} />
-          <Route path='/root' element={<Root />} />
+          <Route path='/' element={<Root />} />
           <Route path='/sendingmail' element={<SendingMail />} />
           <Route path='/resetpassword' element={<ResetPassword />} />
           <Route path='/inputability' element={<InputAbility />} />
