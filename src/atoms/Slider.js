@@ -21,6 +21,7 @@ const CreateSlider = (props) => {
             min={1}
             max={5}
             style={{color: color}}
+            name={props.name}
             />
         </Box>
     );
