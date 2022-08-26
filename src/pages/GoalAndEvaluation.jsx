@@ -1,5 +1,6 @@
 import React from 'react';
-import { Header, Footer, GoalCard } from '../molecules/index';
+import { Header, GoalCard } from '../molecules/index';
+import { InputButton } from '../atoms/index';
 import { CreateButton } from '../atoms/index';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -33,10 +34,10 @@ const GoalAndEvaluation = () => {
                     <SwiperSlide style={{display: "flex",justifyContent: "center"}}><GoalCard /></SwiperSlide>
                 </Swiper>
             </div>
-            <Footer />
             <div style={buttons}>
                 <CreateButton text="目標カレンダー" link='/signin' />
             </div>
+            <InputButton />
         </div>
     );
 };
