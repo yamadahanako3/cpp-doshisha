@@ -3,9 +3,6 @@ import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header } from '../molecules/index';
-import { db } from '../firebase';
-import { collection, setDoc, doc } from 'firebase/firestore';
-import Code from '../DbDoshisha.json';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -19,33 +16,15 @@ const SignUp = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const { name, email, password, grade, firstClass, number } = event.currentTarget.elements;
-        const userDocumentRef = doc(collection(db, 'users'));
-        const userData = Code.users.id;
-        userData.name = name.value;
-        userData.email = email.value;
-        userData.uid = userDocumentRef.id;
-        userData.student_info.first_grader = grade.value;
-        userData.student_info.first_grader_class = firstClass.value;
-        userData.student_info.first_grader_number = number.value;
+        const { email, password } = event.currentTarget.elements;
 
-        if (name.value.length === 0) {
-            setError('ユーザー名を入力してください');
-            return;
-        };
         try {
             await createUserWithEmailAndPassword(auth, email.value, password.value).then(()=>{
                 sendEmailVerification(auth.currentUser);
-                setDoc(userDocumentRef, userData).then((event)=>{
-                    console.log(event);
-                }).catch((error)=>{
-                    console.log(error);
-                });
                 navigate('/sendingmail', { state: { title: '認証用メールを送信しました' } });
             }).catch((e)=>{
                 console.log(e.message);
                 let error_message = "";
-
                 if (RegExpInvalidEmail.test(e.message)) {
                     error_message = "メールアドレスを入力してください";
                 } else if (RegExpNetworkRequestFailed.test(e.message)) {
@@ -78,20 +57,9 @@ const SignUp = () => {
         justifyContent: "center",
         alignItems: "center"
     };
-    const schoolInfo = {
-        margin: "40px 0",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
-    };
     const label = {
         color: "rgba(26, 79, 131, .75)",
         fontSize: "10px"
-    };
-    const pullDown = {
-        textAlign: "center",
-        width: "80px",
-        height: "30px"
     };
     const userInfo = {
         marginBottom: "30px",
@@ -121,40 +89,7 @@ const SignUp = () => {
                 {error && <p style={{color:"red",marginLeft:"50px"}}>{error}</p>}
                 <form style={form} onSubmit={handleSubmit}>
                     <div style={title}>ユーザー登録</div>
-                    <div style={schoolInfo}>
-                        <div style={{margin:"0 5px"}}>
-                            <div style={label}>学年</div>
-                            <select style={pullDown} name="grade">
-                                <option></option>
-                                <option>1</option>
-                                <option>1</option>
-                                <option>1</option>
-                            </select>
-                        </div>
-                        <div style={{margin:"0 5px"}}>
-                            <div style={label}>組</div>
-                            <select style={pullDown} name="firstClass">
-                                <option></option>
-                                <option>1</option>
-                                <option>1</option>
-                                <option>1</option>
-                            </select>
-                        </div>
-                        <div style={{margin:"0 5px"}}>
-                            <div style={label}>番号</div>
-                            <select style={pullDown} name="number">
-                                <option></option>
-                                <option>1</option>
-                                <option>1</option>
-                                <option>1</option>
-                            </select>
-                        </div>
-                    </div>
                     <div style={userInfo}>
-                        <div style={{marginBottom: "13px"}}>
-                            <div style={label}>氏名</div>
-                            <input style={input} name="name" type="text"></input>
-                        </div>
                         <div style={{marginBottom: "13px"}}>
                             <div style={label}>メールアドレス</div>
                             <input style={input} name="email" type="email"></input>
