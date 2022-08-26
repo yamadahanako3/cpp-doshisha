@@ -1,8 +1,8 @@
 import { auth } from '../firebase';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuthContext } from '../context/Authcontext';
-import { Header, Footer} from '../molecules/index';
-import { CreateButton, RadarChart } from '../atoms/index';
+import { Header, Footer } from '../molecules/index';
+import { CreateButton, RadarChart, InputButton } from '../atoms/index';
 
 const Home = () => {
     const navigate = useNavigate();
@@ -60,7 +60,8 @@ const Home = () => {
                     <CreateButton text="これまでとこれから" link="/signup" />
                 </div>  
                 <button onClick={handleLogout}>ログアウト</button>
-                <Footer />
+                {/* <Footer /> */}
+                <InputButton />
             </div>
         );
     };
