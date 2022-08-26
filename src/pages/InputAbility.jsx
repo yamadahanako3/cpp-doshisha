@@ -1,5 +1,5 @@
 import { Header } from '../molecules/index';
-import { CreateSlider, GoNextButoon } from '../atoms/index';
+import { CreateSlider, GoNextButton } from '../atoms/index';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import Data from '../DbDoshisha.json'
@@ -13,6 +13,7 @@ const ability = Data.users.id.first_grader.startingYear.ability;
 const UserData = Data.users.id;
 
 const InputAbility = () => {
+    const height = window.innerHeight;
     const { user } = useAuthContext();
     const navigate = useNavigate();
     const userDocumentRef = doc(db, 'users', user.uid);
@@ -50,10 +51,10 @@ const InputAbility = () => {
             ability[list.key] = event.currentTarget.elements[list.key].value;
         });
         setDoc(userDocumentRef, UserData, { merge: true });
-        navigate('/home');
+        navigate('/InputGoal');
         };
     return (
-        <div style={{backgroundColor:"#F4F6F9"}}>
+        <div style={{backgroundColor:"#F4F6F9", minHeight: height}}>
             <Header />
             <div style={body}>
                 <div style={title}>自分自身を評価しよう</div>
@@ -68,7 +69,7 @@ const InputAbility = () => {
                                 </div>
                             )
                         }
-                        <GoNextButoon />
+                        <GoNextButton />
                     </form>
                 </div>
             </div>
