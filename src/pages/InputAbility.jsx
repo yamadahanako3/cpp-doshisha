@@ -4,11 +4,17 @@ import React from 'react';
 
 const InputAbility = () => {
     const body = {
-        width: "80vw",
-        margin: "20px auto",
+        width: "100%",
+        paddingTop: "70px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center" 
     }
     const title = {
         fontSize: "23px",
+        textAlign: "left",
+        marginLeft: "-30px",
         color: "rgba(26, 79, 131, .75)"
     }
     const underTitle = {

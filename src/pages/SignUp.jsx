@@ -12,6 +12,7 @@ const SignUp = () => {
     const RegExpInternalError = /internal-error/g;
     const RegExpWeakPassword = /weak-password/g;
     const RegExpEmailAlreadyInUse = /email-already-in-use/g;
+    const height = window.innerHeight + "px";
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -54,7 +55,7 @@ const SignUp = () => {
         fontSize: "22px"
     };
     const form = {
-        marginTop: "50px",
+        height: height,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",

@@ -10,7 +10,6 @@ const GoalAndEvaluation = () => {
         fontSize: "23px",
         color: "rgba(26, 79, 131, 1)",
         marginLeft: "calc(50% - 140px)",
-        marginTop: "20px",
         marginBottom: "30px"
     }
     const buttons = {

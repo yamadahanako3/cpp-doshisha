@@ -13,7 +13,8 @@ const Home = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        paddingTop: "70px",
     };
     const main = {
         width: "280px",
