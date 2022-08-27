@@ -51,7 +51,6 @@ const Home = () => {
         color: "#747D88",
         marginBottom: "3px",
     };
-
     const handleLogout = () => {
         auth.signOut();
         navigate('/signin');

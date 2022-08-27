@@ -8,3 +8,5 @@ export {default as ResetPassword } from './ResetPassword';
 export {default as InputAbility } from './InputAbility';
 export {default as GoalAndEvaluation } from './GoalAndEvaluation';
 export {default as InputGoal } from './InputGoal';
+export {default as EvaluateGoal } from './EvaluateGoal';
+
