@@ -5,18 +5,23 @@ import { useNavigate } from 'react-router-dom';
 import Data from '../DbDoshisha.json'
 import Template from '../template.json'
 import { db } from '../firebase';
-import { setDoc, doc } from 'firebase/firestore';
+import { setDoc, getDoc, doc } from 'firebase/firestore';
 import { useAuthContext } from '../context/Authcontext';
+import { useEffect, useState } from 'react'
 
 const lists = Template.inputability;
-const ability = Data.users.id.first_grader.startingYear.ability;
-const UserData = Data.users.id;
 
 const InputAbility = () => {
     const height = window.innerHeight;
     const { user } = useAuthContext();
     const navigate = useNavigate();
     const userDocumentRef = doc(db, 'users', user.uid);
+    const [data, setData] = useState(null);
+    useEffect(()=>{
+        getDoc(userDocumentRef).then((a)=>{
+            setData(a.data());
+        });
+    },[]);
     const body = {
         width: "100%",
         paddingTop: "70px",
@@ -48,9 +53,9 @@ const InputAbility = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         lists.map((list)=>{
-            ability[list.key] = event.currentTarget.elements[list.key].value;
+            data.first_grader.startingYear.ability[list.key] = event.target.elements[list.key].value;
         });
-        setDoc(userDocumentRef, UserData, { merge: true });
+        setDoc(userDocumentRef, data, { merge: true });
         navigate('/InputGoal');
         };
     return (
