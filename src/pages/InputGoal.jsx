@@ -1,12 +1,35 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import Data from '../DbDoshisha.json'
+import { db } from '../firebase';
+import { setDoc, doc } from 'firebase/firestore';
+import { useAuthContext } from '../context/Authcontext';
+import { Navigation, Pagination } from 'swiper';
+import Template from '../template.json';
+import { GoNextButton } from '../atoms/index';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Navigation, Pagination } from 'swiper';
 
+const lists = Template.inputgoal;
+const goal = Data.users.id.first_grader.startingYear.goal;
+const userData = Data.users.id;
 
 const InputGoal = () => {
+    const { user } = useAuthContext();
+    const navigate = useNavigate();
+    const userDocumentRef = doc(db, 'users', user.uid);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        lists.map((list)=>{
+            goal[list.key] = event.currentTarget.elements[list.key].value;
+        });
+        setDoc(userDocumentRef, userData, { merge: true });
+        navigate('/home');
+    };
+
     const title = {
         paddingTop: "60px",
         fontSize: "23px",
@@ -65,59 +88,27 @@ const InputGoal = () => {
                 <div style={{borderBottom: "1px solid rgba(26, 79, 131, .25)",padding: "10px 0",fontWeight: "bold"}}>自由記入欄</div>
                 <textarea style={textarea} wrap="soft" placeholder="目標を記入しよう"></textarea>
             </div> */}
-            <Swiper modules={[Navigation, Pagination]} navigation={true}>
-                    <SwiperSlide style={{display: "flex",justifyContent: "center",paddingTop: "30px"}}>
-                        <div style={sub}>
-                            <label style={label}>目標</label>
-                            <div style={abilityName}>同志社国際生としての力</div>
-                        </div>
-                        <div style={free}>
-                            <div style={{borderBottom: "1px solid rgba(26, 79, 131, .25)",padding: "10px 0",fontWeight: "bold"}}>自由記入欄</div>
-                            <textarea style={textarea} wrap="soft" placeholder="目標を記入しよう"></textarea>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide style={{display: "flex",justifyContent: "center",paddingTop: "30px"}}>
-                        <div style={sub}>
-                            <label style={label}>目標</label>
-                            <div style={abilityName}>人間関係形成・社会形成能力</div>
-                        </div>
-                        <div style={free}>
-                            <div style={{borderBottom: "1px solid rgba(26, 79, 131, .25)",padding: "10px 0",fontWeight: "bold"}}>自由記入欄</div>
-                            <textarea style={textarea} wrap="soft" placeholder="目標を記入しよう"></textarea>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide style={{display: "flex",justifyContent: "center",paddingTop: "30px"}}>
-                        <div style={sub}>
-                            <label style={label}>目標</label>
-                            <div style={abilityName}>キャリアプランニング能力</div>
-                        </div>
-                        <div style={free}>
-                            <div style={{borderBottom: "1px solid rgba(26, 79, 131, .25)",padding: "10px 0",fontWeight: "bold"}}>自由記入欄</div>
-                            <textarea style={textarea} wrap="soft" placeholder="目標を記入しよう"></textarea>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide style={{display: "flex",justifyContent: "center",paddingTop: "30px"}}>
-                        <div style={sub}>
-                            <label style={label}>目標</label>
-                            <div style={abilityName}>課題対応能力</div>
-                        </div>
-                        <div style={free}>
-                            <div style={{borderBottom: "1px solid rgba(26, 79, 131, .25)",padding: "10px 0",fontWeight: "bold"}}>自由記入欄</div>
-                            <textarea style={textarea} wrap="soft" placeholder="目標を記入しよう"></textarea>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide style={{display: "flex",justifyContent: "center",paddingTop: "30px"}}>
-                        <div style={sub}>
-                            <label style={label}>目標</label>
-                            <div style={abilityName}>自己理解・自己管理能力</div>
-                        </div>
-                        <div style={free}>
-                            <div style={{borderBottom: "1px solid rgba(26, 79, 131, .25)",padding: "10px 0",fontWeight: "bold"}}>自由記入欄</div>
-                            <textarea style={textarea} wrap="soft" placeholder="目標を記入しよう"></textarea>
-                        </div>
-                    </SwiperSlide>
-                    
+            <form onSubmit={handleSubmit}>
+                <Swiper modules={[Navigation, Pagination]} navigation={true}>
+                    {
+                        lists.map((list)=>
+                            <SwiperSlide key={list.key} style={{display: "flex",justifyContent: "center",paddingTop: "30px"}}>
+                                <div>
+                                    <div style={sub}>
+                                        <label style={label}>目標</label>
+                                        <div style={abilityName}>{list.text}</div>
+                                    </div>
+                                    <div style={free}>
+                                        <div style={{borderBottom: "1px solid rgba(26, 79, 131, .25)",padding: "10px 0",fontWeight: "bold"}}>自由記入欄</div>
+                                        <textarea style={textarea} name={list.key} wrap="soft" placeholder="目標を記入しよう"></textarea>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                        )
+                    }
                 </Swiper>
+                <GoNextButton />
+            </form>
         </div>
     );
 };
