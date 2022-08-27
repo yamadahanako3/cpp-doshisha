@@ -18,6 +18,7 @@ function App() {
           <Route path='/goalandevaluation' element={<GoalAndEvaluation />} />
           <Route path='/inputgoal' element={<InputGoal />} />
           <Route path='/evaluategoal' element={<EvaluateGoal />} />
+          <Route path='/addgoal' element={<AddGoal />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
