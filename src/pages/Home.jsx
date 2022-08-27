@@ -2,13 +2,27 @@ import { auth } from '../firebase';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuthContext } from '../context/Authcontext';
 import { Header, Footer } from '../molecules/index';
+import { getDoc, doc } from 'firebase/firestore';
 import { CreateButton, RadarChart, InputButton } from '../atoms/index';
+import { useState, useEffect } from 'react';
+import { db } from '../firebase';
 
 const Home = () => {
     const navigate = useNavigate();
-    const userData1 = [5, 3, 3, 4, 4];
     const userData2 = [1, 3, 5, 5, 2];
     const { user } = useAuthContext();
+    const [userData1, setData] = useState(null);
+    const userDocumentRef = doc(db, 'users', user.uid);
+
+    useEffect(()=>{
+        getDoc(userDocumentRef).then((a)=>{
+            const b = a.data();
+            const c = b.first_grader.startingYear.ability;
+            const list = [c.self_as_doshishaStudent, c.communication, c.planning, c.responsiveness, c.self_management];
+            setData(list);
+        });
+    },[]);
+    
     const body = {
         display: "flex",
         flexDirection: "column",

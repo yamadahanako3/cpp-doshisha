@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Data from '../DbDoshisha.json'
 import { db } from '../firebase';
-import { setDoc, doc } from 'firebase/firestore';
+import { setDoc, doc, getDoc } from 'firebase/firestore';
 import { useAuthContext } from '../context/Authcontext';
 import { Navigation, Pagination } from 'swiper';
 import Template from '../template.json';
@@ -13,20 +13,23 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 const lists = Template.inputgoal;
-const goal = Data.users.id.first_grader.startingYear.goal;
-const userData = Data.users.id;
 
 const InputGoal = () => {
     const { user } = useAuthContext();
     const navigate = useNavigate();
     const userDocumentRef = doc(db, 'users', user.uid);
-
+    const [data, setData] = useState(null);
+    useEffect(()=>{
+        getDoc(userDocumentRef).then((a)=>{
+            setData(a.data());
+        });
+    },[]);
     const handleSubmit = async (event) => {
         event.preventDefault();
         lists.map((list)=>{
-            goal[list.key] = event.currentTarget.elements[list.key].value;
+            data.first_grader.startingYear.goal[list.key] = event.currentTarget.elements[list.key].value;
         });
-        setDoc(userDocumentRef, userData, { merge: true });
+        setDoc(userDocumentRef, data, { merge: true });
         navigate('/home');
     };
 
