@@ -1,6 +1,8 @@
+
 import { CreateSlider } from "../atoms/index";
 
 const EvaluateGoal = () => {
+
     const body = {
         margin: "60px 15%"
     };
