@@ -85,7 +85,7 @@ const InputGoal = () => {
             <form onSubmit={handleSubmit}>
                 <Swiper modules={[Navigation, Pagination]} navigation={true}>
                     {
-                        lists.forEach((list)=>
+                        lists.map((list)=>
                             <SwiperSlide key={list.key} style={{display: "flex",justifyContent: "center",paddingTop: "30px"}}>
                                 <div>
                                     <div style={sub}>

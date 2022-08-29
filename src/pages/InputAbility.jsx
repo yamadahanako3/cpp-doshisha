@@ -20,7 +20,7 @@ const InputAbility = () => {
         getDoc(userDocumentRef).then((a)=>{
             setData(a.data());
         });
-    });
+    },[]);
     const body = {
         width: "100%",
         paddingTop: "70px",
@@ -66,7 +66,7 @@ const InputAbility = () => {
                 <div style={{marginLeft:"30px"}}>
                     <form onSubmit={handleSubmit}>
                         {
-                            lists.forEach((list)=>
+                            lists.map((list)=>
                                 <div key={list.key}>
                                     <label style={label}>{list.text}</label>
                                     <CreateSlider name={list.key} color={list.color} />
