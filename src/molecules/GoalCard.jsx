@@ -1,6 +1,9 @@
 import {DoughnutChart} from "../atoms/index";
 
-const GoalCard = () => {
+const GoalCard = (props) => {
+    const item = props.item;
+    const goalContent1 = props.goalContent1;
+
     const body = {
         width: "280px",
         backgroundColor: "white",
@@ -13,7 +16,7 @@ const GoalCard = () => {
     };
     const title = {
         color: "#1A4F83",
-        fontSize: "24px",
+        fontSize: "20px",
     };
     const sub = {
         color: "rgba(26, 79, 131, .5)",
@@ -22,7 +25,7 @@ const GoalCard = () => {
     const content1 = {
         color: "rgba(26, 79, 131, .75)",
         fontSize: "13px",
-        marginLeft: "-15px",
+        margin: "0px 15px",
         paddingTop: "15px",
     };
     const content2 = {
@@ -39,17 +42,12 @@ const GoalCard = () => {
                 <div style={main}>
                     <DoughnutChart ratio="30" color="orange" />
                     <div style={{marginLeft: "20px"}}>
-                        <div style={title}>目標</div>
+                        <div style={title}>{item}</div>
                         <p style={sub}>4月12日→7月12日</p>
                     </div>
                 </div>
                 <div style={content1}>
-                    <ul>
-                        <li>目標の詳しい説明</li>
-                        <li>なぜ実現したいのか</li>
-                        <li>具体的にどのように取り組むか</li>
-                        <li>目標を達成した自分へのメッセージ</li>
-                    </ul>
+                    {goalContent1}
                 </div>
             </div>
             <div style={{backgroundColor: "rgba(244, 246, 249, .5)"}}>
