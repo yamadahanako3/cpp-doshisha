@@ -2,7 +2,6 @@ import { Header } from '../molecules/index';
 import { CreateSlider, GoNextButton } from '../atoms/index';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Data from '../DbDoshisha.json'
 import Template from '../template.json'
 import { db } from '../firebase';
 import { setDoc, getDoc, doc } from 'firebase/firestore';
@@ -21,7 +20,7 @@ const InputAbility = () => {
         getDoc(userDocumentRef).then((a)=>{
             setData(a.data());
         });
-    },[]);
+    });
     const body = {
         width: "100%",
         paddingTop: "70px",
@@ -52,7 +51,7 @@ const InputAbility = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        lists.map((list)=>{
+        lists.forEach((list)=>{
             data.first_grader.startingYear.ability[list.key] = event.target.elements[list.key].value;
         });
         setDoc(userDocumentRef, data, { merge: true });
@@ -67,7 +66,7 @@ const InputAbility = () => {
                 <div style={{marginLeft:"30px"}}>
                     <form onSubmit={handleSubmit}>
                         {
-                            lists.map((list)=>
+                            lists.forEach((list)=>
                                 <div key={list.key}>
                                     <label style={label}>{list.text}</label>
                                     <CreateSlider name={list.key} color={list.color} />

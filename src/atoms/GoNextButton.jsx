@@ -14,7 +14,7 @@ const GoNextButton = () => {
   };
 
   return (
-    <button style={button}><img src={arrow} /></button>
+    <button style={button}><img src={arrow} alt=""/></button>
   );
 };
 

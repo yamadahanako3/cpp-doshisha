@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Data from '../DbDoshisha.json'
 import { db } from '../firebase';
 import { setDoc, doc, getDoc } from 'firebase/firestore';
 import { useAuthContext } from '../context/Authcontext';
@@ -23,10 +22,10 @@ const InputGoal = () => {
         getDoc(userDocumentRef).then((a)=>{
             setData(a.data());
         });
-    },[]);
+    });
     const handleSubmit = async (event) => {
         event.preventDefault();
-        lists.map((list)=>{
+        lists.forEach((list)=>{
             data.first_grader.startingYear.goal[list.key] = event.currentTarget.elements[list.key].value;
         });
         setDoc(userDocumentRef, data, { merge: true });
@@ -83,18 +82,10 @@ const InputGoal = () => {
             <div style={{borderBottom: "1px solid rgba(26, 79, 131, .1)"}}>
                 <div style={title}>目標を立てる</div>
             </div>
-            {/* <div style={sub}>
-                <label style={label}>目標</label>
-                <div style={abilityName}>同志社国際生としての力</div>
-            </div>
-            <div style={free}>
-                <div style={{borderBottom: "1px solid rgba(26, 79, 131, .25)",padding: "10px 0",fontWeight: "bold"}}>自由記入欄</div>
-                <textarea style={textarea} wrap="soft" placeholder="目標を記入しよう"></textarea>
-            </div> */}
             <form onSubmit={handleSubmit}>
                 <Swiper modules={[Navigation, Pagination]} navigation={true}>
                     {
-                        lists.map((list)=>
+                        lists.forEach((list)=>
                             <SwiperSlide key={list.key} style={{display: "flex",justifyContent: "center",paddingTop: "30px"}}>
                                 <div>
                                     <div style={sub}>

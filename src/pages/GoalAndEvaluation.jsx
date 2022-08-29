@@ -29,7 +29,7 @@ const GoalAndEvaluation = () => {
                 [content.self_management, item.self_management]
             ];
 
-            goalData.slice(0, goalData.length).map((list, index)=>{
+            goalData.slice(0, goalData.length).forEach((list)=>{
                 setData((prevState)=>([...prevState, {content: list[0],item: list[1]}]));
             });
         });

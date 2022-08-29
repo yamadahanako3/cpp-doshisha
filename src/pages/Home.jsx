@@ -1,7 +1,7 @@
 import { auth } from '../firebase';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuthContext } from '../context/Authcontext';
-import { Header, Footer } from '../molecules/index';
+import { Header } from '../molecules/index';
 import { getDoc, doc } from 'firebase/firestore';
 import { CreateButton, RadarChart, InputButton } from '../atoms/index';
 import { useState, useEffect } from 'react';
@@ -21,7 +21,7 @@ const Home = () => {
             const list = [c.self_as_doshishaStudent, c.communication, c.planning, c.responsiveness, c.self_management];
             setData(list);
         });
-    },[]);
+    });
     
     const body = {
         display: "flex",
