@@ -12,4 +12,6 @@ export {default as EvaluateGoal } from './EvaluateGoal';
 export {default as AddGoal } from './AddGoal';
 export {default as RecordNow} from './RecordNow';
 export {default as InputFiveItems} from './InputFiveItems';
+export {default as YearInReview } from './YearInReview';
+export {default as RecordMyself } from './RecordMyself';
 
