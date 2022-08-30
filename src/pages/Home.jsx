@@ -18,7 +18,7 @@ const Home = () => {
         getDoc(userDocumentRef).then((a)=>{
             const b = a.data();
             const c = b.first_grader.startingYear.ability;
-            const list = [c.self_as_doshishaStudent, c.communication, c.planning, c.responsiveness, c.self_management];
+            const list = [c.self_as_doshishaStudent.point, c.communication.point, c.planning.point, c.responsiveness.point, c.self_management.point];
             setData(list);
         });
     });
