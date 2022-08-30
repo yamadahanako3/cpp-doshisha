@@ -16,6 +16,7 @@ const Root = () => {
     userData.email = user.email;
     if (!docSnap.exists()) {
       setDoc(userDocumentRef, userData);
+      return <Navigate to="/inputfiveitems" />
     };
   } ;
   

@@ -7,35 +7,34 @@ import { useAuthContext } from '../context/Authcontext';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
 import { useEffect, useState } from 'react';
-import { getDoc, setDoc } from 'firebase/firestore';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 import Template from '../template.json';
 
 const lists = Template.inputability;
 
 const InputFiveItems = () => {
 
-    // const { user } = useAuthContext();
+    const { user } = useAuthContext();
      const navigate = useNavigate();
-    // const userDocumentRef = doc(db, 'users', user.uid);
-    // const [data, setData] = useState(null);
-    // const [goalItem, setItem] = useState(null);
-    //discriptionの追加
+    const userDocumentRef = doc(db, 'users', user.uid);
+    const [data, setData] = useState(null);
+    const [goalItem, setItem] = useState(null);
     
-    // useEffect(()=>{
-    //     getDoc(userDocumentRef).then((ref)=>{
-    //         console.log("a");
-    //         setData(ref.data());
-    //     });
-    // },[]);
+    useEffect(()=>{
+        getDoc(userDocumentRef).then((ref)=>{
+            console.log("a");
+            setData(ref.data());
+        })
+    },[]);
 
     const handleSubmit = async (event) => {
-        // event.preventDefault();
-        // const parent = data.first_grader.startingYear.ability;
-        // for(let i in parent){
-        //     parent[i].point = event.target[lists.name].value;
-        //     parent[i].goal = event.target[lists.key].value;
-        // };
-        // setDoc(userDocumentRef, data, {merge: true});
+        event.preventDefault();
+        const parent = data.first_grader.startingYear.ability;
+        for(let i in parent){
+            parent[i].point = event.target[lists[i].color].value;
+            parent[i].goal = event.target[lists[i].key].value;
+        };
+        setDoc(userDocumentRef, data, {merge: true});
         navigate('/home');
     };
 
@@ -65,7 +64,7 @@ const InputFiveItems = () => {
                     {
                         lists.map((list, index)=>
                             <div style={{display: "flex",justifyContent: "center",alignItems: "center"}} key={index}>
-                                <InputCard theme={list.text} discription={list.discription} sliderName={list.name} textareaName={list.key} display={display==index?"block":"none"} />
+                                <InputCard theme={list.text} discription={list.discription} sliderName={list.color} textareaName={list.key} display={display==index?"block":"none"} />
                             </div>
                         )
                     }

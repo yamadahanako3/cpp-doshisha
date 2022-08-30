@@ -15,7 +15,7 @@ const Header = () => {
     };
     const button = {
         position: "absolute",
-        margin: "-5px 10px"
+        margin: "15px 10px"
     }
 
     return (

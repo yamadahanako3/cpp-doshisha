@@ -2,6 +2,9 @@ import * as React from 'react';
 import { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import arrow from './../images/menuArrow.png';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 const menuDiv = {
   position: "relative",
@@ -93,6 +96,7 @@ const ulStyle = {
 }
 
 const MenuButton = () => {
+  const navigate = useNavigate();
   const [state, setState] = useState(false);
   const [arrowStyle, setArrowStyle] = useState(arrowDown);
   const [listStyle, setListStyle] = useState(listStyleClose);
@@ -121,20 +125,20 @@ const MenuButton = () => {
   const list = () => (
     <div>
       <ul style={ulStyle}>
-        <li style={{margin: "20px 10px"}}>ホーム</li>
+        <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/home')}}>ホーム</li>
         <li style={{margin: "20px 10px"}}>入力する<img src={arrow} alt="" style={arrowStyle} onClick={onClick}></img>
           <ul style={listStyle}>
-            <li style={{margin: "20px 10px"}}>目標を立てる</li>
-            <li style={{margin: "20px 10px"}}>自分を評価する</li>
-            <li style={{margin: "20px 10px"}}>これまでを振り返る</li>
-            <li style={{margin: "20px 10px"}}>今の自分を記録する</li>
-            <li style={{margin: "20px 10px"}}>将来を考える</li>
+            <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/addgoal')}}>目標を立てる</li>
+            <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/evaluategoal')}}>自分を評価する</li>
+            <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/yearinreview')}}>これまでを振り返る</li>
+            <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/recordmyself')}}>今の自分を記録する</li>
+            <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/signin')}}>将来を考える</li>
           </ul>
         </li>
-        <li style={{margin: "20px 10px"}}>目標と評価</li>
-        <li style={{margin: "20px 10px"}}>今の自分と記録</li>
-        <li style={{margin: "20px 10px"}}>これまでとこれから</li>
-        <li style={{margin: "20px 10px"}}>ログアウト</li>
+        <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/goalandevaluation')}}>目標と評価</li>
+        <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/signin')}}>今の自分と記録</li>
+        <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/signin')}}>これまでとこれから</li>
+        <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/signup')}}>ログアウト</li>
       </ul>
     </div>
   );
@@ -159,7 +163,7 @@ const MenuButton = () => {
   }
 
   return (
-    <div>      
+    <div style={{display: "fixed",top: "10px",left: "10px"}}>      
       <div onClick={toggleDrawer('top', open)} style={menuDiv}>
         <span style={buttonStyle1}></span>
         <span style={buttonStyle2}></span>

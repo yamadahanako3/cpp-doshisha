@@ -75,8 +75,6 @@ const Home = () => {
                     <CreateButton text="今の自分についての記録" link="/signup" />
                     <CreateButton text="これまでとこれから" link="/signup" />
                 </div>  
-                <button onClick={handleLogout}>ログアウト</button>
-                {/* <Footer /> */}
                 <InputButton />
             </div>
         );
