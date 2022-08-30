@@ -35,11 +35,19 @@ const YearInReview = () => {
     });
   };
 
+  const title = {
+    paddingTop: "80px",
+    paddingBottom: "0px",
+    marginLeft: "30px",
+    color: "#1A4F83",
+    fontSize: "24px",
+  };
+
   return (
     <div>
       <Header />
         <div>
-          <h1>一年を振り返る</h1>
+          <div style={title}>一年を振り返る</div>
           <form onSubmit={handleSubmit}>
             {
               lists.map((list, index)=>
