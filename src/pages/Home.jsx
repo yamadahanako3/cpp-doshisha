@@ -9,20 +9,24 @@ import { db } from '../firebase';
 
 const Home = () => {
     const navigate = useNavigate();
-    const userData2 = [1, 3, 5, 5, 2];
+    // const userData2 = [1, 3, 5, 5, 2];
     const { user } = useAuthContext();
-    const [userData1, setData] = useState(null);
+    const [userData1, setData1] = useState(null);
+    const [userData2, setData2] = useState(null);
     const userDocumentRef = doc(db, 'users', user.uid);
 
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
             const data = ref.data();
             const parent = data.first_grader.startingYear.ability;
-            let lists = [];
+            let lists1 = [];
+            let lists2 = [];
             for(let i in parent){
-                lists.push(parent[i].point);
+                lists1.push(parent[i].point1);
+                lists2.push(parent[i].point2);
             }
-            setData(lists);
+            setData1(lists1);
+            setData2(lists2);
         });
     },[]);
     
