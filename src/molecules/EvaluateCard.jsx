@@ -8,7 +8,8 @@ const EvaluateCard = (props) => {
         padding: "20px 0px",
         boxShadow: "1px 1px 10px rgba(0, 0, 0, .1)",
         backgroundColor: "white",
-        borderRadius: "5px"
+        borderRadius: "5px",
+        display: props.display,
     }
     const theme = {
         color: "rgba(26, 79, 131, .75)",

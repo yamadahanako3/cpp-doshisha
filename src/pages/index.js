@@ -14,4 +14,5 @@ export {default as RecordNow} from './RecordNow';
 export {default as InputFiveItems} from './InputFiveItems';
 export {default as YearInReview } from './YearInReview';
 export {default as RecordMyself } from './RecordMyself';
+export {default as EvaluateFiveItems } from './EvaluateFiveItems';
 

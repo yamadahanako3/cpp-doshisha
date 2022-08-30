@@ -1,4 +1,4 @@
-import { Header, InputCard } from '../molecules/index';
+import { Header, InputCard, EvaluateCard } from '../molecules/index';
 import { CheckButton,GoNextButton, GoPreButton } from '../atoms/index';
 import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import 'swiper/css';
@@ -12,7 +12,7 @@ import Template from '../template.json';
 
 const lists = Template.inputability;
 
-const InputFiveItems = () => {
+const EvaluateFiveItems = () => {
 
     const { user } = useAuthContext();
      const navigate = useNavigate();
@@ -31,8 +31,9 @@ const InputFiveItems = () => {
         event.preventDefault();
         const parent = data.first_grader.startingYear.ability;
         for(let i in parent){
-            parent[i].point1 = event.target[lists[i].color].value;
-            parent[i].goal = event.target[lists[i].key].value;
+            parent[i].point2 = event.target[lists[i].color].value;
+            parent[i].ratio = event.target[lists[i].text].value;
+            parent[i].result = event.target[lists[i].key].value;
         };
         setDoc(userDocumentRef, data, {merge: true});
         navigate('/home');
@@ -63,8 +64,8 @@ const InputFiveItems = () => {
                 <div style={{display: "flex",justifyContent: "center"}}>
                     {
                         lists.map((list, index)=>
-                            <div style={{display: "flex",justifyContent: "center",alignItems: "center"}} key={index}>
-                                <InputCard theme={list.text} discription={list.discription} sliderName={list.color} textareaName={list.key} display={display==index?"block":"none"} />
+                        <div style={{display: "flex",justifyContent: "center",alignItems: "center"}} key={index}>
+                                <EvaluateCard theme={list.text} discription={list.discription} sliderName1={list.color} sliderName2={list.text} textareaName={list.key} display={display==index?"block":"none"} />
                             </div>
                         )
                     }
@@ -78,4 +79,4 @@ const InputFiveItems = () => {
     );
 };
 
-export default InputFiveItems;
+export default EvaluateFiveItems;
