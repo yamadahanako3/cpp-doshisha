@@ -28,6 +28,7 @@ const RecordMyself = () => {
   //         lists.push(parent[i].item);
   //     }
   //     setData(lists);
+  //     console.log("a");
   // });
   // },[])
   const handleSubmit = async (event) => {
@@ -48,11 +49,11 @@ const RecordMyself = () => {
   };
 
   return (
-    <div>
+    <div style={{paddingBottom: "60px"}}>
       <Header />
         <div>
-          <h1 style={title}>今の自分を記録する</h1>
-          <form onSubmit={handleSubmit}>
+          <div style={title}>今の自分を記録する</div>
+          <form style={{display:"flex",flexDirection:"column", alignItems:"center",}} onSubmit={handleSubmit}>
             {
               lists.map((list, index)=>
                 <div key={index}>
