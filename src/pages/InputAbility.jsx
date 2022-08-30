@@ -71,7 +71,7 @@ const InputAbility = () => {
                             lists.map((list, index)=>
                                 <div key={index}>
                                     <label style={label}>{list.text}</label>
-                                    <CreateSlider name={list.key} color={list.color} />
+                                    <CreateSlider name={list.key} mode="5" color={list.color} />
                                 </div>
                             )
                         }

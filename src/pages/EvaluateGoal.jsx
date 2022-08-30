@@ -102,7 +102,7 @@ const EvaluateGoal = () => {
                 </div>
                 <div>
                     <div style={label2}>達成率</div>
-                    <CreateSlider name="sliderRatio" color="#43CBC3" />
+                    <CreateSlider name="sliderRatio" mode="100" color="#43CBC3" />
                 </div>
                 <div style={free}>
                     <div style={freeTitle}>自由記入欄</div>
