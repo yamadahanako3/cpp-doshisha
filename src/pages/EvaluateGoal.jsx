@@ -1,4 +1,3 @@
-import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/Authcontext';
 import { getDoc, doc, setDoc } from 'firebase/firestore';
@@ -21,8 +20,8 @@ const EvaluateGoal = () => {
             let lists = [];
             for(let i in parent){
                 lists.push(parent[i].item);
-            }
-            console.log(lists)
+            };
+            console.log(lists);
             setItem(lists);
         });
     },[]);
