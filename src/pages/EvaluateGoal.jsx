@@ -1,15 +1,19 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useAuthContext } from '../context/Authcontext';
 import { getDoc, doc, setDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
 import { CreateSlider, GoNextButton } from "../atoms/index";
 
+
 const EvaluateGoal = () => {
+    const location = useLocation();
     const navigate = useNavigate();
     const { user } = useAuthContext();
     const [data, setData] = useState(null);
-    const [userGoalItem, setItem] = useState(null);
+    const [userGoalItem, setGoalItem] = useState(null);
+    const [item, setItem] = useState(location.state ? location.state.item:"");
+    const [content, setContent] = useState(location.state ? location.state.content:"");
     const userDocumentRef = doc(db, 'users', user.uid);
     
     useEffect(()=>{
@@ -22,7 +26,7 @@ const EvaluateGoal = () => {
                 lists.push(parent[i].item);
             };
             console.log(lists);
-            setItem(lists);
+            setGoalItem(lists);
         });
     },[]);
     
@@ -91,7 +95,7 @@ const EvaluateGoal = () => {
                 <div style={{display: "flex", position: "relative", height: "60px"}}>
                     <div style={label1}>項目</div>
                     <select style={pullDown} name="goalItem">
-                        <option></option>
+                        <option>{item}</option>
                         {
                             userGoalItem?.map((list, index)=>
                                 <option key={index}>{list}</option>
@@ -105,7 +109,7 @@ const EvaluateGoal = () => {
                 </div>
                 <div style={free}>
                     <div style={freeTitle}>自由記入欄</div>
-                    <textarea style={textarea} placeholder="評価を具体的に書いてみよう" name="freeResult"></textarea>
+                    <textarea style={textarea} placeholder="評価を具体的に書いてみよう" name="freeResult" onChange={(e)=>setContent(e.target.value)} value={content}></textarea>
                 </div>
                 <GoNextButton />
             </form>

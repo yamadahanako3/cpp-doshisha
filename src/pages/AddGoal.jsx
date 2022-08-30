@@ -1,4 +1,12 @@
+import { useLocation } from 'react-router-dom';
+import { useState } from 'react';
+
+
 const AddGoal = () => {
+    const location = useLocation();
+    const [item, setItem] = useState(location.state ? location.state.item:"");
+    const [content, setContent] = useState(location.state ? location.state.content:"");
+
     // const height = window.innerHeight;
     const body = {
         margin: "60px 15%"
@@ -51,11 +59,11 @@ const AddGoal = () => {
             <form style={form}>
                 <div style={{display: "flex", position: "relative", height: "60px"}}>
                     <div style={label1}>項目</div>
-                    <input style={pullDown}></input>
+                    <input style={pullDown} onChange={(e)=>setItem(e.target.value)} value={item}></input>
                 </div>
                 <div style={free}>
                     <div style={freeTitle}>自由記入欄</div>
-                    <textarea style={textarea} placeholder="評価を具体的に書いてみよう"></textarea>
+                    <textarea style={textarea} placeholder="評価を具体的に書いてみよう" onChange={(e)=>setContent(e.target.value)} value={content}></textarea>
                 </div>
                 <div style={{display: "flex", position: "relative", height: "60px", marginTop: "30px"}}>
                     <div style={label1}>期間</div>
