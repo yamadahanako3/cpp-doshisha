@@ -8,13 +8,13 @@ const menuDiv = {
   width: "25.5px",
   height: "12px",
   boxSizing: "border-box",
-  float:"right",
-  zIndex:12
+  float: "right",
+  zIndex: 12
 }
 const menusSpan1 = {
   display: "block",
   width: "25.5px",
-  height: "2px",
+  height: "3.5px",
   background: "#444",
   position: "absolute",
   transition: "all 0.5s ease",
@@ -23,7 +23,7 @@ const menusSpan1 = {
 const menusSpan1open = {
   display: "block",
   width: "25.5px",
-  height: "2px",
+  height: "3.5px",
   background: "#444",
   position: "absolute",
   transition: "all 0.5s ease",
@@ -34,11 +34,11 @@ const menusSpan1open = {
 const menusSpan2 = {
   display: "block",
   width: "25.5px",
-  height: "2px",
+  height: "3.5px",
   background: "#444",
   position: "absolute",
   transition: "all 0.5s ease",
-  top: "5px",
+  top: "6px",
   backgroundColor: "rgba(26, 79, 131, .75)",
 }
 const menusSpan2Open = {
@@ -47,18 +47,18 @@ const menusSpan2Open = {
 const menusSpan3 = {
   display: "block",
   width: "25.5px",
-  height: "2px",
+  height: "3.5px",
   background: "#444",
   position: "absolute",
   transition: "all 0.5s ease",
-  top: "10px",
+  top: "12px",
   backgroundColor: "rgba(26, 79, 131, .75)",
 }
 const menusSpan3Open = {
   display: "block",
   width: "25.5px",
   background: "#444",
-  height: "2px",
+  height: "3.5px",
   position: "absolute",
   transition: "all 0.5s ease",
   backgroundColor: "rgba(26, 79, 131, .75)",
@@ -66,12 +66,14 @@ const menusSpan3Open = {
   transform:"rotate(-45deg)"
 }
 const arrowUp = {
+  marginLeft: "10px",
   width:17,
   height:10,
   transition: "all 0.5s ease",
   transform:"rotate(180deg)"
 }
 const arrowDown = {
+  marginLeft: "10px",
   width:17,
   height:10,
   transition: "all 0.5s ease",
@@ -84,6 +86,11 @@ const listStyleOpen = {
   listStyleType:"none",
   display:"block"
 }
+const ulStyle = {
+  listStyleType: "none",
+  fontSize: "17px",
+  color: "rgba(26, 79, 131, .75)",
+}
 
 const MenuButton = () => {
   const [state, setState] = useState(false);
@@ -95,7 +102,7 @@ const MenuButton = () => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-    handleSubmit()
+    handleSubmit();
     setState({ ...state, [anchor]: open });
   };
 
@@ -113,21 +120,21 @@ const MenuButton = () => {
 
   const list = () => (
     <div>
-      <ul style={{listStyleType:"none"}}>
-        <li>ホーム</li>
-        <li>入力する<img src={arrow} alt="" style={arrowStyle} onClick={onClick}></img>
+      <ul style={ulStyle}>
+        <li style={{margin: "20px 10px"}}>ホーム</li>
+        <li style={{margin: "20px 10px"}}>入力する<img src={arrow} alt="" style={arrowStyle} onClick={onClick}></img>
           <ul style={listStyle}>
-            <li>目標を立てる</li>
-            <li>自分を評価する</li>
-            <li>これまでを振り返る</li>
-            <li>今の自分を記録する</li>
-            <li>将来を考える</li>
+            <li style={{margin: "20px 10px"}}>目標を立てる</li>
+            <li style={{margin: "20px 10px"}}>自分を評価する</li>
+            <li style={{margin: "20px 10px"}}>これまでを振り返る</li>
+            <li style={{margin: "20px 10px"}}>今の自分を記録する</li>
+            <li style={{margin: "20px 10px"}}>将来を考える</li>
           </ul>
         </li>
-        <li>目標と評価</li>
-        <li>今の自分と記録</li>
-        <li>これまでとこれから</li>
-        <li>ログアウト</li>
+        <li style={{margin: "20px 10px"}}>目標と評価</li>
+        <li style={{margin: "20px 10px"}}>今の自分と記録</li>
+        <li style={{margin: "20px 10px"}}>これまでとこれから</li>
+        <li style={{margin: "20px 10px"}}>ログアウト</li>
       </ul>
     </div>
   );
