@@ -8,3 +8,4 @@ export {default as GoNextButton } from './GoNextButton';
 export {default as MenuButton } from './MenuButton';
 export {default as CheckButton } from './CheckButton';
 export {default as InputReview } from './InputReview';
+export {default as GoPreButton } from './GoPreButton';

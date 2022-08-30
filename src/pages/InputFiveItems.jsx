@@ -1,0 +1,82 @@
+import { Header, InputCard } from '../molecules/index';
+import { CheckButton,GoNextButton, GoPreButton } from '../atoms/index';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import 'swiper/css';
+import { Navigation, Pagination } from 'swiper';
+import { useAuthContext } from '../context/Authcontext';
+import { useNavigate } from 'react-router-dom';
+import { db } from '../firebase';
+import { useEffect, useState } from 'react';
+import { getDoc, setDoc } from 'firebase/firestore';
+import Template from '../template.json';
+
+const lists = Template.inputability;
+
+const InputFiveItems = () => {
+
+    // const { user } = useAuthContext();
+     const navigate = useNavigate();
+    // const userDocumentRef = doc(db, 'users', user.uid);
+    // const [data, setData] = useState(null);
+    // const [goalItem, setItem] = useState(null);
+    //discriptionの追加
+    
+    // useEffect(()=>{
+    //     getDoc(userDocumentRef).then((ref)=>{
+    //         console.log("a");
+    //         setData(ref.data());
+    //     });
+    // },[]);
+
+    const handleSubmit = async (event) => {
+        // event.preventDefault();
+        // const parent = data.first_grader.startingYear.ability;
+        // for(let i in parent){
+        //     parent[i].point = event.target[lists.name].value;
+        //     parent[i].goal = event.target[lists.key].value;
+        // };
+        // setDoc(userDocumentRef, data, {merge: true});
+        navigate('/home');
+    };
+
+    const body = {
+        backgroundColor: "#F4F6F9",
+        height: "100vh"
+    };
+    const title = {
+        color: "rgba(26, 79, 131, .75)",
+        fontSize: "24px",
+    };
+    const underTitle = {
+        color: "#43CBC3",
+        fontSize: "12px",
+        fontWeight: "bold",
+    };
+    const [display, setDisplay] = useState(0);
+    return (
+        <div style={body}>
+            <Header />
+            <div style={{paddingTop: "80px", marginLeft: "20px"}}>
+                <div style={title}>今の自分を評価しよう</div>
+                <div style={underTitle}>卒業までに身に付けたい力について</div>
+            </div>
+            <form onSubmit={handleSubmit}>
+                <div style={{display: "flex",justifyContent: "center"}}>
+                    {
+                        lists.map((list, index)=>
+                            <div style={{display: "flex",justifyContent: "center",alignItems: "center"}} key={index}>
+                                <InputCard theme={list.text} discription={list.discription} sliderName={list.name} textareaName={list.key} display={display==index?"block":"none"} />
+                            </div>
+                        )
+                    }
+                </div>
+                <CheckButton style={{position: "absolute",right:"calc(50% - 25px)"}} />
+            </form>
+
+            <GoNextButton onClick={()=>setDisplay((display+1)%5)}/>
+            <GoPreButton onClick={()=>setDisplay((display+4)%5)}/>
+        </div>
+    );
+};
+
+export default InputFiveItems;
