@@ -10,4 +10,5 @@ export {default as GoalAndEvaluation } from './GoalAndEvaluation';
 export {default as InputGoal } from './InputGoal';
 export {default as EvaluateGoal } from './EvaluateGoal';
 export {default as AddGoal } from './AddGoal';
+export {default as RecordNow} from './RecordNow';
 

@@ -1,4 +1,4 @@
-import { Home, SignIn, SignUp, FailedAuth, Root, SendingMail, ResetPassword, InputAbility, GoalAndEvaluation, InputGoal, EvaluateGoal, AddGoal } from './pages/index';
+import { Home, SignIn, SignUp, FailedAuth, Root, SendingMail, ResetPassword, InputAbility, GoalAndEvaluation, InputGoal, EvaluateGoal, AddGoal, RecordNow } from './pages/index';
 import { AuthProvider } from './context/Authcontext';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -19,6 +19,7 @@ function App() {
           <Route path='/inputgoal' element={<InputGoal />} />
           <Route path='/evaluategoal' element={<EvaluateGoal />} />
           <Route path='/addgoal' element={<AddGoal />} />
+          <Route path='/recordnow' element={<RecordNow />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>

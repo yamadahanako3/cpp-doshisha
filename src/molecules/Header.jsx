@@ -3,6 +3,7 @@ const Header = () => {
     const header = {
         backgroundColor:"#F4F6F9",
         position: "fixed",
+        top: 0,
         width: "100vw",
         padding: "10px",
         color: "#43CBC3",
@@ -14,7 +15,7 @@ const Header = () => {
     };
     const button = {
         position: "absolute",
-        margin: "18px 10px"
+        margin: "-5px 10px"
     }
 
     return (
