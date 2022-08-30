@@ -1,7 +1,16 @@
 import {DoughnutChart} from "../atoms/index";
+import { useNavigate } from 'react-router-dom';
 
 const GoalCard = (props) => {
+    const navigate = useNavigate();
 
+    const handleClick1 = (event) => {
+        event.preventDefault();
+        navigate('/AddGoal', {state:{item:props.item,content:props.goalContent1}});
+    }
+    const handleClick2 = () => {
+        navigate('/EvaluateGoal', {state:{item:props.item,content:props.goalContent2}});
+    }
     
 
     const body = {
@@ -47,12 +56,12 @@ const GoalCard = (props) => {
                         <p style={sub}>4月12日→7月12日</p>
                     </div>
                 </div>
-                <div style={content1}>
+                <div style={content1} onClick={handleClick1}>
                     {props.goalContent1}
                 </div>
             </div>
             <div style={{backgroundColor: "rgba(244, 246, 249, .5)"}}>
-                <div style={content2}>
+                <div style={content2} onClick={handleClick2}>
                     {props.goalContent2}
                 </div>
 
