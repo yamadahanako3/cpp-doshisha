@@ -5,3 +5,4 @@ export {default as DoughnutChart } from './DoughnutChart';
 export {default as ToPublishButton } from './ToPublishButton';
 export {default as InputButton } from './InputButton';
 export {default as GoNextButton } from './GoNextButton';
+export {default as MenuButton } from './MenuButton';
