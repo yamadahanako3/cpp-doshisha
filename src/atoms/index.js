@@ -6,3 +6,4 @@ export {default as ToPublishButton } from './ToPublishButton';
 export {default as InputButton } from './InputButton';
 export {default as GoNextButton } from './GoNextButton';
 export {default as MenuButton } from './MenuButton';
+export {default as CheckButton } from './CheckButton';
