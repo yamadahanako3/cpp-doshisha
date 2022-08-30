@@ -1,3 +1,4 @@
+import {MenuButton} from '../atoms/index'
 const Header = () => {
     const header = {
         backgroundColor:"#F4F6F9",
@@ -12,7 +13,10 @@ const Header = () => {
     };
 
     return (
-        <div style={header}>career passport</div>
+        <div>
+            <MenuButton />
+            <div style={header}>career passport</div>
+        </div>
     );
 };
 
