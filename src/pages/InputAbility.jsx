@@ -21,6 +21,16 @@ const InputAbility = () => {
             setData(a.data());
         });
     },[]);
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        lists.forEach((list, index)=>{
+            data.first_grader.startingYear.ability[index].point = event.target.elements[list.key].value;
+        });
+        setDoc(userDocumentRef, data, { merge: true });
+        navigate('/InputGoal');
+    };
+
     const body = {
         width: "100%",
         paddingTop: "70px",
@@ -49,14 +59,6 @@ const InputAbility = () => {
         fontWeight: "bold"
     };
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        lists.forEach((list)=>{
-            data.first_grader.startingYear.ability[list.key].point = event.target.elements[list.key].value;
-        });
-        setDoc(userDocumentRef, data, { merge: true });
-        navigate('/InputGoal');
-        };
     return (
         <div style={{backgroundColor:"#F4F6F9", minHeight: height}}>
             <Header />
@@ -66,8 +68,8 @@ const InputAbility = () => {
                 <div style={{marginLeft:"30px"}}>
                     <form onSubmit={handleSubmit}>
                         {
-                            lists.map((list)=>
-                                <div key={list.key}>
+                            lists.map((list, index)=>
+                                <div key={index}>
                                     <label style={label}>{list.text}</label>
                                     <CreateSlider name={list.key} color={list.color} />
                                 </div>

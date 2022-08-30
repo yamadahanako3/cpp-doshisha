@@ -19,15 +19,12 @@ const GoalAndEvaluation = () => {
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
             const data = ref.data();
-            const content = data.first_grader.startingYear.ability;
-            const goalData = [
-                content.self_as_doshishaStudent,
-                content.communication,
-                content.planning,
-                content.responsiveness,
-                content.self_management
-            ];
-            setData(goalData)
+            const parent = data.first_grader.startingYear.ability;
+            let lists = [];
+            for(let i in parent){
+                lists.push(parent[i]);
+            }
+            setData(lists)
         });
     },[]);
 
@@ -53,7 +50,7 @@ const GoalAndEvaluation = () => {
                 <Swiper modules={[Navigation, Pagination]} >
                     {
                         userData.map((list)=>
-                            <SwiperSlide key={list.item} style={{display: "flex",justifyContent: "center"}}><GoalCard item={list.item} goalContent1={list.goal} /></SwiperSlide>
+                            <SwiperSlide key={list.item} style={{display: "flex",justifyContent: "center"}}><GoalCard item={list.item} goalContent1={list.goal} goalContent2={list.result} ratio={list.ratio} /></SwiperSlide>
                             )
                     }
                 </Swiper>

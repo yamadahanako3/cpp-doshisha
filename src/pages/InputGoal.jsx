@@ -25,8 +25,8 @@ const InputGoal = () => {
     });
     const handleSubmit = async (event) => {
         event.preventDefault();
-        lists.forEach((list)=>{
-            data.first_grader.startingYear.ability[list.key].goal = event.currentTarget.elements[list.key].value;
+        lists.forEach((list, index)=>{
+            data.first_grader.startingYear.ability[index].goal = event.currentTarget.elements[list.key].value;
         });
         setDoc(userDocumentRef, data, { merge: true });
         navigate('/home');

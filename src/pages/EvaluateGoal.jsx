@@ -1,7 +1,44 @@
-
-import { CreateSlider } from "../atoms/index";
+import { auth } from '../firebase';
+import { useNavigate } from 'react-router-dom';
+import { useAuthContext } from '../context/Authcontext';
+import { getDoc, doc, setDoc } from 'firebase/firestore';
+import { useState, useEffect } from 'react';
+import { db } from '../firebase';
+import { CreateSlider, GoNextButton } from "../atoms/index";
 
 const EvaluateGoal = () => {
+    const navigate = useNavigate();
+    const { user } = useAuthContext();
+    const [data, setData] = useState(null);
+    const [userGoalItem, setItem] = useState(null);
+    const userDocumentRef = doc(db, 'users', user.uid);
+    
+    useEffect(()=>{
+        getDoc(userDocumentRef).then((ref)=>{
+            const data = ref.data();
+            setData(ref.data())
+            const parent = data.first_grader.startingYear.ability;
+            let lists = [];
+            for(let i in parent){
+                lists.push(parent[i].item);
+            }
+            console.log(lists)
+            setItem(lists);
+        });
+    },[]);
+    
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        const parent = data.first_grader.startingYear.ability;
+        for(let i in parent){
+            if(event.target.goalItem.value == parent[i].item){
+                parent[i].ratio = event.target.sliderRatio.value;
+                parent[i].result = event.target.freeResult.value;
+            }
+        };
+        setDoc(userDocumentRef, data, { merge: true });
+        navigate('/goalandevaluation');
+    };
 
     const body = {
         margin: "60px 15%"
@@ -51,19 +88,27 @@ const EvaluateGoal = () => {
     return (
         <div style={body}>
             <div style={title}>自分を評価する</div>
-            <form style={form}>
+            <form style={form} onSubmit={handleSubmit}>
                 <div style={{display: "flex", position: "relative", height: "60px"}}>
                     <div style={label1}>項目</div>
-                    <input style={pullDown}></input>
+                    <select style={pullDown} name="goalItem">
+                        <option></option>
+                        {
+                            userGoalItem?.map((list, index)=>
+                                <option key={index}>{list}</option>
+                            )
+                        }
+                    </select>
                 </div>
                 <div>
                     <div style={label2}>達成率</div>
-                    <CreateSlider color="#43CBC3" />
+                    <CreateSlider name="sliderRatio" color="#43CBC3" />
                 </div>
                 <div style={free}>
                     <div style={freeTitle}>自由記入欄</div>
-                    <textarea style={textarea} placeholder="評価を具体的に書いてみよう"></textarea>
+                    <textarea style={textarea} placeholder="評価を具体的に書いてみよう" name="freeResult"></textarea>
                 </div>
+                <GoNextButton />
             </form>
         </div>
     );

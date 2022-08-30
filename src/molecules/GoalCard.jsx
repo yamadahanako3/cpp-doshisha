@@ -1,8 +1,8 @@
 import {DoughnutChart} from "../atoms/index";
 
 const GoalCard = (props) => {
-    const item = props.item;
-    const goalContent1 = props.goalContent1;
+
+    
 
     const body = {
         width: "280px",
@@ -23,41 +23,37 @@ const GoalCard = (props) => {
         fontSize: "10px",
     };
     const content1 = {
+        height: "70px",
         color: "rgba(26, 79, 131, .75)",
         fontSize: "13px",
         margin: "0px 15px",
         paddingTop: "15px",
     };
     const content2 = {
+        height: "100px",
         color: "rgba(26, 79, 131, .75)",
         fontSize: "13px",
-        marginLeft: "20px",
-        paddingTop: "20px",
-        paddingBottom: "15px",
+        margin: "0px 45px",
+        paddingTop: "15px",
     };
 
     return (
         <div style={body}>
             <div style={{margin: "30px"}}>
                 <div style={main}>
-                    <DoughnutChart ratio="30" color="orange" />
+                    <DoughnutChart ratio={props.ratio} color="orange" />
                     <div style={{marginLeft: "20px"}}>
-                        <div style={title}>{item}</div>
+                        <div style={title}>{props.item}</div>
                         <p style={sub}>4月12日→7月12日</p>
                     </div>
                 </div>
                 <div style={content1}>
-                    {goalContent1}
+                    {props.goalContent1}
                 </div>
             </div>
             <div style={{backgroundColor: "rgba(244, 246, 249, .5)"}}>
                 <div style={content2}>
-                    <ul>
-                        <li>努力したこと、成長したこと</li>
-                        <li>反省すべきこととその理由</li>
-                        <li>具体的にどのように取り組んだか</li>
-                        <li>これから取り組みたいこと</li>
-                    </ul>
+                    {props.goalContent2}
                 </div>
 
             </div>

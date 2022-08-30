@@ -15,13 +15,16 @@ const Home = () => {
     const userDocumentRef = doc(db, 'users', user.uid);
 
     useEffect(()=>{
-        getDoc(userDocumentRef).then((a)=>{
-            const b = a.data();
-            const c = b.first_grader.startingYear.ability;
-            const list = [c.self_as_doshishaStudent.point, c.communication.point, c.planning.point, c.responsiveness.point, c.self_management.point];
-            setData(list);
+        getDoc(userDocumentRef).then((ref)=>{
+            const data = ref.data();
+            const parent = data.first_grader.startingYear.ability;
+            let lists = [];
+            for(let i in parent){
+                lists.push(parent[i].point);
+            }
+            setData(lists);
         });
-    });
+    },[]);
     
     const body = {
         display: "flex",
