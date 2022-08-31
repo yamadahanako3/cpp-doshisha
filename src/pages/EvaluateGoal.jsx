@@ -3,7 +3,7 @@ import { useAuthContext } from '../context/Authcontext';
 import { getDoc, doc, setDoc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { CreateSlider, GoNextButton } from "../atoms/index";
+import { CreateSlider, CheckButton } from "../atoms/index";
 
 
 const EvaluateGoal = () => {
@@ -111,7 +111,7 @@ const EvaluateGoal = () => {
                     <div style={freeTitle}>自由記入欄</div>
                     <textarea style={textarea} placeholder="評価を具体的に書いてみよう" name="freeResult" onChange={(e)=>setContent(e.target.value)} value={content}></textarea>
                 </div>
-                <GoNextButton />
+                <CheckButton />
             </form>
         </div>
     );

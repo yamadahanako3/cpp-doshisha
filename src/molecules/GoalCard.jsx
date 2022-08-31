@@ -32,6 +32,8 @@ const GoalCard = (props) => {
         fontSize: "10px",
     };
     const content1 = {
+        wordWrap: "break-word",
+        width: "190px",
         height: "70px",
         color: "rgba(26, 79, 131, .75)",
         fontSize: "13px",
@@ -39,6 +41,8 @@ const GoalCard = (props) => {
         paddingTop: "15px",
     };
     const content2 = {
+        wordWrap: "break-word",
+        width: "190px",
         height: "100px",
         color: "rgba(26, 79, 131, .75)",
         fontSize: "13px",
