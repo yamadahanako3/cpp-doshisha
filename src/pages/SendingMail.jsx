@@ -1,5 +1,4 @@
 import { useNavigate, useLocation } from 'react-router-dom';
-import { Header } from '../molecules/index';
 import icon from '../images/trueIcon.png';
  
 const SendingMail = () => {
@@ -33,7 +32,6 @@ const SendingMail = () => {
 
   return (
     <div>
-      <Header />
       <div style={body}>
         <img src={icon} />
         <div style={title}>{location.state.title}</div>
