@@ -1,8 +1,21 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const InputReview = (props) => {
-  const [text1, setText1] = useState(props.effortText);
-  const [text2, setText2] = useState(props.reflectionText);
+  const [text1, setText1] = useState("");
+  const [text2, setText2] = useState("");
+  const [judge, setJudge] = useState(true);
+
+  useEffect(()=>{
+    if (!judge) return;
+    if (props.effortText) {
+      setText1(props.effortText ?? "");
+      setText2(props.reflectionText ?? "");
+      setJudge(false);
+    } else {
+      return;
+    };
+    console.log("a");
+  })
   const handleChange1 = (e) => {
     setText1(e.target.value);
   };

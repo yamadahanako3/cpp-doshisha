@@ -3,36 +3,37 @@ import {Header} from '../molecules/index';
 import { getDoc, doc, setDoc } from 'firebase/firestore';
 import { useAuthContext } from '../context/Authcontext';
 import { db } from '../firebase';
-import {useEffect, useState} from 'react'
+import {useEffect, useState} from 'react';
+import template from '../template.json';
+import { useNavigate } from 'react-router-dom';
 
-const lists = [
-  {title:"学習面", effort:"studentE", reflection:"studentR", effortText:"", reflectionText:""},
-  {title:"行事", effort:"eventE", reflection:"eventR", effortText:"", reflectionText:""},
-  {title:"部活動・委員会・生徒会", effort:"activityE", reflection:"activityR", effortText:"", reflectionText:""},
-  {title:"資格・家庭生活・学外活動", effort:"other_activityE", reflection:"other_activityR", effortText:"", reflectionText:""}
-]
+const lists = template.yearinreview;
+
 const YearInReview = () => {
   const { user } = useAuthContext();
   const userDocumentRef = doc(db, 'users', user.uid);
-  const [data, setData] = useState([]);
-  // useEffect(()=>{
-  //   getDoc(userDocumentRef).then((ref)=>{
-  //     const data = ref.data();
-  //     setData(ref.data())
-  //     const parent = data.first_grader.ability;
-  //     let lists = [];
-  //     for(let i in parent){
-  //         lists.push(parent[i].item);
-  //     }
-  //     setData(lists);
-  // });
-  // },[])
+  const [userData, setUserData] = useState([]);
+  const navigate = useNavigate();
+  useEffect(()=>{
+    getDoc(userDocumentRef).then((ref)=>{
+      const data = ref.data();
+      setUserData(data);
+    });
+    // const a = async () => {
+    //   const b = await getDoc(userDocumentRef)
+    //   setUserData(b.data())
+    // }
+  },[]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    lists.forEach((list)=>{
-      console.log(event.currentTarget[list.effort].value);
-      console.log(event.currentTarget[list.reflection].value);
-    });
+    const parent = userData.first_grader.yearinreview
+    for (let i in parent) {
+      parent[i].effort = event.currentTarget[lists[i].key1].value;
+      parent[i].reflection = event.currentTarget[lists[i].key2].value;
+    };
+    await setDoc(userDocumentRef,userData, {merge:true});
+    navigate('/recordnow');
   };
 
   const title = {
@@ -54,10 +55,10 @@ const YearInReview = () => {
                 <div key={index}>
                   <InputReview 
                   title={list.title} 
-                  effort={list.effort} 
-                  reflection={list.reflection} 
-                  effortText={list.effortText} 
-                  reflectionText={list.reflectionText}  />
+                  effort={list.key1} 
+                  reflection={list.key2} 
+                  effortText={userData.first_grader?.yearinreview[index].effort} 
+                  reflectionText={userData.first_grader?.yearinreview[index].reflection}  />
                 </div>
               )
             }
