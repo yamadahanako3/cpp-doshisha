@@ -9,7 +9,6 @@ import { db } from '../firebase';
 
 const Home = () => {
     const navigate = useNavigate();
-    // const userData2 = [1, 3, 5, 5, 2];
     const { user } = useAuthContext();
     const [userData1, setData1] = useState(null);
     const [userData2, setData2] = useState(null);
@@ -21,11 +20,12 @@ const Home = () => {
             const parent = data.first_grader.startingYear.ability;
             let lists1 = [];
             let lists2 = [];
-            for(let i in parent){
+            for(let i = 0 ; i < 5 ; i++){
                 lists1.push(parent[i].point1);
                 lists2.push(parent[i].point2);
             }
             setData1(lists1);
+            console.log(lists1);
             setData2(lists2);
         });
     },[]);

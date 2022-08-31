@@ -1,8 +1,6 @@
 import { Header, InputCard } from '../molecules/index';
 import { CheckButton,GoNextButton, GoPreButton } from '../atoms/index';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
 import 'swiper/css';
-import { Navigation, Pagination } from 'swiper';
 import { useAuthContext } from '../context/Authcontext';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
@@ -30,9 +28,9 @@ const InputFiveItems = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const parent = data.first_grader.startingYear.ability;
-        for(let i in parent){
-            parent[i].point1 = event.target[lists[i].color].value;
-            parent[i].goal = event.target[lists[i].key].value;
+        for(let i = 0 ; i < 5 ; i++){
+            parent[i].point1 = event.target[lists[i].sliderName1].value;
+            parent[i].goal = event.target[lists[i].textAreaName].value;
         };
         setDoc(userDocumentRef, data, {merge: true});
         navigate('/home');
@@ -64,7 +62,7 @@ const InputFiveItems = () => {
                     {
                         lists.map((list, index)=>
                             <div style={{display: "flex",justifyContent: "center",alignItems: "center"}} key={index}>
-                                <InputCard theme={list.text} discription={list.discription} sliderName={list.color} textareaName={list.key} display={display==index?"block":"none"} />
+                                <InputCard theme={list.text} discription={list.discription} sliderName={list.sliderName1} textareaName={list.textAreaName} display={display==index?"block":"none"} />
                             </div>
                         )
                     }

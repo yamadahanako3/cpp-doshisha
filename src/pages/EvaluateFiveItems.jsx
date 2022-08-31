@@ -30,10 +30,10 @@ const EvaluateFiveItems = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const parent = data.first_grader.startingYear.ability;
-        for(let i in parent){
-            parent[i].point2 = event.target[lists[i].color].value;
-            parent[i].ratio = event.target[lists[i].text].value;
-            parent[i].result = event.target[lists[i].key].value;
+        for(let i = 0 ; i < 5 ; i++){
+            parent[i].point2 = event.target[lists[i].sliderName1].value;
+            parent[i].ratio = event.target[lists[i].sliderName2].value;
+            parent[i].result = event.target[lists[i].textAreaName].value;
         };
         setDoc(userDocumentRef, data, {merge: true});
         navigate('/home');
@@ -65,7 +65,7 @@ const EvaluateFiveItems = () => {
                     {
                         lists.map((list, index)=>
                         <div style={{display: "flex",justifyContent: "center",alignItems: "center"}} key={index}>
-                                <EvaluateCard theme={list.text} discription={list.discription} sliderName1={list.color} sliderName2={list.text} textareaName={list.key} display={display==index?"block":"none"} />
+                                <EvaluateCard theme={list.text} discription={list.discription} sliderName1={list.sliderName1} sliderName2={list.sliderName2} textareaName={list.textAreaName} display={display==index?"block":"none"} />
                             </div>
                         )
                     }

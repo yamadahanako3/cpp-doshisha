@@ -1,7 +1,6 @@
 import check from '../images/check.png';
 
 const CheckButton = (props) => {
-  console.log(props.style)
   const position = props.style ? props.style.position: "fixed"
   const right = props.style ? props.style.right: "15px"
   const button = {
