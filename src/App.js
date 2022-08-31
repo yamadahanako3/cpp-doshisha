@@ -14,9 +14,7 @@ function App() {
           <Route path='/' element={<Root />} />
           <Route path='/sendingmail' element={<SendingMail />} />
           <Route path='/resetpassword' element={<ResetPassword />} />
-          <Route path='/inputability' element={<InputAbility />} />
           <Route path='/goalandevaluation' element={<GoalAndEvaluation />} />
-          <Route path='/inputgoal' element={<InputGoal />} />
           <Route path='/evaluategoal' element={<EvaluateGoal />} />
           <Route path='/addgoal' element={<AddGoal />} />
           <Route path='/recordnow' element={<RecordNow />} />

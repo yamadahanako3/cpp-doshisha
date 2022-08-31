@@ -3,8 +3,7 @@ import { useState } from 'react';
 import Drawer from '@mui/material/Drawer';
 import arrow from './../images/menuArrow.png';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
-
+import { auth } from '../firebase';
 
 const menuDiv = {
   position: "relative",
@@ -13,7 +12,7 @@ const menuDiv = {
   boxSizing: "border-box",
   float: "right",
   zIndex: 12
-}
+};
 const menusSpan1 = {
   display: "block",
   width: "25.5px",
@@ -22,7 +21,7 @@ const menusSpan1 = {
   position: "absolute",
   transition: "all 0.5s ease",
   backgroundColor: "rgba(26, 79, 131, .75)",
-}
+};
 const menusSpan1open = {
   display: "block",
   width: "25.5px",
@@ -33,7 +32,7 @@ const menusSpan1open = {
   backgroundColor: "rgba(26, 79, 131, .75)",
   top:"5px",
   transform:"rotate(45deg)"
-}
+};
 const menusSpan2 = {
   display: "block",
   width: "25.5px",
@@ -43,10 +42,10 @@ const menusSpan2 = {
   transition: "all 0.5s ease",
   top: "6px",
   backgroundColor: "rgba(26, 79, 131, .75)",
-}
+};
 const menusSpan2Open = {
   opacity: "0"
-}
+};
 const menusSpan3 = {
   display: "block",
   width: "25.5px",
@@ -56,7 +55,7 @@ const menusSpan3 = {
   transition: "all 0.5s ease",
   top: "12px",
   backgroundColor: "rgba(26, 79, 131, .75)",
-}
+};
 const menusSpan3Open = {
   display: "block",
   width: "25.5px",
@@ -67,33 +66,33 @@ const menusSpan3Open = {
   backgroundColor: "rgba(26, 79, 131, .75)",
   top:"5px",
   transform:"rotate(-45deg)"
-}
+};
 const arrowUp = {
   marginLeft: "10px",
   width:17,
   height:10,
   transition: "all 0.5s ease",
   transform:"rotate(180deg)"
-}
+};
 const arrowDown = {
   marginLeft: "10px",
   width:17,
   height:10,
   transition: "all 0.5s ease",
-}
+};
 const listStyleClose = {
   listStyleType:"none",
   display:"none"
-}
+};
 const listStyleOpen = {
   listStyleType:"none",
   display:"block"
-}
+};
 const ulStyle = {
   listStyleType: "none",
   fontSize: "17px",
   color: "rgba(26, 79, 131, .75)",
-}
+};
 
 const MenuButton = () => {
   const navigate = useNavigate();
@@ -105,7 +104,7 @@ const MenuButton = () => {
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
-    }
+    };
     handleSubmit();
     setState({ ...state, [anchor]: open });
   };
@@ -119,8 +118,13 @@ const MenuButton = () => {
       setArroIsOpen(true)
       setArrowStyle(arrowDown)
       setListStyle(listStyleClose)
-    }
-  }
+    };
+  };
+
+  const handleLogout = () => {
+    auth.signOut();
+    navigate('/signin');
+  };
 
   const list = () => (
     <div>
@@ -138,15 +142,15 @@ const MenuButton = () => {
         <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/goalandevaluation')}}>目標と評価</li>
         <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/signin')}}>今の自分と記録</li>
         <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/signin')}}>これまでとこれから</li>
-        <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/signup')}}>ログアウト</li>
+        <li style={{margin: "20px 10px"}} onClick={handleLogout}>ログアウト</li>
       </ul>
     </div>
   );
   
-  const [open, setOpen] = useState(true)
-  const [buttonStyle1, setButtonStyle1] = useState(menusSpan1)
-  const [buttonStyle2, setButtonStyle2] = useState(menusSpan2)
-  const [buttonStyle3, setButtonStyle3] = useState(menusSpan3)
+  const [open, setOpen] = useState(true);
+  const [buttonStyle1, setButtonStyle1] = useState(menusSpan1);
+  const [buttonStyle2, setButtonStyle2] = useState(menusSpan2);
+  const [buttonStyle3, setButtonStyle3] = useState(menusSpan3);
 
   const handleSubmit = () => {
     if (open) {
@@ -159,8 +163,8 @@ const MenuButton = () => {
       setButtonStyle1(menusSpan1)
       setButtonStyle2(menusSpan2)
       setButtonStyle3(menusSpan3)
-    }
-  }
+    };
+  };
 
   return (
     <div style={{display: "fixed",top: "10px",left: "10px"}}>      
@@ -179,6 +183,6 @@ const MenuButton = () => {
       </Drawer>
     </div>
   );
-}
+};
 
-export default MenuButton
+export default MenuButton;

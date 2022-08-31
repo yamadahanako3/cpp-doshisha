@@ -137,8 +137,8 @@ const InputButton = () => {
                 <ul style={ul}>
                     <li><CreateButton text="目標を立てる" link='/addgoal' /></li>
                     <li><CreateButton text="自分を評価する" link='/evaluategoal' /></li>
-                    <li><CreateButton text="これまでを振り返る" link='/signin' /></li>
-                    <li><CreateButton text="今の自分を記録する" link='/signin' /></li>
+                    <li><CreateButton text="これまでを振り返る" link='/yearinreview' /></li>
+                    <li><CreateButton text="今の自分を記録する" link='/recordmyself' /></li>
                     <li><CreateButton text="将来を考える" link='/signin' /></li>
                 </ul>
             </div>

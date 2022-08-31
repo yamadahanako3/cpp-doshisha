@@ -1,8 +1,5 @@
-import { Header, InputCard, EvaluateCard } from '../molecules/index';
+import { Header, EvaluateCard } from '../molecules/index';
 import { CheckButton,GoNextButton, GoPreButton } from '../atoms/index';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
-import 'swiper/css';
-import { Navigation, Pagination } from 'swiper';
 import { useAuthContext } from '../context/Authcontext';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
@@ -13,12 +10,11 @@ import Template from '../template.json';
 const lists = Template.inputability;
 
 const EvaluateFiveItems = () => {
-
     const { user } = useAuthContext();
-     const navigate = useNavigate();
+    const navigate = useNavigate();
     const userDocumentRef = doc(db, 'users', user.uid);
     const [data, setData] = useState(null);
-    const [goalItem, setItem] = useState(null);
+    const [display, setDisplay] = useState(0);
     
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
@@ -30,7 +26,7 @@ const EvaluateFiveItems = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const parent = data.first_grader.ability;
-        for(let i = 0 ; i < 5 ; i++){
+        for(let i = 0; i < 5; i++){
             parent[i].point2 = event.target[lists[i].sliderName1].value;
             parent[i].ratio = event.target[lists[i].sliderName2].value;
             parent[i].result = event.target[lists[i].textAreaName].value;
@@ -52,7 +48,7 @@ const EvaluateFiveItems = () => {
         fontSize: "12px",
         fontWeight: "bold",
     };
-    const [display, setDisplay] = useState(0);
+
     return (
         <div style={body}>
             <Header />
@@ -72,7 +68,6 @@ const EvaluateFiveItems = () => {
                 </div>
                 <CheckButton style={{position: "absolute",right:"calc(50% - 25px)"}} />
             </form>
-
             <GoNextButton onClick={()=>setDisplay((display+1)%5)}/>
             <GoPreButton onClick={()=>setDisplay((display+4)%5)}/>
         </div>

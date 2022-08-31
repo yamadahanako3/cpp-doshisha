@@ -19,13 +19,13 @@ const EvaluateGoal = () => {
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
             const data = ref.data();
-            setData(ref.data())
+            setData(ref.data());
             const parent = data.first_grader.ability;
             let lists = [];
             for(let i in parent){
                 lists.push(parent[i].item);
             };
-            console.log(lists);
+            console.log("a");
             setGoalItem(lists);
         });
     },[]);

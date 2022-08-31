@@ -3,11 +3,8 @@ import { useEffect, useState } from 'react';
 import { db } from '../firebase';
 import { useAuthContext } from '../context/Authcontext';
 import { getDoc, doc, setDoc } from 'firebase/firestore';
-import { async } from '@firebase/util';
 import { CheckButton } from '../atoms/index';
 import { useNavigate } from 'react-router-dom'
-
-
 
 const AddGoal = () => {
     const navigate = useNavigate();
@@ -26,32 +23,30 @@ const AddGoal = () => {
         });
     },[]);
 
-    const handleSubmit = async(event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         let parent = data.first_grader.ability;
-        const item = event.target.item.value
-        
+        const item = event.target.item.value;
         let judge = true;
         for (let i in parent) {
             if (parent[i].item == item) {
                 parent[i].goal = event.target.goal.value;
-                judge = false
-            }
-        }
+                judge = false;
+            };
+        };
         if (judge) {
             let list = {
                 "item":item,
                 "goal":event.target.goal.value,
                 "result":"",
                 "ratio":"",
-            }
-            parent.push(list)
-        }
+            };
+            parent.push(list);
+        };
         setDoc(userDocumentRef, data, {merge: true});
-        navigate('/goalandevaluation')
-    }
+        navigate('/goalandevaluation');
+    };
 
-    // const height = window.innerHeight;
     const body = {
         margin: "60px 15%"
     };

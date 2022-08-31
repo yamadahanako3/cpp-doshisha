@@ -26,7 +26,7 @@ const ResetPassword = () => {
     marginBottom: "100px",
     color: "rgba(26, 79, 131, .5)",
     fontSize: "13px",
-  }
+  };
   const form = {
     height: height,
     display: "flex",

@@ -24,8 +24,8 @@ const Home = () => {
                 lists1.push(parent[i].point1);
                 lists2.push(parent[i].point2);
             }
+            console.log("a");
             setData1(lists1);
-            console.log(lists1);
             setData2(lists2);
         });
     },[]);
@@ -57,10 +57,6 @@ const Home = () => {
         fontSize: "10px",
         color: "#747D88",
         marginBottom: "3px",
-    };
-    const handleLogout = () => {
-        auth.signOut();
-        navigate('/signin');
     };
 
     if (!user) {
