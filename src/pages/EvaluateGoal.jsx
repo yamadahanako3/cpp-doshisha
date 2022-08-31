@@ -20,7 +20,7 @@ const EvaluateGoal = () => {
         getDoc(userDocumentRef).then((ref)=>{
             const data = ref.data();
             setData(ref.data())
-            const parent = data.first_grader.startingYear.ability;
+            const parent = data.first_grader.ability;
             let lists = [];
             for(let i in parent){
                 lists.push(parent[i].item);
@@ -32,7 +32,7 @@ const EvaluateGoal = () => {
     
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const parent = data.first_grader.startingYear.ability;
+        const parent = data.first_grader.ability;
         for(let i in parent){
             if(event.target.goalItem.value == parent[i].item){
                 parent[i].ratio = event.target.sliderRatio.value;

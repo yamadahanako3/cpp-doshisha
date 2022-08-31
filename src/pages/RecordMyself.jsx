@@ -22,7 +22,7 @@ const RecordMyself = () => {
   //   getDoc(userDocumentRef).then((ref)=>{
   //     const data = ref.data();
   //     setData(ref.data())
-  //     const parent = data.first_grader.startingYear.ability;
+  //     const parent = data.first_grader.ability;
   //     let lists = [];
   //     for(let i in parent){
   //         lists.push(parent[i].item);

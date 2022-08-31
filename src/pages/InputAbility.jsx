@@ -25,7 +25,7 @@ const InputAbility = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         lists.forEach((list, index)=>{
-            data.first_grader.startingYear.ability[index].point = event.target.elements[list.key].value;
+            data.first_grader.ability[index].point = event.target.elements[list.key].value;
         });
         setDoc(userDocumentRef, data, { merge: true });
         navigate('/InputGoal');

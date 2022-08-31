@@ -17,7 +17,7 @@ const Home = () => {
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
             const data = ref.data();
-            const parent = data.first_grader.startingYear.ability;
+            const parent = data.first_grader.ability;
             let lists1 = [];
             let lists2 = [];
             for(let i = 0 ; i < 5 ; i++){

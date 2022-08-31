@@ -19,7 +19,7 @@ const GoalAndEvaluation = () => {
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
             const data = ref.data();
-            const parent = data.first_grader.startingYear.ability;
+            const parent = data.first_grader.ability;
             let lists = [];
             for(let i in parent){
                 lists.push(parent[i]);

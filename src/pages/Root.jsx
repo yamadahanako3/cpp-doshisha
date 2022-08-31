@@ -10,7 +10,7 @@ const Root = () => {
   const { user } = useAuthContext();
   const navigate = useNavigate()
   const judgeDocumentExists = async () =>{
-    const userData = Data.users.id;
+    const userData = Data;
     const userDocumentRef = doc(db, 'users', user.uid);
     const docSnap = await getDoc(userDocumentRef);
     userData.email = user.email;

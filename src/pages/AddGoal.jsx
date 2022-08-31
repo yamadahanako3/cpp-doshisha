@@ -28,7 +28,7 @@ const AddGoal = () => {
 
     const handleSubmit = async(event) => {
         event.preventDefault();
-        let parent = data.first_grader.startingYear.ability;
+        let parent = data.first_grader.ability;
         const item = event.target.item.value
         
         let judge = true;

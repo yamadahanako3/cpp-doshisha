@@ -27,7 +27,7 @@ const InputFiveItems = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const parent = data.first_grader.startingYear.ability;
+        const parent = data.first_grader.ability;
         for(let i = 0 ; i < 5 ; i++){
             parent[i].point1 = event.target[lists[i].sliderName1].value;
             parent[i].goal = event.target[lists[i].textAreaName].value;

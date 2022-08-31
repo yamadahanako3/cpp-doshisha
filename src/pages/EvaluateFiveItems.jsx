@@ -29,7 +29,7 @@ const EvaluateFiveItems = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const parent = data.first_grader.startingYear.ability;
+        const parent = data.first_grader.ability;
         for(let i = 0 ; i < 5 ; i++){
             parent[i].point2 = event.target[lists[i].sliderName1].value;
             parent[i].ratio = event.target[lists[i].sliderName2].value;
