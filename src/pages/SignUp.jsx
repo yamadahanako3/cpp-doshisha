@@ -2,7 +2,7 @@ import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Header } from '../molecules/index';
+import { FirstHeader } from '../molecules/index';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -46,9 +46,9 @@ const SignUp = () => {
     };
 
     const title = {
-        margin: "0 50px",
+        margin: "30px 50px",
         color: "rgba(26, 79, 131, .75)",
-        fontSize: "22px"
+        fontSize: "25px"
     };
     const form = {
         height: height,
@@ -59,7 +59,7 @@ const SignUp = () => {
     };
     const label = {
         color: "rgba(26, 79, 131, .75)",
-        fontSize: "10px"
+        fontSize: "13px"
     };
     const userInfo = {
         marginBottom: "30px",
@@ -76,15 +76,16 @@ const SignUp = () => {
     const button = {
         marginTop: "10px",
         color: "white",
-        padding: "10px 100px",
+        padding: "8px 100px",
         backgroundColor: "#43CBC3",
         border: "none",
-        borderRadius: "20px"
+        borderRadius: "20px",
+        fontSize: "15px"
     };
 
     return(
         <div>
-            <Header />
+            <FirstHeader />
             <div>
                 {error && <p style={{color:"red",marginLeft:"50px"}}>{error}</p>}
                 <form style={form} onSubmit={handleSubmit}>

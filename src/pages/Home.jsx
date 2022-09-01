@@ -72,7 +72,7 @@ const Home = () => {
                         <RadarChart data1={userData1} data2={userData2} />
                     </div>
                     <CreateButton text="目標と評価" link="/goalandevaluation" />
-                    <CreateButton text="今の自分についての記録" link="/signup" />
+                    <CreateButton text="今の自分についての記録" link="/recordnow" />
                     <CreateButton text="これまでとこれから" link="/signup" />
                 </div>  
                 <InputButton />

@@ -43,7 +43,7 @@ const GoalAndEvaluation = () => {
     }
 
     return (
-        <div style={{backgroundColor: "#F4F6F9"}}>
+        <div style={{minHeight: "100vh",backgroundColor: "#F4F6F9"}}>
             <Header />
             <div>
                 <div style={title}>目標と評価</div>

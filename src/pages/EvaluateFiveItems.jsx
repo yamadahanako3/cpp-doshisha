@@ -66,7 +66,7 @@ const EvaluateFiveItems = () => {
                         )
                     }
                 </div>
-                <CheckButton style={{position: "absolute",right:"calc(50% - 25px)"}} />
+                <CheckButton style={{position: "fixed",right:"calc(50% - 25px)"}} />
             </form>
             <GoNextButton onClick={()=>setDisplay((display+1)%5)}/>
             <GoPreButton onClick={()=>setDisplay((display+4)%5)}/>

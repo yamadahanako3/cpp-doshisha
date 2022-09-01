@@ -1,14 +1,5 @@
-import { MenuButton } from '../atoms/index';
-import { useNavigate } from 'react-router-dom';
-
-const Header = () => {
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        navigate('/home');
-    }
-
-    const header = {
+const FirstHeader = () => {
+    const FirstHeader = {
         backgroundColor:"#F4F6F9",
         position: "fixed",
         top: 0,
@@ -28,12 +19,9 @@ const Header = () => {
 
     return (
         <div>
-            <div style={button}>
-                <MenuButton />
-            </div>
-            <div style={header} onClick={handleClick}>career passport</div>
+            <div style={FirstHeader}>career passport</div>
         </div>
     );
 };
 
-export default Header;
+export default FirstHeader;

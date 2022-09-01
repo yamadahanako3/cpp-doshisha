@@ -39,6 +39,7 @@ const EvaluateCard = (props) => {
        padding: "10px",
        height: "100px",
        width: "240px",
+       fontSize: "17px",
     };
 
     return (

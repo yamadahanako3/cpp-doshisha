@@ -98,7 +98,7 @@ const AddGoal = () => {
                 </div>
                 <div style={free}>
                     <div style={freeTitle}>自由記入欄</div>
-                    <textarea name="goal" style={textarea} placeholder="評価を具体的に書いてみよう" onChange={(e)=>setContent(e.target.value)} value={content}></textarea>
+                    <textarea name="goal" style={textarea} placeholder="目標に向けて行動することを具体的に書いてみよう" onChange={(e)=>setContent(e.target.value)} value={content}></textarea>
                 </div>
                 <div style={{display: "flex", position: "relative", height: "60px", marginTop: "30px"}}>
                     <div style={label1}>期間</div>
