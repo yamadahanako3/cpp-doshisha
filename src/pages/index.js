@@ -14,4 +14,5 @@ export {default as YearInReview } from './YearInReview';
 export {default as RecordMyself } from './RecordMyself';
 export {default as EvaluateFiveItems } from './EvaluateFiveItems';
 export {default as AboutCareerPassport } from './AboutCareerPassport';
+export {default as AbilityChart } from './AbilityChart';
 

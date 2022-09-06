@@ -1,12 +1,14 @@
 import { Header, InputCard } from '../molecules/index';
-import { CheckButton,GoNextButton, GoPreButton } from '../atoms/index';
-import 'swiper/css';
+import { CheckButton } from '../atoms/index';
 import { useAuthContext } from '../context/Authcontext';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
 import { useEffect, useState } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import Template from '../template.json';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Navigation, Pagination } from 'swiper';
 
 const lists = Template.inputability;
 
@@ -15,7 +17,7 @@ const InputFiveItems = () => {
     const navigate = useNavigate();
     const userDocumentRef = doc(db, 'users', user.uid);
     const [data, setData] = useState(null);
-    const [display, setDisplay] = useState(0);
+    const [abilityData, setAbilityData] = useState([0, 0, 0, 0, 0]);
     
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
@@ -28,7 +30,7 @@ const InputFiveItems = () => {
         event.preventDefault();
         const parent = data.first_grader.ability;
         for(let i = 0; i < 5; i++){
-            parent[i].point1 = event.target[lists[i].sliderName1].value;
+            parent[i].point1 = abilityData[i];
             parent[i].goal = event.target[lists[i].textAreaName].value;
         };
         setDoc(userDocumentRef, data, {merge: true});
@@ -57,19 +59,19 @@ const InputFiveItems = () => {
                 <div style={underTitle}>卒業までに身に付けたい力について</div>
             </div>
             <form onSubmit={handleSubmit}>
-                <div style={{display: "flex",justifyContent: "center"}}>
+                <Swiper modules={[Navigation, Pagination]} >
                     {
                         lists.map((list, index)=>
-                            <div style={{display: "flex",justifyContent: "center",alignItems: "center"}} key={index}>
-                                <InputCard theme={list.text} discription={list.discription} sliderName={list.sliderName1} textareaName={list.textAreaName} display={display==index?"block":"none"} />
-                            </div>
+                            <SwiperSlide style={{display: "flex",justifyContent: "center"}} key={index}>
+                                <div style={{display: "flex",justifyContent: "center",alignItems: "center"}} key={index}>
+                                    <InputCard num={index} abilityData={abilityData} setAbilityData={setAbilityData}  theme={list.text} discription={list.discription} sliderName={list.sliderName1} textareaName={list.textAreaName} />
+                                </div>  
+                            </SwiperSlide>
                         )
                     }
-                </div>
-                <CheckButton style={{position: "fixed",right:"calc(50% - 25px)"}} />
+                </Swiper>
+                <CheckButton style={{position: "fixed",right:"calc(10% - 25px)"}} />
             </form>
-            <GoNextButton onClick={()=>setDisplay((display+1)%5)}/>
-            <GoPreButton onClick={()=>setDisplay((display+4)%5)}/>
         </div>
     );
 };
