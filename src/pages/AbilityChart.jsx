@@ -11,7 +11,7 @@ const AbilityChart = () => {
     const { user } = useAuthContext();
     const [userData1, setData1] = useState(null);
     const [userData2, setData2] = useState(null);
-    const [userGoal, setGoal] = useState(null);
+    const [userData, setData] = useState(null);
 
     const userDocumentRef = doc(db, 'users', user.uid);
 
@@ -25,11 +25,12 @@ const AbilityChart = () => {
             for(let i = 0 ; i < 5 ; i++){
                 lists1.push(parent[i].point1);
                 lists2.push(parent[i].point2);
-                lists.push(parent[i].goal);
+                lists.push(parent[i]);
             }
             console.log("a");
             setData1(lists1);
             setData2(lists2);
+            setData(lists);
         });
     },[]);
 

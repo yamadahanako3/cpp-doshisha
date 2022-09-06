@@ -1,6 +1,18 @@
 import { CreateSlider } from '../atoms/index';
+import React, { useState } from 'react';
 
 const EvaluateCard = (props) => {
+    const [judge, getJudge] = useState([false, false, false, false, false, false]);
+    
+    const handleClick = (event) => {
+        let list = [false, false, false, false, false, false];
+        list[event.target.innerHTML] = true;
+        getJudge(list);
+        props.setAbilityData(
+            props.abilityData.map((data,index)=>(index == event.target.name ? event.target.innerHTML : data))
+        )
+        console.log(props.abilityData)
+    };
 
     const body = {
         margin: "20px",
@@ -8,7 +20,7 @@ const EvaluateCard = (props) => {
         padding: "20px 0px",
         boxShadow: "1px 1px 10px rgba(0, 0, 0, .1)",
         backgroundColor: "white",
-        borderRadius: "5px",
+        borderRadius: "10px",
         display: props.display,
     }
     const theme = {
@@ -26,21 +38,37 @@ const EvaluateCard = (props) => {
         color: "rgba(26, 79, 131, .75)",
         fontSize: "16px",
         fontWeight: "bold",
-        marginTop: "40px"
-    }
-    const section2 = {
-        color: "rgba(26, 79, 131, .75)",
-        fontSize: "16px",
-        fontWeight: "bold",
+        marginTop: "40px",
+        marginBottom: "20px"
     }
     const textarea = {
        border: "1px solid rgba(26, 79, 131, .5)",
        borderRadius: "5px",
        padding: "10px",
-       height: "100px",
+       height: "40px",
        width: "240px",
        fontSize: "17px",
+       marginTop:"10px"
     };
+    const numButton1 = {
+        margin: "4px",
+        padding: "7px 13px",
+        borderRadius: "50%",
+        boxShadow: "1px 1px 10px rgba(0, 0, 0, .2)",
+        color: "rgba(26, 79, 131, .75)",
+        backgroundColor: "white",
+        border: "none",
+    }
+    const numButton2 = {
+        margin: "4px",
+        padding: "7px 13px",
+        borderRadius: "50%",
+        boxShadow: "1px 1px 10px rgba(0, 0, 0, .2)",
+        color: "white",
+        textAlign: "center",
+        backgroundColor: "rgba(3, 218, 197, 1)",
+        border: "none",
+    }
 
     return (
         <div style={body}>
@@ -49,15 +77,20 @@ const EvaluateCard = (props) => {
                     <div style={theme}>{props.theme}</div>
                     <p style={sub}>{props.discription}</p>
                 </div>
-                <div>
+                <div style={{marginBottom: "20px"}}>
                     <div style={section1}>現在の能力値</div>
-                    <CreateSlider name={props.sliderName1} color="#FFAE80" mode="5" />
+                    {/* <CreateSlider name={props.sliderName1} color="#FFAE80" mode="5" /> */}
+                    <div style={{display:"flex"}}>
+                        {
+                            judge.map((data, index)=>
+                                
+                                <a type="submit" key={index} onClick={handleClick} style={judge[index] ? numButton2:numButton1} name={props.num} >{index}</a>
+                            )
+                        }
+                    </div>
                 </div>
-                <div>
-                    <div style={section2}>現在の達成率</div>
-                    <CreateSlider name={props.sliderName2} color="#FFAE80" mode="100" />
-                </div>
-                <textarea name={props.textareaName} style={textarea} placeholder="目標を入力" />
+                <textarea name={props.textareaName1} style={textarea} placeholder="成長できたこと" />
+                <textarea name={props.textareaName2} style={textarea} placeholder="さらに成長したいこと" />
             </div>
         </div>
     );

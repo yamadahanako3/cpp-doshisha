@@ -12,7 +12,8 @@ const CheckButton = (props) => {
     border:"none",
     borderRadius: "50%",
     backgroundColor: "#03DAC5",
-    boxShadow: "0px 0px 5px rgba(0, 0, 0, .4)"
+    boxShadow: "0px 0px 5px rgba(0, 0, 0, .4)",
+    zIndex: "5"
   };
 
   return (

@@ -6,6 +6,9 @@ import { db } from '../firebase';
 import { useEffect, useState } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
 import Template from '../template.json';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import { Navigation, Pagination } from 'swiper';
 
 const lists = Template.inputability;
 
@@ -15,6 +18,8 @@ const EvaluateFiveItems = () => {
     const userDocumentRef = doc(db, 'users', user.uid);
     const [data, setData] = useState(null);
     const [display, setDisplay] = useState(0);
+    const [abilityData, setAbilityData] = useState([0, 0, 0, 0, 0]);
+
     
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
@@ -27,9 +32,9 @@ const EvaluateFiveItems = () => {
         event.preventDefault();
         const parent = data.first_grader.ability;
         for(let i = 0; i < 5; i++){
-            parent[i].point2 = event.target[lists[i].sliderName1].value;
-            parent[i].ratio = event.target[lists[i].sliderName2].value;
-            parent[i].result = event.target[lists[i].textAreaName].value;
+            parent[i].point2 = abilityData[i];;
+            parent[i].result = event.target[lists[i].textAreaName1].value;
+            parent[i].nextGoal = event.target[lists[i].textAreaName2].value;
         };
         setDoc(userDocumentRef, data, {merge: true});
         navigate('/home');
@@ -57,7 +62,7 @@ const EvaluateFiveItems = () => {
                 <div style={underTitle}>卒業までに身に付けたい力について</div>
             </div>
             <form onSubmit={handleSubmit}>
-                <div style={{display: "flex",justifyContent: "center"}}>
+                {/* <div style={{display: "flex",justifyContent: "center"}}>
                     {
                         lists.map((list, index)=>
                         <div style={{display: "flex",justifyContent: "center",alignItems: "center"}} key={index}>
@@ -65,11 +70,20 @@ const EvaluateFiveItems = () => {
                             </div>
                         )
                     }
-                </div>
-                <CheckButton style={{position: "fixed",right:"calc(50% - 25px)"}} />
+                </div> */}
+                <Swiper modules={[Navigation, Pagination]} >
+                    {
+                        lists.map((list, index)=>
+                            <SwiperSlide style={{display: "flex",justifyContent: "center"}} key={index}>
+                                <div style={{display: "flex",justifyContent: "center",alignItems: "center"}} key={index}>
+                                    <EvaluateCard num={index} abilityData={abilityData} setAbilityData={setAbilityData}  theme={list.text} discription={list.discription} sliderName={list.sliderName} textareaName1={list.textAreaName1} textareaName2={list.textAreaName2} />
+                                </div>  
+                            </SwiperSlide>
+                        )
+                    }
+                </Swiper>
+                <CheckButton style={{position: "fixed",right:"calc(10% - 25px)"}} />
             </form>
-            <GoNextButton onClick={()=>setDisplay((display+1)%5)}/>
-            <GoPreButton onClick={()=>setDisplay((display+4)%5)}/>
         </div>
     );
 };

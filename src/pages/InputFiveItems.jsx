@@ -64,7 +64,7 @@ const InputFiveItems = () => {
                         lists.map((list, index)=>
                             <SwiperSlide style={{display: "flex",justifyContent: "center"}} key={index}>
                                 <div style={{display: "flex",justifyContent: "center",alignItems: "center"}} key={index}>
-                                    <InputCard num={index} abilityData={abilityData} setAbilityData={setAbilityData}  theme={list.text} discription={list.discription} sliderName={list.sliderName1} textareaName={list.textAreaName} />
+                                    <InputCard num={index} abilityData={abilityData} setAbilityData={setAbilityData}  theme={list.text} discription={list.discription} sliderName={list.sliderName} textareaName={list.textAreaName1} />
                                 </div>  
                             </SwiperSlide>
                         )

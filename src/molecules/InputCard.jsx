@@ -81,7 +81,6 @@ const InputCard = (props) => {
                     <div style={{display:"flex"}}>
                         {
                             judge.map((data, index)=>
-                                
                                 <a type="submit" key={index} onClick={handleClick} style={judge[index] ? numButton2:numButton1} name={props.num} >{index}</a>
                             )
                         }
