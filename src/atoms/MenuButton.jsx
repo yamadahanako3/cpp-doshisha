@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
 
 const menuDiv = {
-  position: "relative",
+  position: "fixed",
   width: "25.5px",
   height: "12px",
   boxSizing: "border-box",

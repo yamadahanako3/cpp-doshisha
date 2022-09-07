@@ -1,6 +1,6 @@
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuthContext } from '../context/Authcontext';
-import { Header } from '../molecules/index';
+import { Header, DetailAbility } from '../molecules/index';
 import { getDoc, doc } from 'firebase/firestore';
 import { RadarChart } from '../atoms/index';
 import { useState, useEffect } from 'react';
@@ -31,6 +31,7 @@ const AbilityChart = () => {
             setData1(lists1);
             setData2(lists2);
             setData(lists);
+            console.log(lists)
         });
     },[]);
 
@@ -47,7 +48,7 @@ const AbilityChart = () => {
     };
     const main = {
         width: "280px",
-        height: "320px",
+        height: "230px",
         marginBottom: "20px",
         borderRadius: "5px",
         display: "flex",
@@ -66,8 +67,9 @@ const AbilityChart = () => {
     };
     
     return (
-        <div style={{height: "100vh"}}>
+        <div style={{height: "100vh",overflowY: "hidden"}}>
             <Header />
+                <DetailAbility userData={userData??""} />
             <div style={body}>
                 <div style={main} onClick={handleClick} >
                     <RadarChart data1={userData1} data2={userData2} />
@@ -77,22 +79,27 @@ const AbilityChart = () => {
                 <div style={title}>
 
                 </div>
-                <div style={section}>
-                    <div style={sub}>伸ばししたいところ</div>
-                    <p></p>
-                </div>
-                <div style={section}>
-                    <div style={sub}>伸ばししたいところ</div>
-                    <p></p>
-
-                </div>
-                    <div style={sub}>伸ばししたいところ</div>
-                    <p></p>
-                <div style={section}>
-
+                {/* {
+                    userData.map((data, index)=>
+                        <div key={index}>
+                            <div style={section}>
+                                <div style={sub}>目標</div>
+                                <p>{data.goal}</p>
+                            </div>
+                            <div style={section}>
+                                <div style={sub}>成長できたところ</div>
+                                <p>{data.result}</p>
+                            </div>
+                            <div style={section}>
+                                <div style={sub}>さらに成長したいところ</div>
+                                <p>{data.nextGoal}</p>
+                            </div>
+                        </div>
+                    )
+                } */}
                 </div>
             </div>
-        </div>
+
     );
 };
 

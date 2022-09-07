@@ -31,7 +31,7 @@ const InputFiveItems = () => {
         const parent = data.first_grader.ability;
         for(let i = 0; i < 5; i++){
             parent[i].point1 = abilityData[i];
-            parent[i].goal = event.target[lists[i].textAreaName].value;
+            parent[i].goal = event.target[lists[i].textAreaName1].value;
         };
         setDoc(userDocumentRef, data, {merge: true});
         navigate('/home');
