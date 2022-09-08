@@ -1,5 +1,6 @@
 import {DoughnutChart} from "../atoms/index";
 import { useNavigate } from 'react-router-dom';
+import { display } from "@mui/system";
 
 const GoalCard = (props) => {
     const navigate = useNavigate();
@@ -17,6 +18,8 @@ const GoalCard = (props) => {
         width: "280px",
         backgroundColor: "white",
         boxShadow: "0px 2px 10px rgba(26, 79, 131, .1)",
+        paddingBottom: "50px",
+        borderRadius: "5px",
     };
     const main = {
         display: "flex",
@@ -64,7 +67,7 @@ const GoalCard = (props) => {
                     {props.goalContent1}
                 </div>
             </div>
-            <div style={{backgroundColor: "rgba(244, 246, 249, .5)"}}>
+            <div style={{backgroundColor: "rgba(244, 246, 249, .5)",display: props.goalContent2 == null ? "none" : "block"}}>
                 <div style={content2} onClick={handleClick2}>
                     {props.goalContent2}
                 </div>

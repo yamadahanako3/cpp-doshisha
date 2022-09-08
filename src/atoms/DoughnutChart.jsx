@@ -15,7 +15,7 @@ const DoughnutChart = (props) => {
   const graphdata = {
     datasets: [
       {
-        data: [ratio, 100-ratio],
+        data: ratio!=null ? [ratio, 100-ratio] : [60,40],
         backgroundColor: [color, "#DEDFE0"],
         borderWidth:0,
         cutout:23,
@@ -47,7 +47,7 @@ const DoughnutChart = (props) => {
             position: 'absolute',
             fontSize: 13,
             color:color
-          }}>{ratio}%</label>
+          }}>{ratio!=null ? ratio+"%" : "?"}</label>
       </div>
     </div>
   );

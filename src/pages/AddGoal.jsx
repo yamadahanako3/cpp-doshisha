@@ -25,7 +25,7 @@ const AddGoal = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        let parent = data.first_grader.ability;
+        let parent = data.goalCard;
         const item = event.target.item.value;
         let judge = true;
         for (let i in parent) {
@@ -34,15 +34,16 @@ const AddGoal = () => {
                 judge = false;
             };
         };
-        if (judge) {
+       if (judge) {
             let list = {
                 "item":item,
                 "goal":event.target.goal.value,
                 "result":"",
                 "ratio":"",
             };
+            console.log(parent)
             parent.push(list);
-        };
+       };
         setDoc(userDocumentRef, data, {merge: true});
         navigate('/goalandevaluation');
     };
