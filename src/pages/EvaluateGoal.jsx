@@ -20,10 +20,12 @@ const EvaluateGoal = () => {
         getDoc(userDocumentRef).then((ref)=>{
             const data = ref.data();
             setData(ref.data());
-            const parent = data.first_grader.ability;
+            const parent = data.goalCard;
             let lists = [];
             for(let i in parent){
-                lists.push(parent[i].item);
+                if(parent[i].result == ""){
+                    lists.push(parent[i].item);
+                };
             };
             console.log("a");
             setGoalItem(lists);
@@ -32,7 +34,7 @@ const EvaluateGoal = () => {
     
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const parent = data.first_grader.ability;
+        const parent = data.goalCard;
         for(let i in parent){
             if(event.target.goalItem.value == parent[i].item){
                 parent[i].ratio = event.target.sliderRatio.value;
@@ -40,7 +42,7 @@ const EvaluateGoal = () => {
             }
         };
         setDoc(userDocumentRef, data, { merge: true });
-        navigate('/goalandevaluation');
+        navigate('/goal');
     };
 
     const body = {

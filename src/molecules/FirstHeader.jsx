@@ -12,10 +12,6 @@ const FirstHeader = () => {
         zIndex: "10",
         boxShadow: "0px 1px 5px rgba(0, 0, 0, .14)"
     };
-    const button = {
-        position: "absolute",
-        margin: "15px 10px"
-    }
 
     return (
         <div>

@@ -1,6 +1,4 @@
-import { useNavigate, useLocation } from 'react-router-dom';
 import { Header } from '../molecules/index';
-import icon from '../images/trueIcon.png';
  
 const AboutCareerPassport = () => {
   const body = {
@@ -40,4 +38,4 @@ const text = {
   )
 }
 
-export default AboutCareerPassport
+export default AboutCareerPassport;

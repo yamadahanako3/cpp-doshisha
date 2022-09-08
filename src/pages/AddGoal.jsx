@@ -27,25 +27,25 @@ const AddGoal = () => {
         event.preventDefault();
         let parent = data.goalCard;
         const item = event.target.item.value;
+        const goal = event.target.goal.value;
         let judge = true;
         for (let i in parent) {
             if (parent[i].item == item) {
-                parent[i].goal = event.target.goal.value;
+                parent[i].goal = goal;
                 judge = false;
             };
         };
-       if (judge) {
+       if (judge && item!=null && goal!=null) {
             let list = {
                 "item":item,
-                "goal":event.target.goal.value,
+                "goal":goal,
                 "result":"",
                 "ratio":"",
             };
-            console.log(parent)
             parent.push(list);
        };
         setDoc(userDocumentRef, data, {merge: true});
-        navigate('/goalandevaluation');
+        navigate('/goal');
     };
 
     const body = {

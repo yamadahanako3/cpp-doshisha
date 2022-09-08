@@ -1,5 +1,3 @@
-import { MenuButton } from '../atoms/index';
-import { useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 
 const DetailAbility = (props) => {
@@ -11,8 +9,8 @@ const DetailAbility = (props) => {
             setJudge(false);
         }else{
             setJudge(true);
-        }
-    }
+        };
+    };
 
     const body1 = {
         position: "fixed",
@@ -53,34 +51,14 @@ const DetailAbility = (props) => {
         overflow:"hidden",
         textOverflow:"ellipsis",
         fontSize: "13px",
-        
     };
     const content2 = {
-        
         fontSize: "13px",
     };
     
     
     return (
         <div>
-            {/* {
-                props.userData.map((data, index)=>
-                <div key={index}>
-                    <div style={section}>
-                        <div style={sub}>目標</div>
-                        <p>{data.goal}</p>
-                    </div>
-                    <div style={section}>
-                        <div style={sub}>成長できたところ</div>
-                        <p>{data.result}</p>
-                    </div>
-                    <div style={section}>
-                        <div style={sub}>さらに成長したいところ</div>
-                        <p>{data.nextGoal}</p>
-                    </div>
-                </div>
-                )
-            } */}
             <div style={judge ? body2 : body1} onClick={handleClick}>
                 <div style={title}>{props.item}</div>
                 <div style={{margin: "10px"}}>

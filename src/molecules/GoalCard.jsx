@@ -1,6 +1,5 @@
 import {DoughnutChart} from "../atoms/index";
 import { useNavigate } from 'react-router-dom';
-import { display } from "@mui/system";
 
 const GoalCard = (props) => {
     const navigate = useNavigate();

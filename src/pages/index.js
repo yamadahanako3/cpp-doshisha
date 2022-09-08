@@ -5,7 +5,6 @@ export {default as SendingMail } from './SendingMail';
 export {default as FailedAuth } from './FailedAuth';
 export {default as Root } from './Root';
 export {default as ResetPassword } from './ResetPassword';
-export {default as GoalAndEvaluation } from './GoalAndEvaluation';
 export {default as EvaluateGoal } from './EvaluateGoal';
 export {default as AddGoal } from './AddGoal';
 export {default as RecordNow} from './RecordNow';
@@ -16,4 +15,6 @@ export {default as EvaluateFiveItems } from './EvaluateFiveItems';
 export {default as AboutCareerPassport } from './AboutCareerPassport';
 export {default as AbilityChart } from './AbilityChart';
 export {default as Goal } from './Goal';
+export {default as CompleteCard } from './CompleteCard';
+export {default as Complete } from './Complete';
 

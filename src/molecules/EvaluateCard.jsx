@@ -1,4 +1,3 @@
-import { CreateSlider } from '../atoms/index';
 import React, { useState } from 'react';
 
 const EvaluateCard = (props) => {
@@ -79,11 +78,9 @@ const EvaluateCard = (props) => {
                 </div>
                 <div style={{marginBottom: "20px"}}>
                     <div style={section1}>現在の能力値</div>
-                    {/* <CreateSlider name={props.sliderName1} color="#FFAE80" mode="5" /> */}
                     <div style={{display:"flex"}}>
                         {
                             judge.map((data, index)=>
-                                
                                 <a type="submit" key={index} onClick={handleClick} style={judge[index] ? numButton2:numButton1} name={props.num} >{index}</a>
                             )
                         }

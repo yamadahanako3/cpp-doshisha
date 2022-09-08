@@ -10,7 +10,6 @@ import { getDoc, doc } from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
 
-
 const Goal = () => {
     const { user } = useAuthContext();
     const [userData, setData] = useState([]);
@@ -50,16 +49,17 @@ const Goal = () => {
                 <Swiper modules={[Navigation, Pagination]} >
                     {
                         userData.map((list)=>
-                            <SwiperSlide key={list.item} style={{display: "flex",justifyContent: "center"}}><GoalCard item={list.item} goalContent1={list.goal} /></SwiperSlide>
+                            <SwiperSlide key={list.item} style={{display: list.ratio=="" ? "flex" : "none",justifyContent: "center"}}><GoalCard item={list.item} goalContent1={list.goal} /></SwiperSlide>
                             )
                     }
                 </Swiper>
             </div>
             <div style={buttons}>
                 <CreateButton text="目標カレンダー" link='/signin' />
-                <CreateButton text="達成したカード" link='/signin' />
+                <CreateButton text="達成したカード" link='/complete' />
+                <CreateButton text="評価する" link='/evaluategoal' />
             </div>
-            <InputButton />
+            <InputButton link="/addgoal" />
         </div>
     );
 };

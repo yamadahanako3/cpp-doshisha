@@ -1,9 +1,8 @@
-import { auth } from '../firebase';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { useAuthContext } from '../context/Authcontext';
 import { Header } from '../molecules/index';
 import { getDoc, doc } from 'firebase/firestore';
-import { CreateButton, RadarChart, InputButton } from '../atoms/index';
+import { CreateButton, RadarChart } from '../atoms/index';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
 
@@ -75,7 +74,7 @@ const Home = () => {
                         <p style={sub}>これは例文です。これは例文です。これは例文です。</p>
                         <RadarChart data1={userData1} data2={userData2} />
                     </div>
-                    <CreateButton text="目標カード" link="/goalandevaluation" />
+                    <CreateButton text="目標カード" link="/goal" />
                     <CreateButton text="高校１年生" link="/recordnow" />
                     <CreateButton text="これまでとこれから" link="/signup" />
                 </div>  

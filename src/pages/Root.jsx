@@ -17,7 +17,6 @@ const Root = () => {
     if (!docSnap.exists()) {
       setDoc(userDocumentRef, userData);
       navigate('/inputfiveitems')
-      // return <Navigate to="/inputfiveitems" />
     };
   } ;
   

@@ -1,5 +1,5 @@
 import { Header, EvaluateCard } from '../molecules/index';
-import { CheckButton,GoNextButton, GoPreButton } from '../atoms/index';
+import { CheckButton } from '../atoms/index';
 import { useAuthContext } from '../context/Authcontext';
 import { useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
@@ -17,9 +17,7 @@ const EvaluateFiveItems = () => {
     const navigate = useNavigate();
     const userDocumentRef = doc(db, 'users', user.uid);
     const [data, setData] = useState(null);
-    const [display, setDisplay] = useState(0);
     const [abilityData, setAbilityData] = useState([0, 0, 0, 0, 0]);
-
     
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
@@ -62,15 +60,6 @@ const EvaluateFiveItems = () => {
                 <div style={underTitle}>卒業までに身に付けたい力について</div>
             </div>
             <form onSubmit={handleSubmit}>
-                {/* <div style={{display: "flex",justifyContent: "center"}}>
-                    {
-                        lists.map((list, index)=>
-                        <div style={{display: "flex",justifyContent: "center",alignItems: "center"}} key={index}>
-                                <EvaluateCard theme={list.text} discription={list.discription} sliderName1={list.sliderName1} sliderName2={list.sliderName2} textareaName={list.textAreaName} display={display==index?"block":"none"} />
-                            </div>
-                        )
-                    }
-                </div> */}
                 <Swiper modules={[Navigation, Pagination]} >
                     {
                         lists.map((list, index)=>

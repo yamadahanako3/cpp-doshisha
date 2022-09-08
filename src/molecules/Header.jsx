@@ -27,11 +27,13 @@ const Header = () => {
     }
 
     return (
-        <div>
+        <div style={{position:"relative"}}>
+            <div style={header} onClick={handleClick}>
             <div style={button}>
                 <MenuButton />
             </div>
-            <div style={header} onClick={handleClick}>career passport</div>
+                career passports 
+            </div>
         </div>
     );
 };
