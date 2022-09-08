@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 
 const DetailAbility = (props) => {
     const [judge, setJudge] = useState(false);
-    const [y, setY] = useState();
     const height = window.innerHeight-325;
 
     const handleClick = () => {
@@ -14,18 +13,6 @@ const DetailAbility = (props) => {
             setJudge(true);
         }
     }
-
-    // const handleMouseUp = (event) => {
-    //     console.log(event);
-    //     console.log(y);
-    //     console.log(event.screenY);
-    //     if((y - event.screenY) >= 20 ){
-    //         setJudge(true);
-    //     }else{
-    //         setJudge(false)
-    //     }
-    // }
-
 
     const body1 = {
         position: "fixed",
@@ -61,14 +48,16 @@ const DetailAbility = (props) => {
         fontSize: "15px",
     };
     const content1 = {
+        height: "20px",
         whiteSpace:"nowrap",
         overflow:"hidden",
         textOverflow:"ellipsis",
         fontSize: "13px",
-    
+        
     };
     const content2 = {
         
+        fontSize: "13px",
     };
     
     
@@ -93,19 +82,19 @@ const DetailAbility = (props) => {
                 )
             } */}
             <div style={judge ? body2 : body1} onClick={handleClick}>
-                <div style={title}>{props.userData[0]?.item}</div>
+                <div style={title}>{props.item}</div>
                 <div style={{margin: "10px"}}>
                     <div style={section}>
                         <div style={sub}>目標</div>
-                        <p style={judge ? content2 : content1}>{props.userData[0]?.goal}</p>
+                        <p style={judge ? content2 : content1}>{props.goal}</p>
                     </div>
                     <div style={section}>
                         <div style={sub}>成長できたところ</div>
-                        <p style={judge ? content2 : content1}>{props.userData[0]?.result}</p>
+                        <p style={judge ? content2 : content1}>{props.result}</p>
                     </div>
                     <div style={section}>
                         <div style={sub}>さらに成長したいところ</div>
-                        <p style={judge ? content2 : content1}>{props.userData[0]?.nextGoal}</p>
+                        <p style={judge ? content2 : content1}>{props.nextGoal}</p>
                     </div>
                 </div>
                 </div>

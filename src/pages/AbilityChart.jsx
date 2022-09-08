@@ -11,7 +11,10 @@ const AbilityChart = () => {
     const { user } = useAuthContext();
     const [userData1, setData1] = useState(null);
     const [userData2, setData2] = useState(null);
-    const [userData, setData] = useState(null);
+    const [userData, setData] = useState([null, null, null, null, null]);
+    const [ability, setAbility] = useState(null);
+    // console.log(ability)
+    console.log(userData[0]?.item)
 
     const userDocumentRef = doc(db, 'users', user.uid);
 
@@ -59,20 +62,15 @@ const AbilityChart = () => {
     const title = {
 
     };
-    const section = {
-
-    };
-    const sub = {
-
-    };
     
     return (
         <div style={{height: "100vh",overflowY: "hidden"}}>
             <Header />
-                <DetailAbility userData={userData??""} />
+                {/* <DetailAbility userData={userData??""} item={ability!=null ? userData[ability]?.item : userData[0]?.item} goal={ability!=null ? userData[ability]?.goal : userData[0]?.goal} result={ability!=null ? userData[ability]?.result : userData[0]?.result} nextGoal={ability!=null ? userData[ability]?.nextGoal : userData[0]?.nextGoal} /> */}
+                <DetailAbility userData={userData??""} item={userData[ability]?.item} goal={userData[ability]?.goal} result={userData[ability]?.result} nextGoal={userData[ability]?.nextGoal} />
             <div style={body}>
                 <div style={main} onClick={handleClick} >
-                    <RadarChart data1={userData1} data2={userData2} />
+                    <RadarChart data1={userData1} data2={userData2} ability={ability} setAbility={setAbility} />
                 </div>
             </div>  
             <div>

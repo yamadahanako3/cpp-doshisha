@@ -59,11 +59,16 @@ const RadarChart = (props) => {
     },
     maintainAspectRatio: false,
     responsive: false,
-  }
+  };
   
   return (
     <div style={{width:"260px", height:"240px"}}>
       <Radar data={data} options={option} width={260} height={240} />
+      <button onClick={()=>{props.setAbility(0)}} style={{position: "absolute",top: "80px",left: "127.5px",width: "120px",opacity:0}}>a</button>
+      <button onClick={()=>{props.setAbility(1)}} style={{position: "absolute",top: "120px",left: "255px",width: "67px",height: "30px",opacity:0}}>b</button>
+      <button onClick={()=>{props.setAbility(2)}} style={{position: "absolute",top: "228px",left: "228px",width: "63px", height: "30px",opacity:0}}>c</button>
+      <button onClick={()=>{props.setAbility(3)}} style={{position: "absolute",top: "228px",left: "80px",width: "68px",opacity:0}}>d</button>
+      <button onClick={()=>{props.setAbility(4)}} style={{position: "absolute",top: "120px",width: "63px",height: "30px",opacity:0}}>e</button>
     </div>
   );
 }
