@@ -4,6 +4,7 @@ import { InputButton } from '../atoms/index';
 import { CreateButton } from '../atoms/index';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper';
 import { useAuthContext } from '../context/Authcontext';
 import { getDoc, doc } from 'firebase/firestore';
@@ -40,13 +41,21 @@ const Goal = () => {
         justifyContent: "center",
         alignItems: "center",
     }
+    const style="background-color: lightgray;border-radius:50%;width: 9px;height: 9px;float:left;margin:2px;";
+
+    const pagination={
+        clickable: true,
+        renderBullet: function(index, className){
+            return '<div class='+className+ ' style="'+style+'">'+ ""+'</div>'
+        }
+    }
 
     return (
         <div style={{minHeight: "100vh",backgroundColor: "#F4F6F9"}}>
             <Header />
             <div>
                 <div style={title}>目標と評価</div>
-                <Swiper modules={[Navigation, Pagination]} >
+                <Swiper modules={[Navigation, Pagination]} pagination={{clickable:true}} className="mySwiper" >
                     {
                         userData.map((list)=>
                             <SwiperSlide key={list.item} style={{display: list.ratio=="" ? "flex" : "none",justifyContent: "center"}}><GoalCard item={list.item} goalContent1={list.goal} /></SwiperSlide>

@@ -3,7 +3,10 @@ import finished from '../images/finished.png';
 import unfinished from '../images/unfinished.png';
 import { useState } from 'react';
 import { InputButton } from '../atoms/index';
-
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Navigation, Pagination } from 'swiper';
 
 const RecordNow = () => {
     const [finishedSentence, setFinishedSentence] = useState(null);
@@ -126,9 +129,20 @@ const RecordNow = () => {
         width: "292px"
     }
 
+    const slide = {
+        margin: "0 auto",
+        border: "1px solid #FFAE80",
+        borderRadius: "10px",
+        color: "#1A4F83",
+        fontWeight: "bold"
+    }
+    const slideContent = {
+        backgroundColor: "rgba(255, 174, 128, .1)",
+        padding: "10px"
+    }
 
     return (
-        <div style={{backgroundColor: "#F4F6F9"}}>
+        <div style={{backgroundColor: "#F4F6F9",minHeight: "100vh"}}>
             <Header />
             <div style={body}>
                 <div style={title}>高校一年生の記録</div>
@@ -156,7 +170,7 @@ const RecordNow = () => {
                     </div>
                 </div>
                 <div style={title}>１年の振り返り</div>
-                <div style={{display: "flex",flexDirection: "column",justifyContent: "center",alignItems: "center",marginTop: "20px"}}>
+                {/* <div style={{display: "flex",flexDirection: "column",justifyContent: "center",alignItems: "center",marginTop: "20px"}}>
                     <div style={notepad}>
                         <div style={{display:"flex",color: "white"}}>
                             <div style={label1} onClick={handleClick1}>学習</div>
@@ -176,6 +190,67 @@ const RecordNow = () => {
                             </div>
                         </div>
                     </div>
+                </div> */}
+                <div>
+                    <Swiper modules={[Navigation, Pagination]} pagination={{clickable:true}} className="mySwiper" >
+                        <SwiperSlide style={{paddingBottom: "50px"}}>
+                            <div style={slide}>
+                                <div style={slideContent}>授業・学習</div>
+                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
+                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={finished} />
+                                    <div style={abilityName}>{finishedSentence}</div>
+                                </div>
+                                <div style={line}></div>
+                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
+                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={unfinished} />
+                                    <div style={abilityName}>{unFinishedSentence}</div>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide style={{paddingBottom: "50px"}}>
+                            <div style={slide}>
+                                <div style={slideContent}>授業・学習</div>
+                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
+                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={finished} />
+                                    <div style={abilityName}>{finishedSentence}</div>
+                                </div>
+                                <div style={line}></div>
+                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
+                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={unfinished} />
+                                    <div style={abilityName}>{unFinishedSentence}</div>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide style={{paddingBottom: "50px"}}>
+                            <div style={slide}>
+                                <div style={slideContent}>授業・学習</div>
+                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
+                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={finished} />
+                                    <div style={abilityName}>{finishedSentence}</div>
+                                </div>
+                                <div style={line}></div>
+                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
+                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={unfinished} />
+                                    <div style={abilityName}>{unFinishedSentence}</div>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                        <SwiperSlide style={{paddingBottom: "50px"}}>
+                            <div style={slide}>
+                                <div style={slideContent}>授業・学習</div>
+                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
+                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={finished} />
+                                    <div style={abilityName}>{finishedSentence}</div>
+                                </div>
+                                <div style={line}></div>
+                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
+                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={unfinished} />
+                                    <div style={abilityName}>{unFinishedSentence}</div>
+                                </div>
+                            </div>
+                        </SwiperSlide>
+                        
+                    </Swiper>
                 </div>
             </div>
 
