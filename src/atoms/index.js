@@ -9,3 +9,4 @@ export {default as CheckButton } from './CheckButton';
 export {default as InputReview } from './InputReview';
 export {default as InputRecord } from './InputRecord';
 export {default as CompleteBookMark } from './CompleteBookMark';
+export {default as GoalCalender } from './GoalCalender';
