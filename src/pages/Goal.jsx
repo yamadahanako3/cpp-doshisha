@@ -58,7 +58,7 @@ const Goal = () => {
                 <Swiper modules={[Navigation, Pagination]} pagination={{clickable:true}} className="mySwiper" >
                     {
                         userData.map((list)=>
-                            <SwiperSlide key={list.item} style={{display: list.ratio=="" ? "flex" : "none",justifyContent: "center"}}><GoalCard item={list.item} goalContent1={list.goal} /></SwiperSlide>
+                            <SwiperSlide key={list.item} style={{display: list.ratio=="" ? "flex" : "none",justifyContent: "center"}}><GoalCard item={list.item} goalContent1={list.goal} color={list.color!="" ? list.color : "#FFAE80"} /></SwiperSlide>
                             )
                     }
                 </Swiper>

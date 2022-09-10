@@ -8,12 +8,13 @@ const CompleteCard = () => {
     const ratio = location.state ? location.state.ratio:"";
     const goalContent1 = location.state ? location.state.goalContent1:"";
     const goalContent2 = location.state ? location.state.goalContent2:"";
+    const color = location.state ? location.state.color:"";
 
     return (
         <div style={{minHeight: "100vh",backgroundColor: "#F4F6F9",paddingTop:"100px"}}>
             <Header />
             <div>
-                <div style={{display: "flex", justifyContent: "center"}}><GoalCard item={item} goalContent1={goalContent1} goalContent2={goalContent2} ratio={ratio} /></div>
+                <div style={{display: "flex", justifyContent: "center"}}><GoalCard item={item} goalContent1={goalContent1} goalContent2={goalContent2} ratio={ratio} color={color} /></div>
             </div>
         </div>
     );

@@ -11,6 +11,7 @@ const AddGoal = () => {
     const location = useLocation();
     const [item, setItem] = useState(location.state ? location.state.item:"");
     const [content, setContent] = useState(location.state ? location.state.content:"");
+    const [color, setColor] = useState(location.state ? location.state.color:"");
     const [data, setData] = useState(null);
     const { user } = useAuthContext();
     const userDocumentRef = doc(db, 'users', user.uid);
@@ -28,10 +29,12 @@ const AddGoal = () => {
         let parent = data.goalCard;
         const item = event.target.item.value;
         const goal = event.target.goal.value;
+        const color = event.target.color.value;
         let judge = true;
         for (let i in parent) {
             if (parent[i].item == item) {
                 parent[i].goal = goal;
+                parent[i].color = color;
                 judge = false;
             };
         };
@@ -41,6 +44,7 @@ const AddGoal = () => {
                 "goal":goal,
                 "result":"",
                 "ratio":"",
+                "color":color,
             };
             parent.push(list);
        };
@@ -68,7 +72,8 @@ const AddGoal = () => {
     };
     const pullDown = {
         position: "absolute",
-        right: 0        
+        right: 0,
+        width: "170px"
     };
     const free = {
         padding: "5px",
@@ -104,6 +109,17 @@ const AddGoal = () => {
                 <div style={{display: "flex", position: "relative", height: "60px", marginTop: "30px"}}>
                     <div style={label1}>期間</div>
                     <input style={pullDown}></input>
+                </div>
+                <div style={{display: "flex", position: "relative", height: "60px", marginTop: "30px"}}>
+                    <div style={label1}>ラベルの色</div>
+                    <select name="color" style={pullDown}>
+                        <option></option>
+                        <option value="#FFAE80" style={{backgroundColor:"#FFAE80"}}>orange</option>
+                        <option value="#BC9CFF" style={{backgroundColor:"#BC9CFF"}}>purple</option>
+                        <option value="#8FCB43" style={{backgroundColor:"#8FCB43"}}>green</option>
+                        <option value="rgba(234,49,101,.75)" style={{backgroundColor:"rgba(234,49,101,.75)"}}>red</option>
+                        <option value="#3191EA" style={{backgroundColor:"#3191EA"}}>blue</option>
+                    </select>
                 </div>
                 <CheckButton />
             </form>

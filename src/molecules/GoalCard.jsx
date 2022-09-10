@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 const GoalCard = (props) => {
     const navigate = useNavigate();
+    const color = props.color;
 
     const handleClick1 = (event) => {
         event.preventDefault();
@@ -19,6 +20,8 @@ const GoalCard = (props) => {
         boxShadow: "0px 2px 10px rgba(26, 79, 131, .1)",
         paddingBottom: "50px",
         borderRadius: "5px",
+        borderStyle: "solid",
+        borderColor: color,
     };
     const main = {
         display: "flex",
@@ -56,7 +59,7 @@ const GoalCard = (props) => {
         <div style={body}>
             <div style={{margin: "30px"}}>
                 <div style={main}>
-                    <DoughnutChart ratio={props.ratio} color="orange" />
+                    <DoughnutChart ratio={props.ratio} color={color} />
                     <div style={{marginLeft: "20px"}}>
                         <div style={title}>{props.item}</div>
                         <p style={sub}>4月12日→7月12日</p>
