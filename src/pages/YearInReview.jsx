@@ -18,6 +18,7 @@ const YearInReview = () => {
     getDoc(userDocumentRef).then((ref)=>{
       const data = ref.data();
       setUserData(data);
+      console.log("a");
     });
     // const a = async () => {
     //   const b = await getDoc(userDocumentRef)

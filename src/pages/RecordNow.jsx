@@ -11,14 +11,15 @@ import { getDoc, doc } from 'firebase/firestore';
 import { useAuthContext } from '../context/Authcontext';
 import { useEffect } from 'react';
 import { db } from '../firebase';
+import Template from '../template.json';
+
+const template = Template.yearinreview;
 
 const RecordNow = () => {
 
     const { user } = useAuthContext();
-    const [myselfData, setMyself] = useState(null);
+    const [myselfData, setMyself] = useState(["","","","","","",""]);
     const [year, setYear] = useState(null);
-    const [finishedSentence, setFinishedSentence] = useState(null);
-    const [unFinishedSentence, setUnFinishedSentence] = useState(null);
     const userDocumentRef = doc(db, 'users',user.uid);
 
     useEffect(()=>{
@@ -29,37 +30,26 @@ const RecordNow = () => {
             let lists2 = [];
 
             lists1 = [
-                parent.recordnow.activity,
-                parent.recordnow.activityRole,
-                parent.recordnow.comittee,
-                parent.recordnow.comitteeRole,
-                parent.recordnow.qualifications,
-                parent.recordnow.other_acitive,
-                parent.recordnow.interest,
-                parent.recordnow.weak_strong
+                parent.recordnow?.activity,
+                parent.recordnow?.activityRole,
+                parent.recordnow?.comittee,
+                parent.recordnow?.comitteeRole,
+                parent.recordnow?.qualifications,
+                parent.recordnow?.other_acitive,
+                parent.recordnow?.interest,
+                parent.recordnow?.weak_strong
             ];
 
+            for (let i in parent.yearinreview){
+                lists2.push(parent.yearinreview[i]);
+            };
+
             setMyself(lists1);
+            setYear(lists2);
+            console.log(lists2);
             console.log("a");
         })
     },[])
-
-    const handleClick1 = () => {
-        setFinishedSentence("毎日英単語長を続続けた1");
-        setUnFinishedSentence("数学の苦手な分野まで手が回らなかった");
-    }
-    const handleClick2 = () => {
-        setFinishedSentence("毎日英単語長を続続けた2");
-        setUnFinishedSentence("数学の苦手な分野まで手が回らなかった");
-    }
-    const handleClick3 = () => {
-        setFinishedSentence("毎日英単語長を続続けた3");
-        setUnFinishedSentence("数学の苦手な分野まで手が回らなかった");
-    }
-    const handleClick4 = () => {
-        setFinishedSentence("毎日英単語長を続続けた4");
-        setUnFinishedSentence("数学の苦手な分野まで手が回らなかった");
-    }
 
     const body = {
         margin: "20px"
@@ -113,69 +103,14 @@ const RecordNow = () => {
         overflow:"hidden",
         textOverflow:"ellipsis",
     }
-    const label1 = {
-        fontSize: "15px",
-        backgroundColor: "#FFAE80",
-        borderRadius: "5px 5px 0px 0px",
-        width: "73px",
-        height: "35px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-    }
-    const label2 = {
-        fontSize: "15px",
-        backgroundColor: "#BC9CFF",
-        borderRadius: "5px 5px 0px 0px",
-        width: "73px",
-        height: "35px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-    }
-    const label3 = {
-        fontSize: "15px",
-        backgroundColor: "#EA3165",
-        borderRadius: "5px 5px 0px 0px",
-        width: "73px",
-        height: "35px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-    }
-    const label4 = {
-        fontSize: "15px",
-        backgroundColor: "#8FCB43",
-        borderRadius: "5px 5px 0px 0px",
-        width: "73px",
-        height: "35px",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-    }
+ 
     const line = {
         width: "292px",
         height: ".5px",
         backgroundColor: "rgba(26, 79, 131, .1)"
 
     }
-    const notepad = {
-        boxShadow: "0px 2px 10px rgba(0, 0, 0, .14)",
-        borderRadius: "5px",
-        width: "292px"
-    }
 
-    const slide = {
-        margin: "0 auto",
-        border: "1px solid #FFAE80",
-        borderRadius: "10px",
-        color: "#1A4F83",
-        fontWeight: "bold"
-    }
-    const slideContent = {
-        backgroundColor: "rgba(255, 174, 128, .1)",
-        padding: "10px"
-    }
 
     return (
         <div style={{backgroundColor: "#F4F6F9",minHeight: "100vh"}}>
@@ -200,94 +135,40 @@ const RecordNow = () => {
                     <div style={bookmark}>
                         <div style={theme3}>資格</div>
                         <div>
-                            <p style={abilityName}>サッカー部</p>
-                            <p style={content}>{myselfData[4]}</p>
+                            <p style={abilityName}>{myselfData[4]}</p>
                         </div>
                     </div>
                 </div>
+                <div style={{display:"flex",justifyContent:"center"}}>
+
                     <CreateButton text="記録する" link="/recordmyself" />
+                </div>
                 <div style={title}>１年の振り返り</div>
-                {/* <div style={{display: "flex",flexDirection: "column",justifyContent: "center",alignItems: "center",marginTop: "20px"}}>
-                    <div style={notepad}>
-                        <div style={{display:"flex",color: "white"}}>
-                            <div style={label1} onClick={handleClick1}>学習</div>
-                            <div style={label2} onClick={handleClick2}>行事</div>
-                            <div style={label3} onClick={handleClick3}>学内活動</div>
-                            <div style={label4} onClick={handleClick4}>学外活動</div>
-                        </div>
-                        <div>
-                            <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
-                                <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={finished} />
-                                <div style={abilityName}>{finishedSentence}</div>
-                            </div>
-                            <div style={line}></div>
-                            <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
-                                <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={unfinished} />
-                                <div style={abilityName}>{unFinishedSentence}</div>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
+                
                 <div>
                     <Swiper modules={[Navigation, Pagination]} pagination={{clickable:true}} className="mySwiper" >
-                        <SwiperSlide style={{paddingBottom: "50px"}}>
-                            <div style={slide}>
-                                <div style={slideContent}>授業・学習</div>
-                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
-                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={finished} />
-                                    <div style={abilityName}>{finishedSentence}</div>
-                                </div>
-                                <div style={line}></div>
-                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
-                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={unfinished} />
-                                    <div style={abilityName}>{unFinishedSentence}</div>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide style={{paddingBottom: "50px"}}>
-                            <div style={slide}>
-                                <div style={slideContent}>授業・学習</div>
-                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
-                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={finished} />
-                                    <div style={abilityName}>{finishedSentence}</div>
-                                </div>
-                                <div style={line}></div>
-                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
-                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={unfinished} />
-                                    <div style={abilityName}>{unFinishedSentence}</div>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide style={{paddingBottom: "50px"}}>
-                            <div style={slide}>
-                                <div style={slideContent}>授業・学習</div>
-                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
-                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={finished} />
-                                    <div style={abilityName}>{finishedSentence}</div>
-                                </div>
-                                <div style={line}></div>
-                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
-                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={unfinished} />
-                                    <div style={abilityName}>{unFinishedSentence}</div>
-                                </div>
-                            </div>
-                        </SwiperSlide>
-                        <SwiperSlide style={{paddingBottom: "50px"}}>
-                            <div style={slide}>
-                                <div style={slideContent}>授業・学習</div>
-                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
-                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={finished} />
-                                    <div style={abilityName}>{finishedSentence}</div>
-                                </div>
-                                <div style={line}></div>
-                                <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
-                                    <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={unfinished} />
-                                    <div style={abilityName}>{unFinishedSentence}</div>
-                                </div>
-                            </div>
-                        </SwiperSlide>
                         
+                        {
+                            year?.map((list, index)=>
+                            <SwiperSlide key={index} style={{paddingBottom: "50px"}}>
+                                <div style={{margin:"0 auto",borderStyle:"solid",borderColor:template[index].color,borderRadius:"10px",color:"#1A4F83",fontWeight: "bold"}}>
+                                    <div style={{backgroundColor: template[index].backColor,padding: "10px"}}>{template[index].title}</div>
+                                    <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
+                                        <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={finished} />
+                                        <div style={abilityName}>{list.effort}</div>
+                                    </div>
+                                    <div style={line}></div>
+                                    <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
+                                        <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={unfinished} />
+                                        <div style={abilityName}>{list.reflection}</div>
+                                    </div>
+                                </div>
+                            </SwiperSlide>
+                            
+                            )
+                        }
                     </Swiper>
+                    <CreateButton text="記録する" link="/YearInReview" />
                 </div>
             </div>
 
