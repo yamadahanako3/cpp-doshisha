@@ -2,15 +2,47 @@ import {Header} from '../molecules/index';
 import finished from '../images/finished.png';
 import unfinished from '../images/unfinished.png';
 import { useState } from 'react';
-import { InputButton } from '../atoms/index';
+import { InputButton, CreateButton } from '../atoms/index';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper';
+import { getDoc, doc } from 'firebase/firestore';
+import { useAuthContext } from '../context/Authcontext';
+import { useEffect } from 'react';
+import { db } from '../firebase';
 
 const RecordNow = () => {
+
+    const { user } = useAuthContext();
+    const [myselfData, setMyself] = useState(null);
+    const [year, setYear] = useState(null);
     const [finishedSentence, setFinishedSentence] = useState(null);
     const [unFinishedSentence, setUnFinishedSentence] = useState(null);
+    const userDocumentRef = doc(db, 'users',user.uid);
+
+    useEffect(()=>{
+        getDoc(userDocumentRef).then((ref)=>{
+            const data = ref.data();
+            const parent = data.first_grader;
+            let lists1 = [];
+            let lists2 = [];
+
+            lists1 = [
+                parent.recordnow.activity,
+                parent.recordnow.activityRole,
+                parent.recordnow.comittee,
+                parent.recordnow.comitteeRole,
+                parent.recordnow.qualifications,
+                parent.recordnow.other_acitive,
+                parent.recordnow.interest,
+                parent.recordnow.weak_strong
+            ];
+
+            setMyself(lists1);
+            console.log("a");
+        })
+    },[])
 
     const handleClick1 = () => {
         setFinishedSentence("毎日英単語長を続続けた1");
@@ -75,7 +107,11 @@ const RecordNow = () => {
     }
     const content = {
         margin: 0,
+        width: "190px",
         fontSize: "13px",
+        whiteSpace:"nowrap",
+        overflow:"hidden",
+        textOverflow:"ellipsis",
     }
     const label1 = {
         fontSize: "15px",
@@ -146,29 +182,30 @@ const RecordNow = () => {
             <Header />
             <div style={body}>
                 <div style={title}>高校一年生の記録</div>
-                <div style={{display: "flex",flexDirection: "column",justifyContent: "center",alignItems: "center"}}>
+                <div style={{display: "flex",flexDirection: "column",justifyContent: "center",alignItems: "center",marginBottom: "50px"}}>
                     <div style={bookmark}>
                         <div style={theme1}>部活動</div>
                         <div>
-                            <p style={abilityName}>サッカー部</p>
-                            <p style={content}>北地区ウィンターカップ...</p>
+                            <p style={abilityName}>{myselfData[0]}</p>
+                            <p style={content}>{myselfData[1]}</p>
                         </div>
                     </div>
                     <div style={bookmark}>
-                        <div style={theme2}>部活動</div>
+                        <div style={theme2}>委員会</div>
                         <div>
-                            <p style={abilityName}>サッカー部</p>
-                            <p style={content}>北地区ウィンターカップ...</p>
+                            <p style={abilityName}>{myselfData[2]}</p>
+                            <p style={content}>{myselfData[3]}</p>
                         </div>
                     </div>
                     <div style={bookmark}>
-                        <div style={theme3}>部活動</div>
+                        <div style={theme3}>資格</div>
                         <div>
                             <p style={abilityName}>サッカー部</p>
-                            <p style={content}>北地区ウィンターカップ...</p>
+                            <p style={content}>{myselfData[4]}</p>
                         </div>
                     </div>
                 </div>
+                    <CreateButton text="記録する" link="/recordmyself" />
                 <div style={title}>１年の振り返り</div>
                 {/* <div style={{display: "flex",flexDirection: "column",justifyContent: "center",alignItems: "center",marginTop: "20px"}}>
                     <div style={notepad}>
