@@ -10,7 +10,7 @@ const Header = () => {
 
     const header = {
         backgroundColor:"#F4F6F9",
-        position: "fixed",
+        position: "absolute",
         top: 0,
         width: "100vw",
         padding: "10px",
@@ -23,16 +23,20 @@ const Header = () => {
     };
     const button = {
         position: "absolute",
+        left: "10px",
+        top: "0px",
         margin: "15px 10px"
     }
 
     return (
         <div style={{position:"relative"}}>
-            <div style={header} onClick={handleClick}>
+            <div style={header} >
             <div style={button}>
                 <MenuButton />
             </div>
+                <div onClick={handleClick}>
                 career passports 
+                </div>
             </div>
         </div>
     );
