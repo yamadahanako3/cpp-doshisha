@@ -168,8 +168,8 @@ const RecordNow = () => {
                             )
                         }
                     </Swiper>
-                    <CreateButton text="記録する" link="/YearInReview" />
                 </div>
+                <CreateButton text="記録する" link="/YearInReview" />
             </div>
 
             <InputButton />

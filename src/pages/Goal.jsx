@@ -25,6 +25,7 @@ const Goal = () => {
                 lists.push(parent[i]);
             }
             setData(lists)
+            console.log(lists);
         });
     },[]);
 

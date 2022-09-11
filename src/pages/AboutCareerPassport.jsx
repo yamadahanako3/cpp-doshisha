@@ -3,8 +3,8 @@ import { Header } from '../molecules/index';
 const AboutCareerPassport = () => {
   const body = {
     width: "70vw",
-    padding: "20PX",
-    margin: "80px auto",
+    padding: "80px 20px",
+    margin: "0 auto",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

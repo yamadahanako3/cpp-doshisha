@@ -7,7 +7,7 @@ const CompleteBookMark = (props) => {
     const ratio = props.ratio;
     const color = props.color;
     const goalContent1 = props.goalContent1;
-    const goalContent2 = props.goalCOntent2;
+    const goalContent2 = props.goalContent2;
 
     const handleClick = () => {
         navigate('/completecard', {state:{item:text,goalContent1:goalContent1,goalContent2:goalContent2,ratio:ratio,color:color}});

@@ -21,6 +21,8 @@ const menusSpan1 = {
   position: "absolute",
   transition: "all 0.5s ease",
   backgroundColor: "rgba(26, 79, 131, .75)",
+  zIndex: 15,
+
 };
 const menusSpan1open = {
   display: "block",
@@ -31,7 +33,8 @@ const menusSpan1open = {
   transition: "all 0.5s ease",
   backgroundColor: "rgba(26, 79, 131, .75)",
   top:"5px",
-  transform:"rotate(45deg)"
+  transform:"rotate(45deg)",
+  zIndex: 15,
 };
 const menusSpan2 = {
   display: "block",
@@ -167,19 +170,25 @@ const MenuButton = () => {
 
   return (
     <div style={{display: "fixed",top: "10px",left: "10px"}}>      
+      {/* <div onClick={toggleDrawer('top', open)} style={menuDiv}>
+        <span style={buttonStyle1}></span>
+        <span style={buttonStyle2}></span>
+        <span style={buttonStyle3}></span>
+      </div> */}
+      <Drawer
+        anchor={'top'}
+        open={state['top']}
+        onClose={toggleDrawer('top', open)}
+        style={{zIndex:"1"}}
+      >
+        
+      {list('top')}
+      </Drawer>
       <div onClick={toggleDrawer('top', open)} style={menuDiv}>
         <span style={buttonStyle1}></span>
         <span style={buttonStyle2}></span>
         <span style={buttonStyle3}></span>
       </div>
-      <Drawer
-        anchor={'top'}
-        open={state['top']}
-        onClose={toggleDrawer('top', open)}
-        style={{zIndex:"11"}}
-      >
-      {list('top')}
-      </Drawer>
     </div>
   );
 };

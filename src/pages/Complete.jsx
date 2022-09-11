@@ -22,20 +22,24 @@ const Complete = () => {
                 lists.push(parent[i]);
             }
             setData(lists)
+            console.log(parent[1].result);
         });
     },[]);
 
     return (
-        <div style={{minHeight: "100vh",backgroundColor: "#F4F6F9", paddingTop:"100px"}}>
+        <div style={{minHeight: "100vh",backgroundColor: "#F4F6F9"}}>
             <Header />
-            <div style={{display:"flex", flexDirection:"column",alignItems:"center"}}>
-                {
-                    userData.map((list, index)=>
-                        <div key={index} style={{display: list.ratio!="" ? "block" : "none"}}>
-                            <CompleteBookMark text={list.item} link="/completecard" ratio={list.ratio} goalContent1={list.goal} goalContent2={list.result} color={list.color!="" ? list.color : "#FFAE80"}  />
-                        </div>
-                    )
-                }
+            <div style={{paddingTop: "100px"}}>
+                <div style={{display:"flex", flexDirection:"column",alignItems:"center"}}>
+                    {
+                        userData.map((list, index)=>
+                            <div key={index} style={{display: list.ratio!="" ? "block" : "none"}}>
+                                <CompleteBookMark text={list.item} link="/completecard" ratio={list.ratio} goalContent1={list.goal} goalContent2={list.result} color={list.color!="" ? list.color : "#FFAE80"}  />
+                            </div>
+                        )
+                    }
+                </div>
+
             </div>
         </div>
     );

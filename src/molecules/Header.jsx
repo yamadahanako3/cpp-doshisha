@@ -12,13 +12,11 @@ const Header = () => {
         backgroundColor:"#F4F6F9",
         position: "absolute",
         top: 0,
-        width: "100vw",
-        padding: "10px",
+        width: "100%",
         color: "#43CBC3",
         fontWeight: "bold",
         fontSize: "20px",
         textAlign: "center",
-        zIndex: "10",
         boxShadow: "0px 1px 5px rgba(0, 0, 0, .14)"
     };
     const button = {
@@ -34,7 +32,7 @@ const Header = () => {
             <div style={button}>
                 <MenuButton />
             </div>
-                <div onClick={handleClick}>
+                <div onClick={handleClick} style={{padding:"10px"}}>
                 career passports 
                 </div>
             </div>
