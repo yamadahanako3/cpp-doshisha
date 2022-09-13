@@ -1,4 +1,4 @@
-import { Home, SignIn, SignUp, FailedAuth, Root, SendingMail, ResetPassword, InputAbility, InputGoal, EvaluateGoal, AddGoal, RecordNow, YearInReview, RecordMyself, InputFiveItems, EvaluateFiveItems, AboutCareerPassport, AbilityChart, Goal, CompleteCard, Complete } from './pages/index';
+import { Home, SignIn, SignUp, FailedAuth, Root, SendingMail, ResetPassword, InputAbility, InputGoal, EvaluateGoal, AddGoal, RecordNow, YearInReview, RecordMyself, InputFiveItems, EvaluateFiveItems, AboutCareerPassport, AbilityChart, Goal, CompleteCard, Complete, TeachersSignIn } from './pages/index';
 import { AuthProvider } from './context/Authcontext';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
@@ -26,6 +26,7 @@ function App() {
           <Route path='/goal' element={<Goal />} />
           <Route path='/completecard' element={<CompleteCard />} />
           <Route path='/complete' element={<Complete />} />
+          <Route path='/teacherssignin' element={<TeachersSignIn />} />
         </Routes>
       </BrowserRouter>
     </AuthProvider>
