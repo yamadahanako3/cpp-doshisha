@@ -30,11 +30,13 @@ const AddGoal = () => {
         const item = event.target.item.value;
         const goal = event.target.goal.value;
         const color = event.target.color.value;
+        const span = event.target.span.value;
         let judge = true;
         for (let i in parent) {
             if (parent[i].item == item) {
                 parent[i].goal = goal;
                 parent[i].color = color;
+                parent[i].span = span;
                 judge = false;
             };
         };
@@ -45,6 +47,7 @@ const AddGoal = () => {
                 "result":"",
                 "ratio":"",
                 "color":color,
+                "span":span,
             };
             parent.push(list);
        };
@@ -108,7 +111,7 @@ const AddGoal = () => {
                 </div>
                 <div style={{display: "flex", position: "relative", height: "60px", marginTop: "30px"}}>
                     <div style={label1}>期間</div>
-                    <input style={pullDown}></input>
+                    <input name="span" style={pullDown} type="date"></input>
                 </div>
                 <div style={{display: "flex", position: "relative", height: "60px", marginTop: "30px"}}>
                     <div style={label1}>ラベルの色</div>

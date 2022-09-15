@@ -65,7 +65,7 @@ const Goal = () => {
                 </Swiper>
             </div>
             <div style={buttons}>
-                <CreateButton text="目標カレンダー" link='/signin' />
+                <CreateButton text="目標カレンダー" link='/Calendar' />
                 <CreateButton text="達成したカード" link='/complete' />
                 <CreateButton text="評価する" link='/evaluategoal' />
             </div>

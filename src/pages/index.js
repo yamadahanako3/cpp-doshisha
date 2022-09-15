@@ -18,4 +18,4 @@ export {default as Goal } from './Goal';
 export {default as CompleteCard } from './CompleteCard';
 export {default as Complete } from './Complete';
 export {default as TeachersSignIn } from './TeachersSignIn';
-
+export {default as Calendar } from './Calendar';
