@@ -22,7 +22,6 @@ const Complete = () => {
                 lists.push(parent[i]);
             }
             setData(lists)
-            console.log(parent[1].result);
         });
     },[]);
 

@@ -18,6 +18,7 @@ const InputFiveItems = () => {
     const userDocumentRef = doc(db, 'users', user.uid);
     const [data, setData] = useState(null);
     const [abilityData, setAbilityData] = useState([0, 0, 0, 0, 0]);
+    const [error_message, setErrorMessage] = useState("")
     
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
@@ -30,6 +31,10 @@ const InputFiveItems = () => {
         event.preventDefault();
         const parent = data.first_grader.ability;
         for(let i = 0; i < 5; i++){
+            if (!abilityData[i] || !event.target[lists[i].textAreaName1].value) {
+                setErrorMessage("全て入力してください")
+                return
+            }
             parent[i].point1 = abilityData[i];
             parent[i].goal = event.target[lists[i].textAreaName1].value;
         };
@@ -72,6 +77,7 @@ const InputFiveItems = () => {
                 </Swiper>
                 <CheckButton style={{position: "fixed",right:"calc(10% - 25px)"}} />
             </form>
+            <p style={{color:"red", marginLeft:20}}>{error_message}</p>
         </div>
     );
 };
