@@ -6,10 +6,13 @@ import { db } from '../firebase';
 import {useEffect, useState} from 'react';
 import template from '../template.json';
 import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 const lists = template.yearinreview;
 
 const YearInReview = () => {
+  const location = useLocation();
+  const [yearData, setYear] = useState(location.state ? location.state.yearData:[])
   const { user } = useAuthContext();
   const userDocumentRef = doc(db, 'users', user.uid);
   const [userData, setUserData] = useState([]);

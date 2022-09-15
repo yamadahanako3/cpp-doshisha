@@ -12,13 +12,14 @@ import { useAuthContext } from '../context/Authcontext';
 import { useEffect } from 'react';
 import { db } from '../firebase';
 import Template from '../template.json';
+import { useNavigate } from 'react-router-dom';
 
 const template = Template.yearinreview;
 
 const RecordNow = () => {
-
+    const navigate = useNavigate();
     const { user } = useAuthContext();
-    const [myselfData, setMyself] = useState(["","","","","","",""]);
+    const [myselfData, setMyself] = useState(["","","","","","","",""]);
     const [year, setYear] = useState(null);
     const userDocumentRef = doc(db, 'users',user.uid);
 
@@ -29,16 +30,20 @@ const RecordNow = () => {
             let lists1 = [];
             let lists2 = [];
 
-            lists1 = [
-                parent.recordnow?.activity,
-                parent.recordnow?.activityRole,
-                parent.recordnow?.comittee,
-                parent.recordnow?.comitteeRole,
-                parent.recordnow?.qualifications,
-                parent.recordnow?.other_acitive,
-                parent.recordnow?.interest,
-                parent.recordnow?.weak_strong
-            ];
+            for (let i in parent.recordmyself){
+                lists1.push(parent.recordmyself[i]);
+            };
+
+            // lists1 = [
+            //     parent.recordnow?.activity,
+            //     parent.recordnow?.activityRole,
+            //     parent.recordnow?.comittee,
+            //     parent.recordnow?.comitteeRole,
+            //     parent.recordnow?.qualifications,
+            //     parent.recordnow?.other_acitive,
+            //     parent.recordnow?.interest,
+            //     parent.recordnow?.weak_strong
+            // ];
 
             for (let i in parent.yearinreview){
                 lists2.push(parent.yearinreview[i]);
@@ -46,10 +51,19 @@ const RecordNow = () => {
 
             setMyself(lists1);
             setYear(lists2);
-            console.log(lists2);
+            console.log(lists1);
             console.log("a");
         })
     },[])
+
+    const handleClick1 = () => {
+        
+        navigate('/recordmyself', {state:{myselfData:myselfData}});
+    }
+    const handleClick2 = () => {
+        
+        navigate('/YearInReview', {state:{yearData:year}});
+    }
 
     const body = {
         margin: "20px"
@@ -108,7 +122,18 @@ const RecordNow = () => {
         width: "292px",
         height: ".5px",
         backgroundColor: "rgba(26, 79, 131, .1)"
-
+    }
+    const record = {
+        textAlign: "left",
+        padding: "15px",
+        width: "280px",
+        marginBottom: "20px",
+        fontSize: "16px",
+        color: "#1A4F83",
+        border: "none",
+        borderRadius: "5px",
+        backgroundColor: "white",
+        boxShadow: "0px 2px 10px rgba(26, 79, 131, .1)",
     }
 
 
@@ -121,27 +146,27 @@ const RecordNow = () => {
                     <div style={bookmark}>
                         <div style={theme1}>部活動</div>
                         <div>
-                            <p style={abilityName}>{myselfData[0]}</p>
-                            <p style={content}>{myselfData[1]}</p>
+                            <p style={abilityName}>{myselfData[0].activity}</p>
+                            <p style={content}>{myselfData[0].activityRole}</p>
                         </div>
                     </div>
                     <div style={bookmark}>
                         <div style={theme2}>委員会</div>
                         <div>
-                            <p style={abilityName}>{myselfData[2]}</p>
-                            <p style={content}>{myselfData[3]}</p>
+                            <p style={abilityName}>{myselfData[1].comittee}</p>
+                            <p style={content}>{myselfData[1].comitteeRole}</p>
                         </div>
                     </div>
                     <div style={bookmark}>
                         <div style={theme3}>資格</div>
                         <div>
-                            <p style={abilityName}>{myselfData[4]}</p>
+                            <p style={abilityName}>{myselfData[4].interest}</p>
                         </div>
                     </div>
                 </div>
                 <div style={{display:"flex",justifyContent:"center"}}>
-
-                    <CreateButton text="記録する" link="/recordmyself" />
+                    <div style={record} onClick={handleClick1}>記録する</div>
+                    {/* <CreateButton text="記録する" link="/recordmyself" /> */}
                 </div>
                 <div style={title}>１年の振り返り</div>
                 
@@ -169,10 +194,9 @@ const RecordNow = () => {
                         }
                     </Swiper>
                 </div>
-                <CreateButton text="記録する" link="/YearInReview" />
+                <div style={record} onClick={handleClick2}>記録する</div>
+                {/* <CreateButton text="記録する" link="/YearInReview" /> */}
             </div>
-
-            <InputButton />
         </div>
     );
 };

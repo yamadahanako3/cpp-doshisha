@@ -6,15 +6,19 @@ import { db } from '../firebase';
 import {useEffect, useState} from 'react'
 import { Navigate, useNavigate } from 'react-router-dom';
 import Template from '../template.json';
+import { useLocation } from 'react-router-dom';
 
 const lists = Template.recordmyself;
 
 const RecordMyself = () => {
   const { user } = useAuthContext();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [myselfData, setMyselfData] = useState(location.state ? location.state.myselfData:[]);
   const userDocumentRef = doc(db, 'users', user.uid);
   const [data, setData] = useState([]);
   const [list, setList] = useState([]);
+  console.log(myselfData[3][lists[3].name])
   // useEffect(()=>{
   //   getDoc(userDocumentRef).then((ref)=>{
   //     const data = ref.data();
@@ -47,15 +51,28 @@ const RecordMyself = () => {
   // };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    let parent = data.first_grader.recordnow;
-    parent.activity = event.target.activity.value;
-    parent.activityRole = event.target.activity1.value;
-    parent.comittee = event.target.comittee.value;
-    parent.comitteeRole = event.target.comittee1.value;
-    parent.qualifications = event.target.qualifications.value;
-    parent.other_acitive = event.target.other_acitive.value;
-    parent.interest = event.target.interest.value;
-    parent.weak_strong = event.target.weak_strong.value;
+    let judge = true;
+
+    let parent = data.first_grader.recordmyself;
+    for(let i in parent){
+      if(i==0){
+        parent[i].activity = event.target.activity.value;
+        parent[i].activityRole = event.target.activity1.value;
+      }else if (i==1){
+        parent[i].comittee = event.target.comittee.value;
+        parent[i].comitteeRole = event.target.comittee1.value;
+      }else{
+        parent[i][lists[i].name] = event.target[lists[i].name].value;
+      }
+    }
+    // parent.activity = event.target.activity.value;
+    // parent.activityRole = event.target.activity1.value;
+    // parent.comittee = event.target.comittee.value;
+    // parent.comitteeRole = event.target.comittee1.value;
+    // parent.qualifications = event.target.qualifications.value;
+    // parent.other_acitive = event.target.other_acitive.value;
+    // parent.interest = event.target.interest.value;
+    // parent.weak_strong = event.target.weak_strong.value;
     
     setDoc(userDocumentRef, data, {merge:true});
     navigate('/recordnow');
@@ -83,6 +100,8 @@ const RecordMyself = () => {
                   item={list.item}
                   ph={list.ph}
                   name={list.name}
+                  sentence1={index == 0 || index == 1 ? myselfData[index][list.role] : myselfData[index][list.name]}
+                  sentence2={index == 0 || index == 1 ? myselfData[index][list.item] : ""}
                   />
                 </div>
               )

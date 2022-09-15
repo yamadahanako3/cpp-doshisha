@@ -1,13 +1,18 @@
 import { useState } from 'react';
+import Template from '../template.json';
+const lists = Template.recordmyself;
+
 
 const InputRecord = (props) => {
   const [text1, setText1] = useState(props.effortText);
   const [text2, setText2] = useState(props.reflectionText);
+  const [sentence1, setSentence1] = useState(props.sentence1);
+  const [sentence2, setSentence2] = useState(props.sentence2);
   const handleChange1 = (e) => {
-    setText1(e.target.value);
+    setSentence2(e.target.value);
   };
   const handleChange2 = (e) => {
-    setText2(e.target.value);
+    setSentence1(e.target.value);
   };
   const label = {
     color: "#1A4F83",
@@ -35,16 +40,16 @@ const InputRecord = (props) => {
       <div style={{marginTop: "30px"}}>
         <div style={{display: "flex",alignItems: "center"}}>
           <div style={label}>{props.title}</div>
-          <input style={box2} type="text" name={props.item} value={text1} onChange={handleChange1}/><br></br>
+          <input style={box2} type="text" name={props.item} value={sentence2} onChange={handleChange1}/><br></br>
         </div>
-        <input style={box1} type="text" name={props.name} placeholder={props.ph} value={text2} onChange={handleChange2}/>
+        <input style={box1} type="text" name={props.name} placeholder={props.ph} value={sentence1} onChange={handleChange2}/>
       </div>
     );
   } else {
     return (
       <div style={{marginTop: "30px"}}>
         <div style={label}>{props.title}</div>
-        <input style={box1} type="text" name={props.name} placeholder={props.ph} value={text1} onChange={handleChange1}/>
+        <input style={box1} type="text" name={props.name} placeholder={props.ph} value={props.sentence1} onChange={handleChange1}/>
       </div>
     );
   }

@@ -17,7 +17,7 @@ const CreateButton = (props) => {
     };
 
     return (
-        <div>
+        <div style={{textAlign: "center"}}>
             <Link to={link}>
                 <button style={button}>{text}</button>
             </Link>
