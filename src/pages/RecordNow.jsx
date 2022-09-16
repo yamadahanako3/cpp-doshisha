@@ -2,7 +2,6 @@ import {Header} from '../molecules/index';
 import finished from '../images/finished.png';
 import unfinished from '../images/unfinished.png';
 import { useState } from 'react';
-import { InputButton, CreateButton } from '../atoms/index';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -29,39 +28,25 @@ const RecordNow = () => {
             const parent = data.first_grader;
             let lists1 = [];
             let lists2 = [];
-
+            console.log(parent.recordmyself)
             for (let i in parent.recordmyself){
                 lists1.push(parent.recordmyself[i]);
             };
 
-            // lists1 = [
-            //     parent.recordnow?.activity,
-            //     parent.recordnow?.activityRole,
-            //     parent.recordnow?.comittee,
-            //     parent.recordnow?.comitteeRole,
-            //     parent.recordnow?.qualifications,
-            //     parent.recordnow?.other_acitive,
-            //     parent.recordnow?.interest,
-            //     parent.recordnow?.weak_strong
-            // ];
-
             for (let i in parent.yearinreview){
                 lists2.push(parent.yearinreview[i]);
             };
-
+            console.log(lists1);
             setMyself(lists1);
             setYear(lists2);
-            console.log(lists1);
-            console.log("a");
         })
     },[])
 
     const handleClick1 = () => {
-        
         navigate('/recordmyself', {state:{myselfData:myselfData}});
     }
+
     const handleClick2 = () => {
-        
         navigate('/YearInReview', {state:{yearData:year}});
     }
 
@@ -99,6 +84,24 @@ const RecordNow = () => {
         borderLeft: "1px solid #BC9CFF"
     }
     const theme3 = {
+        marginLeft: "5px",
+        padding: "15px 15px",
+        fontSize: "15px",
+        borderLeft: "1px solid #EA3165"
+    }
+    const theme4= {
+        marginLeft: "5px",
+        padding: "15px 15px",
+        fontSize: "15px",
+        borderLeft: "1px solid #EA3165"
+    }
+    const theme5= {
+        marginLeft: "5px",
+        padding: "15px 15px",
+        fontSize: "15px",
+        borderLeft: "1px solid #EA3165"
+    }
+    const theme6= {
         marginLeft: "5px",
         padding: "15px 15px",
         fontSize: "15px",
@@ -143,6 +146,9 @@ const RecordNow = () => {
             <div style={body}>
                 <div style={title}>高校一年生の記録</div>
                 <div style={{display: "flex",flexDirection: "column",justifyContent: "center",alignItems: "center",marginBottom: "50px"}}>
+                    {
+
+                    }
                     <div style={bookmark}>
                         <div style={theme1}>部活動</div>
                         <div>
@@ -160,13 +166,30 @@ const RecordNow = () => {
                     <div style={bookmark}>
                         <div style={theme3}>資格</div>
                         <div>
+                            <p style={abilityName}>{myselfData[2].qualifications}</p>
+                        </div>
+                    </div>
+                    <div style={bookmark}>
+                        <div style={theme4}>学外活動</div>
+                        <div>
+                            <p style={abilityName}>{myselfData[3].other_acitive}</p>
+                        </div>
+                    </div>
+                    <div style={bookmark}>
+                        <div style={theme5}>興味・関心</div>
+                        <div>
                             <p style={abilityName}>{myselfData[4].interest}</p>
+                        </div>
+                    </div>
+                    <div style={bookmark}>
+                        <div style={theme6}>長所・短所</div>
+                        <div>
+                            <p style={abilityName}>{myselfData[5].weak_strong}</p>
                         </div>
                     </div>
                 </div>
                 <div style={{display:"flex",justifyContent:"center"}}>
-                    <div style={record} onClick={handleClick1}>記録する</div>
-                    {/* <CreateButton text="記録する" link="/recordmyself" /> */}
+                    <div style={record} onClick={()=>navigate('/recordmyself', {state:{myselfData:myselfData}})}>記録する</div>
                 </div>
                 <div style={title}>１年の振り返り</div>
                 
@@ -194,8 +217,7 @@ const RecordNow = () => {
                         }
                     </Swiper>
                 </div>
-                <div style={record} onClick={handleClick2}>記録する</div>
-                {/* <CreateButton text="記録する" link="/YearInReview" /> */}
+                <div style={record} onClick={()=>navigate('/YearInReview', {state:{yearData:year}})}>記録する</div>
             </div>
         </div>
     );

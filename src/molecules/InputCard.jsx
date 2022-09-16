@@ -16,7 +16,9 @@ const InputCard = (props) => {
     const body = {
         margin: "20px",
         width: "300px",
+        height: "420px",
         padding: "10px 0px",
+        marginBottom: "50px",
         boxShadow: "1px 1px 10px rgba(0, 0, 0, .1)",
         backgroundColor: "white",
         borderRadius: "10px",
