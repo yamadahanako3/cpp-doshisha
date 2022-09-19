@@ -1,46 +1,5 @@
-import React, { useState } from 'react';
-
 const DetailAbility = (props) => {
-    const [judge, setJudge] = useState(false);
-    const height = window.innerHeight-325;
 
-    const handleClick = () => {
-        if(judge){
-            setJudge(false);
-        }else{
-            setJudge(true);
-        };
-    };
-
-    const body1 = {
-        position: "fixed",
-        top: "325px",
-        width: "100vw",
-        height: {height},
-        color: "white",
-        backgroundColor: "#43CBC3",
-        borderRadius: "22px 22px 0px 0px"
-    }
-    const body2 = {
-        position: "fixed",
-        top: "15%",
-        width: "100vw",
-        height: "85%",
-        color: "white",
-        backgroundColor: "#43CBC3",
-        borderRadius: "22px 22px 0px 0px"
-    }
-    const title = {
-        paddingTop: "20px",
-        paddingBottom: "10px",
-        fontWeight: "bold",
-        textAlign: "center",
-    }
-    const section = {
-        borderTop: "1px solid rgba(26, 79, 131, .1)",
-        paddingTop: "10px",
-        margin: "0 20px"
-    };
     const sub = {
         fontWeight: "bold",
         fontSize: "15px",
@@ -52,30 +11,54 @@ const DetailAbility = (props) => {
         textOverflow:"ellipsis",
         fontSize: "13px",
     };
-    const content2 = {
-        fontSize: "13px",
+    const title1 = {
+        backgroundColor: "rgba(67,293,195,.25)",
+        color: "#747D88",
+        padding: "10px"
     };
-    
+    const body = {
+        position: "fixed",
+        top: "425px",
+        width: "100vw",
+        height: "800px",
+        fontWeight: "bold"
+    };
+    const section1 = {
+        padding: "10px",
+        borderBottom: "1px solid rgba(116,125,136,.1)",
+        color: "#747D88",
+    };
+    const sub1 = {
+        fontWeight: "bold"
+    };
     
     return (
         <div>
-            <div style={judge ? body2 : body1} onClick={handleClick}>
-                <div style={title}>{props.item}</div>
-                <div style={{margin: "10px"}}>
-                    <div style={section}>
-                        <div style={sub}>目標</div>
-                        <p style={judge ? content2 : content1}>{props.goal}</p>
+            <div style={body}>
+                <div style={title1}>{props.item}</div>
+                <div>
+                    <div style={{display: props.goal == "" ? "none":"block"}}>
+                        <div style={section1}>
+                            <div style={sub1}>目標</div>
+                            <p style={content1}>{props.goal}</p>
+                        </div>
                     </div>
-                    <div style={section}>
+                    <div style={{display: props.result == "" ? "none":"block"}}>
+                    <div style={section1}>
                         <div style={sub}>成長できたところ</div>
-                        <p style={judge ? content2 : content1}>{props.result}</p>
+                        <p style={content1}>{props.result}</p>
                     </div>
-                    <div style={section}>
+                        
+                    </div>
+                    <div style={{display: props.nextGoal == "" ? "none":"block"}}>
+
+                    <div style={section1}>
                         <div style={sub}>さらに成長したいところ</div>
-                        <p style={judge ? content2 : content1}>{props.nextGoal}</p>
+                        <p style={content1}>{props.nextGoal}</p>
+                    </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </div>
     );
 };

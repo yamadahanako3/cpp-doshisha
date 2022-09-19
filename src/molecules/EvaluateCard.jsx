@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 
 const EvaluateCard = (props) => {
     const [judge, getJudge] = useState([false, false, false, false, false, false]);
-    
+    const [data, setData] = useState(props.data);
+    const [text1, setText1] = useState(data ? data.result:"");
+    const [text2, setText2] = useState(data ? data.nextGoal:"");
+
     const handleClick = (event) => {
         let list = [false, false, false, false, false, false];
         list[event.target.innerHTML] = true;
@@ -21,14 +24,14 @@ const EvaluateCard = (props) => {
         backgroundColor: "white",
         borderRadius: "10px",
         display: props.display,
-    }
+    };
     const theme = {
         color: "rgba(26, 79, 131, .75)",
         fontSize: "16px",
         fontWeight: "bold",
         borderLeft: "1.5px solid #FFAE80",
         paddingLeft: "10px"
-    }
+    };
     const sub = {
         color: "rgba(26, 79, 131, .5)",
         fontSize: "13px",
@@ -39,7 +42,7 @@ const EvaluateCard = (props) => {
         fontWeight: "bold",
         marginTop: "40px",
         marginBottom: "20px"
-    }
+    };
     const textarea = {
        border: "1px solid rgba(26, 79, 131, .5)",
        borderRadius: "5px",
@@ -57,7 +60,7 @@ const EvaluateCard = (props) => {
         color: "rgba(26, 79, 131, .75)",
         backgroundColor: "white",
         border: "none",
-    }
+    };
     const numButton2 = {
         margin: "4px",
         padding: "7px 13px",
@@ -67,7 +70,7 @@ const EvaluateCard = (props) => {
         textAlign: "center",
         backgroundColor: "rgba(3, 218, 197, 1)",
         border: "none",
-    }
+    };
 
     return (
         <div style={body}>
@@ -86,8 +89,8 @@ const EvaluateCard = (props) => {
                         }
                     </div>
                 </div>
-                <textarea name={props.textareaName1} style={textarea} placeholder="成長できたこと" />
-                <textarea name={props.textareaName2} style={textarea} placeholder="さらに成長したいこと" />
+                <textarea value={text1} onChange={(e)=>setText1(e.target.value)} name={props.textareaName1} style={textarea} placeholder="成長できたこと" />
+                <textarea value={text2} onChange={(e)=>setText2(e.target.value)} name={props.textareaName2} style={textarea} placeholder="さらに成長したいこと" />
             </div>
         </div>
     );

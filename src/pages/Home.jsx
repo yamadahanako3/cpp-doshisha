@@ -5,32 +5,59 @@ import { getDoc, doc } from 'firebase/firestore';
 import { CreateButton, RadarChart } from '../atoms/index';
 import { useState, useEffect } from 'react';
 import { db } from '../firebase';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Navigation, Pagination } from 'swiper';
 
 const Home = () => {
     const navigate = useNavigate();
     const { user } = useAuthContext();
-    const [userData1, setData1] = useState(null);
-    const [userData2, setData2] = useState(null);
+    const [firstData1, setFirstData1] = useState(null);
+    const [firstData2, setFirstData2] = useState(null);
+    const [secondData1, setSecondData1] = useState(null);
+    const [secondData2, setSecondData2] = useState(null);
+    const [thirdData1, setThirdData1] = useState(null);
+    const [thirdData2, setThirdData2] = useState(null);
     const userDocumentRef = doc(db, 'users', user.uid);
 
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
             const data = ref.data();
-            const parent = data.first_grader.ability;
-            let lists1 = [];
-            let lists2 = [];
+            const parent = data;
+            let firstLists1 = [];
+            let firstLists2 = [];
+            let secondLists1 = [];
+            let secondLists2 = [];
+            let thirdLists1 = [];
+            let thirdLists2 = [];
+
             for(let i = 0 ; i < 5 ; i++){
-                lists1.push(parent[i].point1);
-                lists2.push(parent[i].point2);
+                firstLists1.push(parent.first_grader.ability[i].point1);
+                firstLists2.push(parent.first_grader.ability[i].point2);
+                secondLists1.push(parent.second_grader.ability[i].point1);
+                secondLists2.push(parent.second_grader.ability[i].point2);
+                thirdLists1.push(parent.third_grader.ability[i].point1);
+                thirdLists2.push(parent.third_grader.ability[i].point2);
             }
             console.log("a");
-            setData1(lists1);
-            setData2(lists2);
+            setFirstData1(firstLists1);
+            setFirstData2(firstLists2);
+            setSecondData1(secondLists1);
+            setSecondData2(secondLists2);
+            setThirdData1(thirdLists1);
+            setThirdData2(thirdLists2);
         });
     },[]);
 
-    const handleClick = () => {
-        navigate('/abilitychart');
+    const handleClick1 = () => {
+        navigate('/abilitychart',{state:{grade: 1}});
+    }
+    const handleClick2 = () => {
+        navigate('/abilitychart',{state:{grade: 2}});
+    }
+    const handleClick3 = () => {
+        navigate('/abilitychart',{state:{grade: 3}});
     }
     
     const body = {
@@ -41,9 +68,9 @@ const Home = () => {
         paddingTop: "70px",
     };
     const main = {
+        margin: "30px auto",
         width: "280px",
         height: "320px",
-        marginBottom: "20px",
         borderRadius: "5px",
         backgroundColor: "white",
         boxShadow: "0px 2px 10px rgba(26, 79, 131, .1)",
@@ -66,14 +93,26 @@ const Home = () => {
         return <Navigate to='/signin' />;
     } else {
         return (
-            <div style={{backgroundColor:"#F4F6F9",height: "100vh"}}>
+            <div style={{backgroundColor:"#F4F6F9",height: "100vh",maxWidth:"500px"}}>
                 <Header />
                 <div style={body}>
-                    <div style={main} onClick={handleClick} >
-                        <div style={mainTitle}>高校一年生</div>
-                        <p style={sub}>これは例文です。これは例文です。これは例文です。</p>
-                        <RadarChart data1={userData1} data2={userData2} />
-                    </div>
+                    <Swiper modules={[Navigation, Pagination]} pagination={{clickable:true}} className="mySwiper" style={{width: "100%"}}>
+                        <SwiperSlide><div style={main} onClick={handleClick1} >
+                            <div style={mainTitle}>高校一年生</div>
+                            <p style={sub}>これは例文です。これは例文です。これは例文です。</p>
+                            <RadarChart data1={firstData1} data2={firstData2} />
+                        </div></SwiperSlide>
+                        <SwiperSlide><div style={main} onClick={handleClick2} >
+                            <div style={mainTitle}>高校二年生</div>
+                            <p style={sub}>これは例文です。これは例文です。これは例文です。</p>
+                            <RadarChart data1={secondData1} data2={secondData2} />
+                        </div></SwiperSlide>
+                        <SwiperSlide><div style={main} onClick={handleClick3} >
+                            <div style={mainTitle}>高校三年生</div>
+                            <p style={sub}>これは例文です。これは例文です。これは例文です。</p>
+                            <RadarChart data1={thirdData1} data2={thirdData2} />
+                        </div></SwiperSlide>
+                    </Swiper>
                     <CreateButton text="目標カード" link="/goal" />
                     <CreateButton text="高校１年生" link="/recordnow" />
                     <CreateButton text="これまでとこれから" link="/signup" />

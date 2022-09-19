@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 const InputCard = (props) => {
     const [judge, getJudge] = useState([false, false, false, false, false, false]);
+    const [data, setData] = useState(props.data)
+    const [text, setText] = useState(data ? data.goal:"");
     
     const handleClick = (event) => {
         let list = [false, false, false, false, false, false];
@@ -10,7 +12,6 @@ const InputCard = (props) => {
         props.setAbilityData(
             props.abilityData.map((data,index)=>(index == event.target.name ? event.target.innerHTML : data))
         )
-        console.log(props.abilityData)
     };
 
     const body = {
@@ -23,14 +24,14 @@ const InputCard = (props) => {
         backgroundColor: "white",
         borderRadius: "10px",
         display:props.display
-    }
+    };
     const theme = {
         color: "rgba(26, 79, 131, .75)",
         fontSize: "16px",
         fontWeight: "bold",
         borderLeft: "1.5px solid #FFAE80",
         paddingLeft: "10px"
-    }
+    };
     const sub = {
         color: "rgba(26, 79, 131, .5)",
         fontSize: "13px",
@@ -41,7 +42,7 @@ const InputCard = (props) => {
         fontWeight: "bold",
         marginTop: "30px",
         marginBottom: "20px"
-    }
+    };
     const textarea = {
        border: "1px solid rgba(26, 79, 131, .5)",
        borderRadius: "5px",
@@ -59,7 +60,7 @@ const InputCard = (props) => {
         color: "rgba(26, 79, 131, .75)",
         backgroundColor: "white",
         border: "none",
-    }
+    };
     const numButton2 = {
         margin: "4px",
         padding: "7px 13px",
@@ -69,7 +70,7 @@ const InputCard = (props) => {
         textAlign: "center",
         backgroundColor: "rgba(3, 218, 197, 1)",
         border: "none",
-    }
+    };
 
     return (
         <div style={body}>
@@ -88,7 +89,7 @@ const InputCard = (props) => {
                         }
                     </div>
                 </div>
-                <textarea name={props.textareaName} style={textarea} placeholder="目標を入力" />
+                <textarea onChange={(e)=>setText(e.target.value)} value={text} name={props.textareaName} style={textarea} placeholder="目標を入力" />
             </div>
         </div>
     );

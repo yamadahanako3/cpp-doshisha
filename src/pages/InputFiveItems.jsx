@@ -1,7 +1,7 @@
 import { Header, InputCard } from '../molecules/index';
 import { CheckButton } from '../atoms/index';
 import { useAuthContext } from '../context/Authcontext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { db } from '../firebase';
 import { useEffect, useState } from 'react';
 import { doc, getDoc, setDoc } from 'firebase/firestore';
@@ -16,10 +16,13 @@ const lists = Template.inputability;
 const InputFiveItems = () => {
     const { user } = useAuthContext();
     const navigate = useNavigate();
+    const location = useLocation();
     const userDocumentRef = doc(db, 'users', user.uid);
+    const grade = location.state ? location.state.grade : "";
     const [data, setData] = useState(null);
     const [abilityData, setAbilityData] = useState([0, 0, 0, 0, 0]);
-    const [error_message, setErrorMessage] = useState("")
+    const [error_message, setErrorMessage] = useState("");
+    const [defaultData, setDefaultData] = useState(location.state ? location.state.data:"");
     
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
@@ -30,7 +33,14 @@ const InputFiveItems = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const parent = data.first_grader.ability;
+        let parent;
+        if(grade == 1){
+            parent = data.first_grader.ability;
+        }else if(grade == 2){
+            parent = data.second_grader.ability;
+        }else if(grade == 3){
+            parent = data.third_grader.ability;
+        }
         for(let i = 0; i < 5; i++){
             if (!abilityData[i] || !event.target[lists[i].textAreaName1].value) {
                 setErrorMessage("全て入力してください")
@@ -70,7 +80,7 @@ const InputFiveItems = () => {
                         lists.map((list, index)=>
                             <SwiperSlide style={{display: "flex",justifyContent: "center"}} key={index}>
                                 <div style={{display: "flex",justifyContent: "center",alignItems: "center"}} key={index}>
-                                    <InputCard num={index} abilityData={abilityData} setAbilityData={setAbilityData}  theme={list.text} discription={list.discription} sliderName={list.sliderName} textareaName={list.textAreaName1} />
+                                    <InputCard data={defaultData[index]} num={index} abilityData={abilityData} setAbilityData={setAbilityData}  theme={list.text} discription={list.discription} sliderName={list.sliderName} textareaName={list.textAreaName1} />
                                 </div>  
                             </SwiperSlide>
                         )

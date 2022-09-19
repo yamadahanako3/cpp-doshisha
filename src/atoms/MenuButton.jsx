@@ -71,17 +71,19 @@ const menusSpan3Open = {
   transform:"rotate(-45deg)"
 };
 const arrowUp = {
-  marginLeft: "10px",
+  position: "absolute",
+  right: "15px",
   width:17,
   height:10,
-  transition: "all 0.5s ease",
+  transition: "all 0.3s ease",
   transform:"rotate(180deg)"
 };
 const arrowDown = {
-  marginLeft: "10px",
+  position: "absolute",
+  right: "15px",
   width:17,
   height:10,
-  transition: "all 0.5s ease",
+  transition: "all 0.3s ease",
 };
 const listStyleClose = {
   listStyleType:"none",
@@ -133,9 +135,15 @@ const MenuButton = () => {
     <div>
       <ul style={ulStyle}>
         <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/home')}}>ホーム</li>
-        <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/abilitychart')}}>能力チャート</li>
+        <li style={{margin: "20px 10px"}} onClick={onClick}>能力チャート<img src={arrow} alt="" style={arrowStyle}></img>
+          <ul style={listStyle}>
+            <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/abilitychart',{state:{grade:1}})}}>高校1年生</li>
+            <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/abilitychart',{state:{grade:2}})}}>高校2年生</li>
+            <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/abilitychart',{state:{grade:3}})}}>高校3年生</li>
+          </ul>
+        </li>
         <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/goal')}}>目標カード</li>
-        <li style={{margin: "20px 10px"}}>自分記録<img src={arrow} alt="" style={arrowStyle} onClick={onClick}></img>
+        <li style={{margin: "20px 10px"}} onClick={onClick}>自分記録<img src={arrow} alt="" style={arrowStyle}></img>
           <ul style={listStyle}>
             <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/recordnow')}}>高校1年生</li>
             <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/home')}}>高校2年生</li>
