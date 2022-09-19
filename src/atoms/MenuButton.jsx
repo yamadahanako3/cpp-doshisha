@@ -102,9 +102,12 @@ const ulStyle = {
 const MenuButton = () => {
   const navigate = useNavigate();
   const [state, setState] = useState(false);
-  const [arrowStyle, setArrowStyle] = useState(arrowDown);
-  const [listStyle, setListStyle] = useState(listStyleClose);
-  const [arrowIsOpen, setArroIsOpen] = useState(true);
+  const [arrowStyle2, setArrowStyle2] = useState(arrowDown);
+  const [listStyle2, setListStyle2] = useState(listStyleClose);
+  const [arrowIsOpen2, setArroIsOpen2] = useState(true);
+  const [arrowStyle1, setArrowStyle1] = useState(arrowDown);
+  const [listStyle1, setListStyle1] = useState(listStyleClose);
+  const [arrowIsOpen1, setArroIsOpen1] = useState(true);
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -114,18 +117,29 @@ const MenuButton = () => {
     setState({ ...state, [anchor]: open });
   };
 
-  const onClick = () => {
-    if (arrowIsOpen) {
-      setArroIsOpen(false)
-      setArrowStyle(arrowUp)
-      setListStyle(listStyleOpen)
+  const onClick1 = () => {
+    if (arrowIsOpen1) {
+      setArroIsOpen1(false)
+      setArrowStyle1(arrowUp)
+      setListStyle1(listStyleOpen)
     } else {
-      setArroIsOpen(true)
-      setArrowStyle(arrowDown)
-      setListStyle(listStyleClose)
+      setArroIsOpen1(true)
+      setArrowStyle1(arrowDown)
+      setListStyle1(listStyleClose)
     };
   };
-
+  const onClick2 = () => {
+    if (arrowIsOpen2) {
+      setArroIsOpen2(false)
+      setArrowStyle2(arrowUp)
+      setListStyle2(listStyleOpen)
+    } else {
+      setArroIsOpen2(true)
+      setArrowStyle2(arrowDown)
+      setListStyle2(listStyleClose)
+    };
+  };
+  
   const handleLogout = () => {
     auth.signOut();
     navigate('/signin');
@@ -135,16 +149,16 @@ const MenuButton = () => {
     <div>
       <ul style={ulStyle}>
         <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/home')}}>ホーム</li>
-        <li style={{margin: "20px 10px"}} onClick={onClick}>能力チャート<img src={arrow} alt="" style={arrowStyle}></img>
-          <ul style={listStyle}>
+        <li style={{margin: "20px 10px"}} onClick={onClick1}>能力チャート<img src={arrow} alt="" style={arrowStyle1}></img>
+          <ul style={listStyle1}>
             <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/abilitychart',{state:{grade:1}})}}>高校1年生</li>
             <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/abilitychart',{state:{grade:2}})}}>高校2年生</li>
             <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/abilitychart',{state:{grade:3}})}}>高校3年生</li>
           </ul>
         </li>
         <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/goal')}}>目標カード</li>
-        <li style={{margin: "20px 10px"}} onClick={onClick}>自分記録<img src={arrow} alt="" style={arrowStyle}></img>
-          <ul style={listStyle}>
+        <li style={{margin: "20px 10px"}} onClick={onClick2}>自分記録<img src={arrow} alt="" style={arrowStyle2}></img>
+          <ul style={listStyle2}>
             <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/recordnow')}}>高校1年生</li>
             <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/home')}}>高校2年生</li>
             <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/home')}}>高校3年生</li>
