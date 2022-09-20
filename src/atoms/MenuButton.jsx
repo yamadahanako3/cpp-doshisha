@@ -160,8 +160,8 @@ const MenuButton = () => {
         <li style={{margin: "20px 10px"}} onClick={onClick2}>自分記録<img src={arrow} alt="" style={arrowStyle2}></img>
           <ul style={listStyle2}>
             <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/recordnow',{state:{grade:1}})}}>高校1年生</li>
-            <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/home',{state:{grade:2}})}}>高校2年生</li>
-            <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/home',{state:{grade:3}})}}>高校3年生</li>
+            <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/recordnow',{state:{grade:2}})}}>高校2年生</li>
+            <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/recordnow',{state:{grade:3}})}}>高校3年生</li>
             {/* <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/yearinreview')}}>これまでを振り返る</li> */}
           </ul>
         </li>

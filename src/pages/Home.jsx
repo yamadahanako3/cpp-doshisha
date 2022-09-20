@@ -114,7 +114,9 @@ const Home = () => {
                         </div></SwiperSlide>
                     </Swiper>
                     <CreateButton text="目標カード" link="/goal" />
-                    <CreateButton text="高校１年生" link="/recordnow" />
+                    <CreateButton text="高校１年生" link="/recordnow" grade="1" />
+                    <CreateButton text="高校２年生" link="/recordnow" grade="2" />
+                    <CreateButton text="高校３年生" link="/recordnow" grade="3" />
                     <CreateButton text="これまでとこれから" link="/signup" />
                 </div>  
             </div>

@@ -18,7 +18,7 @@ const InputFiveItems = () => {
     const navigate = useNavigate();
     const location = useLocation();
     const userDocumentRef = doc(db, 'users', user.uid);
-    const grade = location.state ? location.state.grade : "";
+    const grade = location.state ? location.state.grade : "1";
     const [data, setData] = useState(null);
     const [abilityData, setAbilityData] = useState([0, 0, 0, 0, 0]);
     const [error_message, setErrorMessage] = useState("");

@@ -22,7 +22,7 @@ const RecordNow = () => {
     const [myselfData, setMyself] = useState(["","","","","","","",""]);
     const [year, setYear] = useState(null);
     const userDocumentRef = doc(db, 'users',user.uid);
-    const grade = location.state ? location.state.grade : "";
+    const [grade, setGrade] = useState(location.state ? location.state.grade : "");
     const text = grade==null ? "":"高校"+grade+"年生の記録";
 
     useEffect(()=>{

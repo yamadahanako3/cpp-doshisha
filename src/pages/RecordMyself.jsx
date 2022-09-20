@@ -51,7 +51,7 @@ const RecordMyself = () => {
       }
     }
     setDoc(userDocumentRef, data, {merge:true});
-    navigate('/recordnow');
+    navigate('/recordnow',{state:{grade:grade}});
   }
 
   const title = {

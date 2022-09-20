@@ -42,7 +42,7 @@ const YearInReview = () => {
       parent[i].reflection = event.currentTarget[lists[i].key2].value;
     };
     await setDoc(userDocumentRef,userData, {merge:true});
-    navigate('/recordnow');
+    navigate('/recordnow',{state:{grade:grade}});
   };
 
   const title = {
