@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router-dom';
 const GoalCard = (props) => {
     const navigate = useNavigate();
     const color = props.color;
+    const dateObj = new Date();
+    let span = props.span.split("-");
+    let date2 = span[1] + '月' + span[2] + '日';
 
     const handleClick1 = (event) => {
         event.preventDefault();
@@ -62,7 +65,7 @@ const GoalCard = (props) => {
                     <DoughnutChart ratio={props.ratio} color={color} />
                     <div style={{marginLeft: "20px"}}>
                         <div style={title}>{props.item}</div>
-                        <p style={sub}>4月12日→7月12日</p>
+                        <p style={sub}>{props.now}→{date2}</p>
                     </div>
                 </div>
                 <div style={content1} onClick={handleClick1}>

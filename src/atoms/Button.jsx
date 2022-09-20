@@ -1,8 +1,14 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const CreateButton = (props) => {
+    const navigate = useNavigate()
     const text = props.text;
     const link = props.link;
+
+    const onClick = () =>{
+        navigate(link,{state:{grade:props.grade}});
+    }
+
     const button = {
         textAlign: "left",
         padding: "15px",
@@ -18,9 +24,8 @@ const CreateButton = (props) => {
 
     return (
         <div style={{textAlign: "center"}}>
-            <Link to={link}>
-                <button style={button}>{text}</button>
-            </Link>
+
+                <button style={button} onClick={onClick}>{text}</button>
         </div>
     );
 };

@@ -11,24 +11,33 @@ import { useAuthContext } from '../context/Authcontext';
 import { useEffect } from 'react';
 import { db } from '../firebase';
 import Template from '../template.json';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const template = Template.yearinreview;
 
 const RecordNow = () => {
+    const location = useLocation();
     const navigate = useNavigate();
     const { user } = useAuthContext();
     const [myselfData, setMyself] = useState(["","","","","","","",""]);
     const [year, setYear] = useState(null);
     const userDocumentRef = doc(db, 'users',user.uid);
+    const grade = location.state ? location.state.grade : "";
+    const text = grade==null ? "":"高校"+grade+"年生の記録";
 
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
             const data = ref.data();
-            const parent = data.first_grader;
+            let parent;
+            if(grade == 1){
+                parent = data.first_grader;
+            }else if(grade == 2){
+                parent = data.second_grader;
+            }else if(grade == 3){
+                parent = data.third_grader;
+            }
             let lists1 = [];
             let lists2 = [];
-            console.log(parent.recordmyself)
             for (let i in parent.recordmyself){
                 lists1.push(parent.recordmyself[i]);
             };
@@ -36,7 +45,7 @@ const RecordNow = () => {
             for (let i in parent.yearinreview){
                 lists2.push(parent.yearinreview[i]);
             };
-            console.log(lists1);
+            console.log("a");
             setMyself(lists1);
             setYear(lists2);
         })
@@ -51,7 +60,7 @@ const RecordNow = () => {
     }
 
     const body = {
-        margin: "20px"
+        margin: "0 20px"
     }
     const title = {
         color: "#1A4F83",
@@ -75,7 +84,7 @@ const RecordNow = () => {
         marginLeft: "5px",
         padding: "15px 15px",
         fontSize: "15px",
-        borderLeft: "1px solid #FFAE80"
+        borderLeft: "1px solid #43CBC3"
     }
     const theme2 = {
         marginLeft: "5px",
@@ -87,19 +96,19 @@ const RecordNow = () => {
         marginLeft: "5px",
         padding: "15px 15px",
         fontSize: "15px",
-        borderLeft: "1px solid #EA3165"
+        borderLeft: "1px solid #FFAE80"
     }
     const theme4= {
         marginLeft: "5px",
         padding: "15px 15px",
         fontSize: "15px",
-        borderLeft: "1px solid #EA3165"
+        borderLeft: "1px solid #8FCB43"
     }
     const theme5= {
         marginLeft: "5px",
         padding: "15px 15px",
         fontSize: "15px",
-        borderLeft: "1px solid #EA3165"
+        borderLeft: "1px solid #3191EA"
     }
     const theme6= {
         marginLeft: "5px",
@@ -141,10 +150,10 @@ const RecordNow = () => {
 
 
     return (
-        <div style={{backgroundColor: "#F4F6F9",minHeight: "100vh"}}>
+        <div style={{backgroundColor: "#F4F6F9",minHeight: "100vh",paddingBottom: "20px"}}>
             <Header />
             <div style={body}>
-                <div style={title}>高校一年生の記録</div>
+                <div style={title}>{text}</div>
                 <div style={{display: "flex",flexDirection: "column",justifyContent: "center",alignItems: "center",marginBottom: "50px"}}>
                     {
 
@@ -189,7 +198,7 @@ const RecordNow = () => {
                     </div>
                 </div>
                 <div style={{display:"flex",justifyContent:"center"}}>
-                    <div style={record} onClick={()=>navigate('/recordmyself', {state:{myselfData:myselfData}})}>記録する</div>
+                    <div style={record} onClick={()=>navigate('/recordmyself', {state:{myselfData:myselfData,grade:grade}})}>記録する</div>
                 </div>
                 <div style={title}>１年の振り返り</div>
                 
@@ -199,7 +208,7 @@ const RecordNow = () => {
                         {
                             year?.map((list, index)=>
                             <SwiperSlide key={index} style={{paddingBottom: "50px"}}>
-                                <div style={{margin:"0 auto",borderStyle:"solid",borderColor:template[index].color,borderRadius:"10px",color:"#1A4F83",fontWeight: "bold"}}>
+                                <div style={{margin:"0 auto",borderStyle:"solid",borderColor:template[index].color,borderWidth:"1px",borderRadius:"10px",color:"#1A4F83",fontWeight: "bold"}}>
                                     <div style={{backgroundColor: template[index].backColor,padding: "10px"}}>{template[index].title}</div>
                                     <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
                                         <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={finished} />
@@ -217,7 +226,7 @@ const RecordNow = () => {
                         }
                     </Swiper>
                 </div>
-                <div style={record} onClick={()=>navigate('/YearInReview', {state:{yearData:year}})}>記録する</div>
+                <div style={record} onClick={()=>navigate('/YearInReview', {state:{yearData:year,grade:grade}})}>記録する</div>
             </div>
         </div>
     );

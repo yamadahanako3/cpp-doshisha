@@ -14,6 +14,8 @@ const AddGoal = () => {
     const [color, setColor] = useState(location.state ? location.state.color:"");
     const [data, setData] = useState(null);
     const { user } = useAuthContext();
+    const dateObj = new Date();
+    let date1 = (dateObj.getMonth()+1) + '月' + dateObj.getDate() + '日';
     const userDocumentRef = doc(db, 'users', user.uid);
 
     useEffect(()=>{
@@ -48,6 +50,7 @@ const AddGoal = () => {
                 "ratio":"",
                 "color":color,
                 "span":span,
+                "now":date1
             };
             parent.push(list);
        };

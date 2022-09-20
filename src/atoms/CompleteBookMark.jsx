@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 const CompleteBookMark = (props) => {
     const navigate = useNavigate();
+    const now = props.now;
+    const span = props.span;
     const text = props.text;
     const ratio = props.ratio;
     const color = props.color;
@@ -10,7 +12,7 @@ const CompleteBookMark = (props) => {
     const goalContent2 = props.goalContent2;
 
     const handleClick = () => {
-        navigate('/completecard', {state:{item:text,goalContent1:goalContent1,goalContent2:goalContent2,ratio:ratio,color:color}});
+        navigate('/completecard', {state:{item:text,goalContent1:goalContent1,goalContent2:goalContent2,ratio:ratio,color:color,now:now,span:span}});
     }
 
     

@@ -15,8 +15,9 @@ const RecordMyself = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [myselfData, setMyselfData] = useState(location.state ? location.state.myselfData:[]);
-  const userDocumentRef = doc(db, 'users', user.uid);
   const [data, setData] = useState([]);
+  const userDocumentRef = doc(db, 'users', user.uid);
+  const grade = location.state ? location.state.grade : "";
 
   useEffect(()=>{
     getDoc(userDocumentRef).then((ref)=>{
@@ -30,7 +31,14 @@ const RecordMyself = () => {
     event.preventDefault();
     let judge = true;
 
-    let parent = data.first_grader.recordmyself;
+    let parent;
+    if(grade == 1){
+        parent = data.first_grader.recordmyself;
+    }else if(grade == 2){
+        parent = data.second_grader.recordmyself;
+    }else if(grade == 3){
+        parent = data.third_grader.recordmyself;
+    }
     for(let i in parent){
       if(i==0){
         parent[i].activity = event.target.activity.value;

@@ -33,7 +33,7 @@ const Complete = () => {
                     {
                         userData.map((list, index)=>
                             <div key={index} style={{display: list.ratio!="" ? "block" : "none"}}>
-                                <CompleteBookMark text={list.item} link="/completecard" ratio={list.ratio} goalContent1={list.goal} goalContent2={list.result} color={list.color!="" ? list.color : "#FFAE80"}  />
+                                <CompleteBookMark text={list.item} link="/completecard" span={list.span} now={list.now} ratio={list.ratio} goalContent1={list.goal} goalContent2={list.result} color={list.color!="" ? list.color : "#FFAE80"}  />
                             </div>
                         )
                     }

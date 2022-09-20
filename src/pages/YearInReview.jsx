@@ -12,26 +12,31 @@ const lists = template.yearinreview;
 
 const YearInReview = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [yearData, setYear] = useState(location.state ? location.state.yearData:[])
   const { user } = useAuthContext();
-  const userDocumentRef = doc(db, 'users', user.uid);
   const [userData, setUserData] = useState([]);
-  const navigate = useNavigate();
+  const userDocumentRef = doc(db, 'users', user.uid);
+  const grade = location.state ? location.state.grade : "";
+
   useEffect(()=>{
     getDoc(userDocumentRef).then((ref)=>{
       const data = ref.data();
       setUserData(data);
       console.log("a");
     });
-    // const a = async () => {
-    //   const b = await getDoc(userDocumentRef)
-    //   setUserData(b.data())
-    // }
   },[]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const parent = userData.first_grader.yearinreview
+    let parent;
+    if(grade == 1){
+        parent = userData.first_grader.yearinreview;
+    }else if(grade == 2){
+        parent = userData.second_grader.yearinreview;
+    }else if(grade == 3){
+        parent = userData.third_grader.yearinreview;
+    }
     for (let i in parent) {
       parent[i].effort = event.currentTarget[lists[i].key1].value;
       parent[i].reflection = event.currentTarget[lists[i].key2].value;
