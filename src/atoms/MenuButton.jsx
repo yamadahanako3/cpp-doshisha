@@ -192,11 +192,6 @@ const MenuButton = () => {
 
   return (
     <div style={{display: "fixed",top: "10px",left: "10px"}}>      
-      {/* <div onClick={toggleDrawer('top', open)} style={menuDiv}>
-        <span style={buttonStyle1}></span>
-        <span style={buttonStyle2}></span>
-        <span style={buttonStyle3}></span>
-      </div> */}
       <Drawer
         anchor={'top'}
         open={state['top']}

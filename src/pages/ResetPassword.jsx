@@ -1,7 +1,7 @@
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
-import { Header } from '../molecules/index';
+import { FirstHeader } from '../molecules/index';
 
 const ResetPassword = () => {
   const height = window.innerHeight + "px";
@@ -63,7 +63,7 @@ const ResetPassword = () => {
 
   return (
     <div>
-      <Header />
+      <FirstHeader />
         <div>
           <form style={form} onSubmit={handleSubmit}>
             <div style={title}>パスワード再設定</div>
