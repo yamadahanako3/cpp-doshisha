@@ -6,9 +6,9 @@ const DetailAbility = (props) => {
     };
     const content1 = {
         height: "20px",
-        whiteSpace:"nowrap",
-        overflow:"hidden",
-        textOverflow:"ellipsis",
+        // whiteSpace:"nowrap",
+        // overflow:"hidden",
+        // textOverflow:"ellipsis",
         fontSize: "13px",
     };
     const title1 = {

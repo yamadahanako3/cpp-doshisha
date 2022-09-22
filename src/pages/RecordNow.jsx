@@ -208,7 +208,7 @@ const RecordNow = () => {
                         {
                             year?.map((list, index)=>
                             <SwiperSlide key={index} style={{paddingBottom: "50px"}}>
-                                <div style={{margin:"0 auto",borderStyle:"solid",borderColor:template[index].color,borderWidth:"1px",borderRadius:"10px",color:"#1A4F83",fontWeight: "bold"}}>
+                                <div style={{margin:"0 auto",borderStyle:"solid",borderColor:template[index].color,borderWidth:"1px",borderRadius:"10px",color:"#1A4F83",fontWeight: "bold",backgroundColor: "white"}}>
                                     <div style={{backgroundColor: template[index].backColor,padding: "10px"}}>{template[index].title}</div>
                                     <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
                                         <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={finished} />

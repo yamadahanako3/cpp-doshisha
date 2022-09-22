@@ -87,7 +87,7 @@ const AbilityChart = () => {
     };
     
     return (
-        <div style={{height: "100vh",overflowY: "hidden"}}>
+        <div style={{minHeight: "100vh"}}>
             <Header />
                 <DetailAbility userData={userData??""} item={userData[ability]?.item} goal={userData[ability]?.goal} result={userData[ability]?.result} nextGoal={userData[ability]?.nextGoal} />
             <div style={body}>

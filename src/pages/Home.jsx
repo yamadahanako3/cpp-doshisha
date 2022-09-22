@@ -93,7 +93,7 @@ const Home = () => {
         return <Navigate to='/signin' />;
     } else {
         return (
-            <div style={{backgroundColor:"#F4F6F9",height: "100vh",maxWidth:"500px"}}>
+            <div style={{backgroundColor:"#F4F6F9",minHeight: "100vh",maxWidth:"500px"}}>
                 <Header />
                 <div style={body}>
                     <Swiper modules={[Navigation, Pagination]} pagination={{clickable:true}} className="mySwiper" style={{width: "100%"}}>

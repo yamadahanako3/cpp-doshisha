@@ -2,7 +2,6 @@ import { auth } from '../firebase';
 import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FirstHeader } from '../molecules/index';
 
 const SignUp = () => {
     const navigate = useNavigate();
@@ -85,7 +84,6 @@ const SignUp = () => {
 
     return(
         <div>
-            <FirstHeader />
             <div>
                 {error && <p style={{color:"red",marginLeft:"50px"}}>{error}</p>}
                 <form style={form} onSubmit={handleSubmit}>

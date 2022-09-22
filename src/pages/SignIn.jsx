@@ -76,7 +76,7 @@ const SignIn = () => {
             {error && <p style={{color:"red"}}>{error}</p>}
             <div style={body}>
                 <img src={accountImage} />
-                <p style={name}>同志社　国際</p>
+                <p style={name}>sapori</p>
                 <form style={body} onSubmit={handleSubmit}>
                     <input style={box} name="email" type="email" placeholder="メールアドレス" />
                     <input style={box} name="password" type="password" placeholder="パスワード" />
