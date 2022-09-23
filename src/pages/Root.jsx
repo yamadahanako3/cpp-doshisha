@@ -16,7 +16,10 @@ const Root = () => {
     userData.email = user.email;
     if (!docSnap.exists()) {
       setDoc(userDocumentRef, userData);
-      navigate('/inputfiveitems')
+      return true;
+    };
+    return false;
+  };
     };
   } ;
   
@@ -24,8 +27,11 @@ const Root = () => {
     return <Navigate to="/signin" />
   } else {
     if (auth.currentUser.emailVerified) {
-      judgeDocumentExists();
-      return <Navigate to="/home" />
+      if(judgeDocumentExists()){
+        return <Navigate to="/inputfiveitems" />
+      }else{
+        return <Navigate to="/home" />
+      }
     } else {
       return <Navigate to="/failedauth" />
     };
