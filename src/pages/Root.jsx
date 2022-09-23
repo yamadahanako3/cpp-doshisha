@@ -42,9 +42,9 @@ const Root = () => {
   } else {
     if (auth.currentUser.emailVerified) {
       if(judgeDocumentExists()){
-        return <Navigate to="/home" />
-      }else{
         return <Navigate to="/inputfiveitems" />
+      }else{
+        return <Navigate to="/home" />
       }
     } else {
       return <Navigate to="/failedauth" />
