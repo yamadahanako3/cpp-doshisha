@@ -1,5 +1,5 @@
 import { auth } from '../firebase';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../context/Authcontext';
 import React from 'react';
 import Data from '../DbDoshisha.json';
@@ -11,7 +11,7 @@ const Root = () => {
   const { user } = useAuthContext();
   const location = useLocation();
   const judge = location.state ? location.state.judge:"";
-
+  const navigate = useNavigate();
   const judgeDocumentExists = async () =>{
     const userData = Data;
     const userDocumentRef = doc(db, 'users', user.uid);
@@ -19,9 +19,10 @@ const Root = () => {
     userData.email = user.email;
     if (!docSnap.exists()) {
       setDoc(userDocumentRef, userData)
-      return true;
-    };
-    return false;
+      navigate('/inputfiveitems')
+    } else {
+      navigate('/home')
+    }
   };
 
   const registerTeachers = async () => {
@@ -41,11 +42,7 @@ const Root = () => {
     return <Navigate to="/TeachersProfile" />
   } else {
     if (auth.currentUser.emailVerified) {
-      if(judgeDocumentExists()){
-        return <Navigate to="/inputfiveitems" />
-      }else{
-        return <Navigate to="/home" />
-      }
+      judgeDocumentExists()
     } else {
       return <Navigate to="/failedauth" />
     };
