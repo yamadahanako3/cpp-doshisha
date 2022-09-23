@@ -1,5 +1,5 @@
 import { auth } from '../firebase';
-import { useNavigate, Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useAuthContext } from '../context/Authcontext';
 import React from 'react';
 import Data from '../DbDoshisha.json';
@@ -8,19 +8,16 @@ import { setDoc, doc, getDoc } from 'firebase/firestore';
 
 const Root = () => {
   const { user } = useAuthContext();
-  const navigate = useNavigate()
   const judgeDocumentExists = async () =>{
     const userData = Data;
     const userDocumentRef = doc(db, 'users', user.uid);
     const docSnap = await getDoc(userDocumentRef);
     userData.email = user.email;
     if (!docSnap.exists()) {
-      setDoc(userDocumentRef, userData);
+      setDoc(userDocumentRef, userData)
       return true;
     };
     return false;
-  };
-    };
   } ;
   
   if (!user) {
