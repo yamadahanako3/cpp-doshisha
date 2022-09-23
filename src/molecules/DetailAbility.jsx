@@ -20,7 +20,6 @@ const DetailAbility = (props) => {
         position: "fixed",
         top: "425px",
         width: "100vw",
-        height: "800px",
         fontWeight: "bold"
     };
     const section1 = {

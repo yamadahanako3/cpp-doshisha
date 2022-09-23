@@ -8,6 +8,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import Template from '../template.json';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
+import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper';
 
 const lists = Template.inputability;
@@ -70,7 +71,7 @@ const EvaluateFiveItems = () => {
                 <div style={underTitle}>卒業までに身に付けたい力について</div>
             </div>
             <form onSubmit={handleSubmit}>
-                <Swiper modules={[Navigation, Pagination]} >
+                <Swiper modules={[Navigation, Pagination]} pagination={{clickable:true}} >
                     {
                         lists.map((list, index)=>
                             <SwiperSlide style={{display: "flex",justifyContent: "center"}} key={index}>
