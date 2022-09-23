@@ -22,3 +22,4 @@ export {default as Calendar } from './Calendar';
 export {default as Profile } from './Profile';
 export {default as TeachersProfile } from './TeachersProfile';
 export {default as TeachersConsole } from './TeachersConsole';
+export {default as TheachersUserList } from './TheachersUserList';

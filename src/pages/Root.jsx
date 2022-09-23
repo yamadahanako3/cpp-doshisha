@@ -6,7 +6,6 @@ import Data from '../DbDoshisha.json';
 import teachersData from '../teachers.json';
 import { db } from '../firebase';
 import { setDoc, doc, getDoc } from 'firebase/firestore';
-import { async } from '@firebase/util';
 
 const Root = () => {
   const { user } = useAuthContext();
