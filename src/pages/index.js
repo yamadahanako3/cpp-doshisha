@@ -19,3 +19,6 @@ export {default as CompleteCard } from './CompleteCard';
 export {default as Complete } from './Complete';
 export {default as TeachersSignIn } from './TeachersSignIn';
 export {default as Calendar } from './Calendar';
+export {default as Profile } from './Profile';
+export {default as TeachersProfile } from './TeachersProfile';
+export {default as TeachersConsole } from './TeachersConsole';

@@ -1,86 +1,70 @@
-import { auth } from '../firebase';
-import { createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { FirstHeader } from '../molecules/index';
+import { auth } from '../firebase';
+import accountImage from '../images/accountImage.png';
 
 const TeachersSignIn = () => {
     const navigate = useNavigate();
     const [error, setError] = useState('');
-    const RegExpInvalidEmail = /invalid-email/g;
+    const RegExpUsernotFound = /user-not-found/g;
+    const RegExpWrongPassword = /wrong-password/g;
     const RegExpNetworkRequestFailed = /network-request-failed/g;
+    const RegExpInvalidEmail = /invalid-email/g;
     const RegExpInternalError = /internal-error/g;
-    const RegExpWeakPassword = /weak-password/g;
-    const RegExpEmailAlreadyInUse = /email-already-in-use/g;
-    const height = window.innerHeight + "px";
-
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const { email, password } = event.currentTarget.elements;
-
-        try {
-            await createUserWithEmailAndPassword(auth, email.value, password.value).then(()=>{
-                sendEmailVerification(auth.currentUser);
-                navigate('/sendingmail', { state: { title: '認証用メールを送信しました' } });
-            }).catch((e)=>{
-                console.log(e.message);
-                let error_message = "";
-                if (RegExpInvalidEmail.test(e.message)) {
-                    error_message = "メールアドレスを入力してください";
-                } else if (RegExpNetworkRequestFailed.test(e.message)) {
-                    error_message = "ネットワークが不安定です";
-                } else if (RegExpInternalError.test(e.message)) {
-                    error_message = "パスワードを入力してください";
-                } else if (RegExpWeakPassword.test(e.message)) {
-                    error_message = "パスワードは６文字以上に設定してください";
-                } else if (RegExpEmailAlreadyInUse.test(e.message)) {
-                    error_message = "このメールアドレスは既に使用されています";
-                } else {
-                    error_message = e.message;
-                };
-                    setError(error_message);
-                });
-        } catch (error) {
-            console.log(error.message);
-        };
+        
+        const { email, password } = event.target.elements;
+        await signInWithEmailAndPassword(auth, email.value, password.value).then(()=>{
+            navigate('/',{state:{judge:"teachers"}});
+        }).catch((e)=>{
+            let error_message = "";
+            if (RegExpWrongPassword.test(e.message)) {
+                error_message = "パスワードが間違っています";
+            } else if (RegExpUsernotFound.test(e.message)) {
+                error_message = "ユーザーが存在しません";
+            } else if (RegExpNetworkRequestFailed.test(e.message)) {
+                error_message = "ネットワークが不安定です";
+            } else if (RegExpInvalidEmail.test(e.message)) {
+                error_message = "メールアドレスが間違っています";
+            } else if (RegExpInternalError.test(e.message)) {
+                error_message = "パスワードを入力してください";
+            } else {
+                error_message = e.message;
+            }
+            setError(error_message);
+        });
     };
 
-    const title = {
-        margin: "30px 50px",
-        color: "rgba(26, 79, 131, .75)",
-        fontSize: "25px"
-    };
-    const form = {
-        height: height,
+    const body = {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center" 
     };
-    const label = {
-        color: "rgba(26, 79, 131, .75)",
-        fontSize: "13px"
+    const name = {
+        color: "#1A4F83",
+        fontSize: "20px"
     };
-    const userInfo = {
-        marginBottom: "30px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center"
-    };
-    const input = {
-        width: "260px",
-        border: "none",
-        borderBottom: "1px solid rgba(26, 79, 131, .5)"
+    const box = {
+        border: "solid 1px rgba(26, 79, 131, .5)",
+        borderRadius: "3px",
+        width: "250px",
+        height: "30px",
+        marginBottom: "5px"
     };
     const button = {
-        marginTop: "10px",
+        fontSize: "12px",
+        fontWeight: "bold",
         color: "white",
-        padding: "8px 100px",
-        backgroundColor: "#43CBC3",
         border: "none",
-        borderRadius: "20px",
-        fontSize: "15px"
+        borderRadius: "3px",
+        width: "255px",
+        height: "35px",
+        marginTop: "20px",
+        background: "#43CBC3"
     };
     const content = {
         fontSize: "12px",
@@ -88,29 +72,21 @@ const TeachersSignIn = () => {
         marginTop: "30px",
     }
 
-    return(
-        <div>
-            <FirstHeader />
-            <div>
-                {error && <p style={{color:"red",marginLeft:"50px"}}>{error}</p>}
-                <form style={form} onSubmit={handleSubmit}>
-                    <div style={title}>教師用ログインページ</div>
-                    <div style={userInfo}>
-                        <div style={{marginBottom: "13px"}}>
-                            <div style={label}>メールアドレス</div>
-                            <input style={input} name="email" type="email"></input>
-                        </div>
-                        <div style={{marginBottom: "13px"}}>
-                            <div style={label}>パスワード</div>
-                            <input style={input} name="password" type="password"></input>
-                        </div>
-                    </div>
-                    <button style={button}>ログイン</button>
-                    <div style={content}>パスワードを忘れた場合</div>
-                    <div style={content}>
-                        ユーザ登録はこちらから
-                    </div>
+    return (
+        <div style={{marginTop: "100px"}}>
+            {error && <p style={{color:"red"}}>{error}</p>}
+            <div style={body}>
+                <img src={accountImage} />
+                <p style={name}>教師用ログインページ</p>
+                <form style={body} onSubmit={handleSubmit}>
+                    <input style={box} name="email" type="email" placeholder="メールアドレス" />
+                    <input style={box} name="password" type="password" placeholder="パスワード" />
+                    <button style={button} >ログイン</button>
                 </form>
+                <Link style={content} to={'/resetpassword'}>パスワードを忘れた場合</Link>
+                <div style={content}>
+                    ユーザ登録は<Link style={content} to={'/signup'}>こちら</Link>から
+                </div>
             </div>
         </div>
     );

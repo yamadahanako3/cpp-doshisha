@@ -15,6 +15,9 @@ const SignIn = () => {
     
     const handleSubmit = async (event) => {
         event.preventDefault();
+        if(event.target.password.value == "teachersLogin"){
+            navigate('/teacherssignin')
+        }
         const { email, password } = event.target.elements;
         await signInWithEmailAndPassword(auth, email.value, password.value).then(()=>{
             navigate('/');
