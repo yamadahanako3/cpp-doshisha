@@ -18,10 +18,10 @@ const GoalCard = (props) => {
     
 
     const body = {
-        width: "280px",
+        width: props.teacher ? "200px" : "280px",
         backgroundColor: "white",
         boxShadow: "0px 2px 10px rgba(26, 79, 131, .1)",
-        paddingBottom: "50px",
+        paddingBottom: props.teacher ? "10px" : "50px",
         borderRadius: "5px",
         borderStyle: "solid",
         borderColor: color,
@@ -29,11 +29,11 @@ const GoalCard = (props) => {
     const main = {
         display: "flex",
         alignItems: "center",
-        paddingTop: "20px"
+        paddingTop: props.teacher ? "10px" : "20px"
     };
     const title = {
         color: "#1A4F83",
-        fontSize: "20px",
+        fontSize: props.teacher ? "16px" : "20px",
     };
     const sub = {
         color: "rgba(26, 79, 131, .5)",
@@ -41,7 +41,7 @@ const GoalCard = (props) => {
     };
     const content1 = {
         wordWrap: "break-word",
-        width: "190px",
+        width: props.teacher ? "120px" : "190px",
         height: "70px",
         color: "rgba(26, 79, 131, .75)",
         fontSize: "13px",
@@ -50,8 +50,8 @@ const GoalCard = (props) => {
     };
     const content2 = {
         wordWrap: "break-word",
-        width: "190px",
-        height: "100px",
+        width: props.teacher ? "120px" : "190px",
+        height: props.teacher ? "130px" : "190px",
         color: "rgba(26, 79, 131, .75)",
         fontSize: "13px",
         margin: "0px 45px",
@@ -62,7 +62,7 @@ const GoalCard = (props) => {
         <div style={body}>
             <div style={{margin: "30px"}}>
                 <div style={main}>
-                    <DoughnutChart ratio={props.ratio} color={color} />
+                    <DoughnutChart teacher={props.teacher ? "teacher" : null} ratio={props.ratio} color={color} />
                     <div style={{marginLeft: "20px"}}>
                         <div style={title}>{props.item}</div>
                         <p style={sub}>{props.now}→{date2}</p>

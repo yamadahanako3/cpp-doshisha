@@ -15,7 +15,7 @@ const TheachersUserList = () => {
     userData.forEach(data => {
       if (data.name == student) {
         console.log(data.uid)
-        navigate('/TeachersConsole',{state:{data:data}})
+        navigate('/TeachersConsole',{state:{data:data,teachersClass:teachersClass}})
         return 
       }
     });

@@ -40,6 +40,8 @@ const DoughnutChart = (props) => {
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
+        width: props.teacher ? "30px": null,
+        height: props.teacher ? "30px": null,
         }}>
         <Doughnut data={graphdata} options={doughnutOptions} width={60} height={60} />
         <label
