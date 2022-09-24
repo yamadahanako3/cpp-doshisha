@@ -17,7 +17,7 @@ const DetailAbility = (props) => {
         padding: "10px"
     };
     const body = {
-        position: "fixed",
+        position: "absolute",
         top: "425px",
         width: "100vw",
         fontWeight: "bold"
