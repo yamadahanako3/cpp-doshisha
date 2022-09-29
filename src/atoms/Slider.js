@@ -23,16 +23,16 @@ const CreateSlider = (props) => {
     return (
         <Box sx={{ width: 250, height: 70 }}>
             <Slider
-            aria-label="Temperature"
-            defaultValue={3}
-            getAriaValueText={valuetext}
-            valueLabelDisplay="auto"
-            step={step}
-            marks
-            min={0}
-            max={max}
-            style={{color: color}}
-            name={props.name}
+                aria-label="Temperature"
+                defaultValue={3}
+                getAriaValueText={valuetext}
+                valueLabelDisplay="auto"
+                step={step}
+                marks
+                min={0}
+                max={max}
+                style={{color: color}}
+                name={props.name}
             />
         </Box>
     );

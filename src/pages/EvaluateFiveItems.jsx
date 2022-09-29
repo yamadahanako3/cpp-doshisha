@@ -22,10 +22,22 @@ const EvaluateFiveItems = () => {
     const [data, setData] = useState(null);
     const [abilityData, setAbilityData] = useState([0, 0, 0, 0, 0]);
     const [defaultData, setDefaultData] = useState(location.state ? location.state.data:"");
-    
+    const body = {
+        backgroundColor: "#F4F6F9",
+        height: "100vh"
+    };
+    const title = {
+        color: "rgba(26, 79, 131, .75)",
+        fontSize: "24px",
+    };
+    const underTitle = {
+        color: "#43CBC3",
+        fontSize: "12px",
+        fontWeight: "bold",
+    };
+
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
-            console.log("a");
             setData(ref.data());
         })
     },[]);
@@ -47,20 +59,6 @@ const EvaluateFiveItems = () => {
         };
         setDoc(userDocumentRef, data, {merge: true});
         navigate('/home');
-    };
-
-    const body = {
-        backgroundColor: "#F4F6F9",
-        height: "100vh"
-    };
-    const title = {
-        color: "rgba(26, 79, 131, .75)",
-        fontSize: "24px",
-    };
-    const underTitle = {
-        color: "#43CBC3",
-        fontSize: "12px",
-        fontWeight: "bold",
     };
 
     return (

@@ -11,7 +11,6 @@ const AddGoal = () => {
     const location = useLocation();
     const [item, setItem] = useState(location.state ? location.state.item:"");
     const [content, setContent] = useState(location.state ? location.state.content:"");
-    const [color, setColor] = useState(location.state ? location.state.color:"");
     const [data, setData] = useState(null);
     const { user } = useAuthContext();
     const dateObj = new Date();

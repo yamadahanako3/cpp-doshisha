@@ -4,19 +4,8 @@ import { useNavigate } from 'react-router-dom';
 const GoalCard = (props) => {
     const navigate = useNavigate();
     const color = props.color;
-    const dateObj = new Date();
-    let span = props.span.split("-");
-    let date2 = span[1] + '月' + span[2] + '日';
-
-    const handleClick1 = (event) => {
-        event.preventDefault();
-        navigate('/AddGoal', {state:{item:props.item,content:props.goalContent1}});
-    }
-    const handleClick2 = () => {
-        navigate('/EvaluateGoal', {state:{item:props.item,content:props.goalContent2}});
-    }
-    
-
+    const span = props.span.split("-");
+    const date2 = span[1] + '月' + span[2] + '日';
     const body = {
         width: props.teacher ? "200px" : "280px",
         backgroundColor: "white",
@@ -57,6 +46,14 @@ const GoalCard = (props) => {
         margin: "0px 45px",
         paddingTop: "15px",
     };
+
+    const handleClick1 = (event) => {
+        event.preventDefault();
+        navigate('/AddGoal', {state:{item:props.item,content:props.goalContent1}});
+    }
+    const handleClick2 = () => {
+        navigate('/EvaluateGoal', {state:{item:props.item,content:props.goalContent2}});
+    }
 
     return (
         <div style={body}>

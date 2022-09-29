@@ -2,7 +2,6 @@ import { useNavigate } from 'react-router-dom';
 
 const InputButton = (props) => {
     const navigate = useNavigate();
-    const link = props.link;
     const InputButton = {
         width: "100vw",
         position: "fixed",
@@ -45,7 +44,7 @@ const InputButton = (props) => {
     };
 
     const handleClick = () => {
-        navigate(link);
+        navigate(props.link);
     }
 
     return (

@@ -14,10 +14,10 @@ const AboutCareerPassport = () => {
   const title = {
     color: "rgba(26, 79, 131, 1)",
     fontSize: "20px",
-}
-const text = {
-    color: "rgba(26, 79, 131, .75)",
-    fontSize: "12px",
+  }
+  const text = {
+      color: "rgba(26, 79, 131, .75)",
+      fontSize: "12px",
   }
 
   return (

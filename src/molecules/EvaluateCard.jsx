@@ -2,20 +2,8 @@ import React, { useState } from 'react';
 
 const EvaluateCard = (props) => {
     const [judge, getJudge] = useState([false, false, false, false, false, false]);
-    const [data, setData] = useState(props.data);
-    const [text1, setText1] = useState(data ? data.result:"");
-    const [text2, setText2] = useState(data ? data.nextGoal:"");
-
-    const handleClick = (event) => {
-        let list = [false, false, false, false, false, false];
-        list[event.target.innerHTML] = true;
-        getJudge(list);
-        props.setAbilityData(
-            props.abilityData.map((data,index)=>(index == event.target.name ? event.target.innerHTML : data))
-        )
-        console.log(props.abilityData)
-    };
-
+    const [text1, setText1] = useState(props.data ? props.data.result:"");
+    const [text2, setText2] = useState(props.data ? props.data.nextGoal:"");
     const body = {
         margin: "20px",
         width: "300px",
@@ -70,6 +58,15 @@ const EvaluateCard = (props) => {
         textAlign: "center",
         backgroundColor: "rgba(3, 218, 197, 1)",
         border: "none",
+    };
+
+    const handleClick = (event) => {
+        let list = [false, false, false, false, false, false];
+        list[event.target.innerHTML] = true;
+        getJudge(list);
+        props.setAbilityData(
+            props.abilityData.map((data,index)=>(index == event.target.name ? event.target.innerHTML : data))
+        )
     };
 
     return (

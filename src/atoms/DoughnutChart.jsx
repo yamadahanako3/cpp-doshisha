@@ -4,11 +4,6 @@ import { Doughnut } from 'react-chartjs-2';
 
 Chart.register(...registerables);
 
-/**
- * propsには以下の値を渡す
- * @ratio {Number}
- * @color {Object}
- */
 const DoughnutChart = (props) => {
   const ratio = props.ratio;
   const color = props.color;

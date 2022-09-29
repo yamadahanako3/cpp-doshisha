@@ -12,7 +12,7 @@ const EvaluateGoal = () => {
     const { user } = useAuthContext();
     const [data, setData] = useState(null);
     const [userGoalItem, setGoalItem] = useState(null);
-    const [item, setItem] = useState(location.state ? location.state.item:"");
+    const item = location.state ? location.state.item:"";
     const [content, setContent] = useState(location.state ? location.state.content:"");
     const userDocumentRef = doc(db, 'users', user.uid);
     
@@ -27,7 +27,6 @@ const EvaluateGoal = () => {
                     lists.push(parent[i].item);
                 };
             };
-            console.log("a");
             setGoalItem(lists);
         });
     },[]);
@@ -111,7 +110,13 @@ const EvaluateGoal = () => {
                 </div>
                 <div style={free}>
                     <div style={freeTitle}>自由記入欄</div>
-                    <textarea style={textarea} placeholder="評価を具体的に書いてみよう" name="freeResult" onChange={(e)=>setContent(e.target.value)} value={content}></textarea>
+                    <textarea s
+                        tyle={textarea} 
+                        placeholder="評価を具体的に書いてみよう" 
+                        name="freeResult" 
+                        onChange={(e)=>setContent(e.target.value)} 
+                        value={content}
+                    />
                 </div>
                 <CheckButton />
             </form>

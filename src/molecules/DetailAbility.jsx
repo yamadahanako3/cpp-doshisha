@@ -1,5 +1,4 @@
 const DetailAbility = (props) => {
-
     const sub = {
         fontWeight: "bold",
         fontSize: "15px",

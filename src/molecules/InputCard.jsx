@@ -2,18 +2,7 @@ import React, { useState } from 'react';
 
 const InputCard = (props) => {
     const [judge, getJudge] = useState([false, false, false, false, false, false]);
-    const [data, setData] = useState(props.data)
-    const [text, setText] = useState(data ? data.goal:"");
-    
-    const handleClick = (event) => {
-        let list = [false, false, false, false, false, false];
-        list[event.target.innerHTML] = true;
-        getJudge(list);
-        props.setAbilityData(
-            props.abilityData.map((data,index)=>(index == event.target.name ? event.target.innerHTML : data))
-        )
-    };
-
+    const [text, setText] = useState(props.data ? props.data.goal:"");
     const body = {
         margin: "20px",
         width: "300px",
@@ -70,6 +59,15 @@ const InputCard = (props) => {
         textAlign: "center",
         backgroundColor: "rgba(3, 218, 197, 1)",
         border: "none",
+    };
+
+    const handleClick = (event) => {
+        let list = [false, false, false, false, false, false];
+        list[event.target.innerHTML] = true;
+        getJudge(list);
+        props.setAbilityData(
+            props.abilityData.map((data,index)=>(index == event.target.name ? event.target.innerHTML : data))
+        )
     };
 
     return (

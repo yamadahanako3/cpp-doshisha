@@ -22,7 +22,6 @@ const menusSpan1 = {
   transition: "all 0.5s ease",
   backgroundColor: "rgba(26, 79, 131, .75)",
   zIndex: 15,
-
 };
 const menusSpan1open = {
   display: "block",
@@ -102,12 +101,17 @@ const ulStyle = {
 const MenuButton = () => {
   const navigate = useNavigate();
   const [state, setState] = useState(false);
-  const [arrowStyle2, setArrowStyle2] = useState(arrowDown);
-  const [listStyle2, setListStyle2] = useState(listStyleClose);
-  const [arrowIsOpen2, setArroIsOpen2] = useState(true);
   const [arrowStyle1, setArrowStyle1] = useState(arrowDown);
-  const [listStyle1, setListStyle1] = useState(listStyleClose);
+  const [arrowStyle2, setArrowStyle2] = useState(arrowDown);
   const [arrowIsOpen1, setArroIsOpen1] = useState(true);
+  const [arrowIsOpen2, setArroIsOpen2] = useState(true);
+  const [listStyle1, setListStyle1] = useState(listStyleClose);
+  const [listStyle2, setListStyle2] = useState(listStyleClose);
+  const [open, setOpen] = useState(true);
+  const [buttonStyle1, setButtonStyle1] = useState(menusSpan1);
+  const [buttonStyle2, setButtonStyle2] = useState(menusSpan2);
+  const [buttonStyle3, setButtonStyle3] = useState(menusSpan3);
+
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -128,6 +132,7 @@ const MenuButton = () => {
       setListStyle1(listStyleClose)
     };
   };
+
   const onClick2 = () => {
     if (arrowIsOpen2) {
       setArroIsOpen2(false)
@@ -170,11 +175,6 @@ const MenuButton = () => {
       </ul>
     </div>
   );
-  
-  const [open, setOpen] = useState(true);
-  const [buttonStyle1, setButtonStyle1] = useState(menusSpan1);
-  const [buttonStyle2, setButtonStyle2] = useState(menusSpan2);
-  const [buttonStyle3, setButtonStyle3] = useState(menusSpan3);
 
   const handleSubmit = () => {
     if (open) {
@@ -198,7 +198,6 @@ const MenuButton = () => {
         onClose={toggleDrawer('top', open)}
         style={{zIndex:"1"}}
       >
-        
       {list('top')}
       </Drawer>
       <div onClick={toggleDrawer('top', open)} style={menuDiv}>

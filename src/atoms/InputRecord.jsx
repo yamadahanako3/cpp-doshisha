@@ -1,7 +1,4 @@
 import { useState } from 'react';
-import Template from '../template.json';
-const lists = Template.recordmyself;
-
 
 const InputRecord = (props) => {
   const [sentence1, setSentence1] = useState(props.sentence1);
@@ -32,16 +29,37 @@ const InputRecord = (props) => {
       <div style={{marginTop: "30px"}}>
         <div style={{display: "flex",alignItems: "center"}}>
           <div style={label}>{props.title}</div>
-          <input style={box2} type="text" name={props.item} value={sentence1} onChange={(e)=>setSentence1(e.target.value)}/><br></br>
+            <input 
+              style={box2} 
+              type="text" 
+              name={props.item} 
+              value={sentence1} 
+              onChange={(e)=>setSentence1(e.target.value)}
+            />
+            <br></br>
         </div>
-        <input style={box1} type="text" name={props.name} placeholder={props.ph} value={sentence2} onChange={(e)=>setSentence2(e.target.value)}/>
+        <input 
+          style={box1} 
+          type="text" 
+          name={props.name} 
+          placeholder={props.ph} 
+          value={sentence2} 
+          onChange={(e)=>setSentence2(e.target.value)}
+        />
       </div>
     );
   } else {
     return (
       <div style={{marginTop: "30px"}}>
         <div style={label}>{props.title}</div>
-        <input style={box1} type="text" name={props.name} placeholder={props.ph} value={sentence2} onChange={(e)=>setSentence2(e.target.value)}/>
+        <input 
+          style={box1} 
+          type="text" 
+          name={props.name} 
+          placeholder={props.ph} 
+          value={sentence2} 
+          onChange={(e)=>setSentence2(e.target.value)}
+        />
       </div>
     );
   }

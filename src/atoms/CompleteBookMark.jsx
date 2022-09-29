@@ -3,18 +3,24 @@ import { useNavigate } from 'react-router-dom';
 
 const CompleteBookMark = (props) => {
     const navigate = useNavigate();
-    const now = props.now;
-    const span = props.span;
     const text = props.text;
     const ratio = props.ratio;
     const color = props.color;
-    const goalContent1 = props.goalContent1;
-    const goalContent2 = props.goalContent2;
 
     const handleClick = () => {
-        navigate('/completecard', {state:{item:text,goalContent1:goalContent1,goalContent2:goalContent2,ratio:ratio,color:color,now:now,span:span}});
+        navigate('/completecard', {
+            state:{
+                item:props.text,
+                goalContent1:props.goalContent1,
+                goalContent2:props.goalContent2,
+                ratio:props.ratio,
+                color:props.color,
+                now:props.now,
+                span:props.span
+            }
+        }
+        );
     }
-
     
     const button = {
         display: "flex",
@@ -36,12 +42,12 @@ const CompleteBookMark = (props) => {
 
     return (
         <div>
-                <div style={button} onClick={handleClick}>
-                    <div style={{marginRight: "20px"}}>
-                        <DoughnutChart ratio={ratio} color={color} />
-                    </div>
-                        {text}
+            <div style={button} onClick={handleClick}>
+                <div style={{marginRight: "20px"}}>
+                    <DoughnutChart ratio={ratio} color={color} />
                 </div>
+                {text}
+            </div>
         </div>
     );
 };

@@ -16,7 +16,17 @@ const CompleteCard = () => {
         <div style={{minHeight: "100vh",backgroundColor: "#F4F6F9"}}>
             <Header />
             <div style={{paddingTop:"100px"}}>
-                <div style={{display: "flex", justifyContent: "center"}}><GoalCard span={span} now={now} item={item} goalContent1={goalContent1} goalContent2={goalContent2} ratio={ratio} color={color} /></div>
+                <div style={{display: "flex", justifyContent: "center"}}>
+                    <GoalCard 
+                        span={span} 
+                        now={now} 
+                        item={item} 
+                        goalContent1={goalContent1} 
+                        goalContent2={goalContent2} 
+                        ratio={ratio} 
+                        color={color} 
+                    />
+                </div>
             </div>
         </div>
     );

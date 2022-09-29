@@ -3,11 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
     const navigate = useNavigate();
-
-    const handleClick = () => {
-        navigate('/home');
-    }
-
     const header = {
         backgroundColor:"#F4F6F9",
         position: "absolute",
@@ -24,6 +19,10 @@ const Header = () => {
         left: "10px",
         top: "0px",
         margin: "15px 10px"
+    }
+    
+    const handleClick = () => {
+        navigate('/home');
     }
 
     return (

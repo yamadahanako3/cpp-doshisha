@@ -4,25 +4,6 @@ const InputReview = (props) => {
   const [text1, setText1] = useState("");
   const [text2, setText2] = useState("");
   const [judge, setJudge] = useState(true);
-
-  useEffect(()=>{
-    if (!judge) return;
-    if (props.effortText) {
-      setText1(props.effortText ?? "");
-      setText2(props.reflectionText ?? "");
-      setJudge(false);
-    } else {
-      return;
-    };
-    console.log("a");
-  })
-  const handleChange1 = (e) => {
-    setText1(e.target.value);
-  };
-  const handleChange2 = (e) => {
-    setText2(e.target.value);
-  };
-
   const body = {
     position: "relative",
     margin: "30px 30px",
@@ -50,6 +31,26 @@ const InputReview = (props) => {
     border: "1px solid rgba(26, 79, 131, .25)",
     borderRadius: "5px",
   }
+
+  useEffect(()=>{
+    if (!judge) return;
+    if (props.effortText) {
+      setText1(props.effortText ?? "");
+      setText2(props.reflectionText ?? "");
+      setJudge(false);
+    } else {
+      return;
+    };
+    console.log("a");
+  })
+
+  const handleChange1 = (e) => {
+    setText1(e.target.value);
+  };
+
+  const handleChange2 = (e) => {
+    setText2(e.target.value);
+  };
 
   return (
     <div style={body}>

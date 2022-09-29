@@ -15,6 +15,7 @@ const GoalCalender = () => {
   const { user } = useAuthContext();
   const [userData, setData] = useState(null);
   const userDocumentRef = doc(db, 'users', user.uid);
+  const colors = json.color
 
   useEffect(()=>{
       getDoc(userDocumentRef).then((ref)=>{
@@ -28,8 +29,6 @@ const GoalCalender = () => {
       });
   },[]);
 
-  const colors = json.color
-
   const getFormatDate = (date) => {
     return `${date.getFullYear()}-${('0' + (date.getMonth() + 1)).slice(-2)}-${('0' + date.getDate()).slice(-2)}`;
   }
@@ -40,6 +39,7 @@ const GoalCalender = () => {
     const day = getFormatDate(date)
     return (userData[day]) ? colors[userData[day]?.color]: '' 
   }
+
   const handleClick = (event) => {
     onChange(event)
     for (let data in userData) {

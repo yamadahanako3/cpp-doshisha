@@ -20,7 +20,35 @@ const Home = () => {
     const [thirdData1, setThirdData1] = useState(null);
     const [thirdData2, setThirdData2] = useState(null);
     const userDocumentRef = doc(db, 'users', user.uid);
-
+    const body = {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        paddingTop: "70px",
+    };
+    const main = {
+        margin: "30px auto",
+        width: "280px",
+        height: "320px",
+        borderRadius: "5px",
+        backgroundColor: "white",
+        boxShadow: "0px 2px 10px rgba(26, 79, 131, .1)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
+    };
+    const mainTitle = {
+        color: "#1A4F83",
+        fontSize: "20px",
+    };
+    const sub = {
+        fontSize: "10px",
+        color: "#747D88",
+        marginBottom: "3px",
+    };
+    
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
             const data = ref.data();
@@ -60,35 +88,6 @@ const Home = () => {
         navigate('/abilitychart',{state:{grade: 3}});
     }
     
-    const body = {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        paddingTop: "70px",
-    };
-    const main = {
-        margin: "30px auto",
-        width: "280px",
-        height: "320px",
-        borderRadius: "5px",
-        backgroundColor: "white",
-        boxShadow: "0px 2px 10px rgba(26, 79, 131, .1)",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center"
-    };
-    const mainTitle = {
-        color: "#1A4F83",
-        fontSize: "20px",
-    };
-    const sub = {
-        fontSize: "10px",
-        color: "#747D88",
-        marginBottom: "3px",
-    };
-
     if (!user) {
         return <Navigate to='/signin' />;
     } else {

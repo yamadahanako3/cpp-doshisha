@@ -24,7 +24,6 @@ const CreateButton = (props) => {
 
     return (
         <div style={{textAlign: "center"}}>
-
                 <button style={button} onClick={onClick}>{text}</button>
         </div>
     );

@@ -15,20 +15,6 @@ const Goal = () => {
     const { user } = useAuthContext();
     const [userData, setData] = useState([]);
     const userDocumentRef = doc(db, 'users', user.uid);
-
-    useEffect(()=>{
-        getDoc(userDocumentRef).then((ref)=>{
-            const data = ref.data();
-            const parent = data.goalCard;
-            let lists = [];
-            for(let i in parent){
-                lists.push(parent[i]);
-            }
-            setData(lists)
-            console.log(lists);
-        });
-    },[]);
-
     const title = {
         fontSize: "23px",
         color: "rgba(26, 79, 131, 1)",
@@ -42,14 +28,19 @@ const Goal = () => {
         justifyContent: "center",
         alignItems: "center",
     }
-    const style="background-color: lightgray;border-radius:50%;width: 9px;height: 9px;float:left;margin:2px;";
-
-    const pagination={
-        clickable: true,
-        renderBullet: function(index, className){
-            return '<div class='+className+ ' style="'+style+'">'+ ""+'</div>'
-        }
-    }
+    
+    useEffect(()=>{
+        getDoc(userDocumentRef).then((ref)=>{
+            const data = ref.data();
+            const parent = data.goalCard;
+            let lists = [];
+            for(let i in parent){
+                lists.push(parent[i]);
+            }
+            setData(lists)
+            console.log(lists);
+        });
+    },[]);
 
     return (
         <div style={{minHeight: "100vh",backgroundColor: "#F4F6F9"}}>
