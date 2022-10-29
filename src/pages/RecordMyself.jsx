@@ -4,7 +4,7 @@ import { getDoc, doc, setDoc } from 'firebase/firestore';
 import { useAuthContext } from '../context/Authcontext';
 import { db } from '../firebase';
 import {useEffect, useState} from 'react'
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Template from '../template.json';
 import { useLocation } from 'react-router-dom';
 
@@ -72,12 +72,12 @@ const RecordMyself = () => {
               lists.map((list, index)=>
                 <div key={index}>
                   <InputRecord 
-                  title={list.title} 
-                  item={list.item}
-                  ph={list.ph}
-                  name={list.name}
-                  sentence1={index == 0 || index == 1 ? myselfData[index][list.item] : ""}
-                  sentence2={index == 0 || index == 1 ? myselfData[index][list.role] : myselfData[index][list.name]}
+                    title={list.title} 
+                    item={list.item}
+                    ph={list.ph}
+                    name={list.name}
+                    sentence1={index == 0 || index == 1 ? myselfData[index][list.item] : ""}
+                    sentence2={index == 0 || index == 1 ? myselfData[index][list.role] : myselfData[index][list.name]}
                   />
                 </div>
               )

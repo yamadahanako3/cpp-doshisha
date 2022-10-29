@@ -19,7 +19,7 @@ const Root = () => {
     userData.email = user.email;
     if (!docSnap.exists()) {
       setDoc(userDocumentRef, userData)
-      navigate('/inputfiveitems')
+      navigate('/profile')
     } else {
       navigate('/home')
     }

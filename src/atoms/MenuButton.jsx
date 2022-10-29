@@ -144,7 +144,7 @@ const MenuButton = () => {
       setListStyle2(listStyleClose)
     };
   };
-  
+
   const handleLogout = () => {
     auth.signOut();
     navigate('/signin');
@@ -154,6 +154,7 @@ const MenuButton = () => {
     <div>
       <ul style={ulStyle}>
         <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/home')}}>ホーム</li>
+        <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/profile')}}>プロフィール</li>
         <li style={{margin: "20px 10px"}} onClick={onClick1}>能力チャート<img src={arrow} alt="" style={arrowStyle1}></img>
           <ul style={listStyle1}>
             <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/abilitychart',{state:{grade:1}})}}>高校1年生</li>

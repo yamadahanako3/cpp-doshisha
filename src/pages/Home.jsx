@@ -116,7 +116,7 @@ const Home = () => {
                     <CreateButton text="高校１年生" link="/recordnow" grade="1" />
                     <CreateButton text="高校２年生" link="/recordnow" grade="2" />
                     <CreateButton text="高校３年生" link="/recordnow" grade="3" />
-                    <CreateButton text="これまでとこれから" link="/signup" />
+                    {/* <CreateButton text="これまでとこれから" link="/signup" /> */}
                 </div>  
             </div>
         );
