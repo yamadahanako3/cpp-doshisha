@@ -137,7 +137,6 @@ const TeachersConsole = () => {
                 <div style={{position:"relative",marginLeft: "220px"}}>
                     <div style={header}>
                         <ul style={{listStyle:"none",display:"flex",alignItems:"center",justifyContent:"end",marginRight: "250px"}}>
-                            <li style={comment}>コメントを入力</li>
                             <li style={{margin: "0 25px"}}>{teachersClass[1]}年{teachersClass[2]}組{studentInfo.num}番</li>
                             <li style={{margin: "0 25px"}}>{studentInfo.name}</li>
                         </ul>
@@ -455,17 +454,19 @@ const TeachersConsole = () => {
                                 <Swiper modules={[Navigation, Pagination]} pagination={{clickable:true}} className="mySwiper" >
                                     {
                                         goalCard?.map((list,index)=>
-                                            <SwiperSlide key={index} style={{display:"flex",justifyContent: "left"}}>
                                                 {
                                                     list.map((item,index)=>
                                                     item != undefined ? 
-                                                    <div key={index} style={{margin: "10px",display: item.result=="" ? "none":"block"}}>
-                                                        <GoalCard teacher="teacher" span={item.span} now={item.now} item={item.item} goalContent1={item.item} goalContent2={item.result=="" ? null : item.result} ratio={item.ratio} color={item.color!="" ? item.color : "#FFAE80"} />
-                                                    </div>
-                                                    :<div key={index}></div>
+                                                    <SwiperSlide key={index} style={{display:"flex",justifyContent: "left"}}>
+
+                                                        <div key={index} style={{margin: "10px",display: item.result=="" ? "none":"block"}}>
+                                                            <GoalCard teacher="teacher" span={item.span} now={item.now} item={item.item} goalContent1={item.item} goalContent2={item.result=="" ? null : item.result} ratio={item.ratio} color={item.color!="" ? item.color : "#FFAE80"} />
+                                                        </div>
+                                                    </SwiperSlide>
+                                                    :<div key={index} style={{display: "none"}}></div>
                                                     )
                                                 }
-                                            </SwiperSlide>
+                                            
                                         )
                                     }
                                 </Swiper>

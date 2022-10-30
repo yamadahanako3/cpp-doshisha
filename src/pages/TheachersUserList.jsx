@@ -28,22 +28,26 @@ const TheachersUserList = () => {
   },[])
 
   return (
-    <div>
-      {
-       userData?(
-        <div>
-          {
-            userData.map((data,index)=>
-            <div key={index} onClick={handleClick} name={data.name}>
-              <p>{data.name}</p>
-            </div>
-            )
-          }
-        </div>
-       ):(
-        <></>
-       ) 
+    <div style={{margin: "40px",display: "flex", justifyContent: "center", alignItems: "center", height: "100%", minHeight:"80vh"}}>
+      <div className="">
+        <div style={{marginLeft: "-40px", color: "#1A4F83", borderLeft: "2px solid #43CBC3", paddingLeft:"10px",fontSize: "20px"}}>生徒一覧</div>
+        {
+        userData?(
+          <div>
+            {
+              userData.map((data,index)=>
+              <div key={index} onClick={handleClick} name={data.name}>
+                <p>{data.name}</p>
+              </div>
+              )
+            }
+          </div>
+        ):(
+          <></>
+        ) 
       }
+
+      </div>
     </div>
   )
 }

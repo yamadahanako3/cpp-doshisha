@@ -24,20 +24,30 @@ const TeachersProfile = () => {
     }
   
   return(
-    <div>
+    <div style={{display: "flex", justifyContent: "center", alignItems: "center", height: "100vh"}}>
         <form onSubmit={handleSubmit}>
-            <div>ユーザー登録</div>
+            <div style={{color: "#1A4F83", borderLeft: "2px solid #43CBC3", marginBottom: "40px", paddingLeft:"10px",fontSize: "20px"}}>クラス検索</div>
             <div>
-                <div style={{marginBottom: "13px"}}>
+                <div style={{display: "flex", marginBottom: "40px"}}>
+                    <div style={{marginRight: "20px"}}>
+                        <input name="grade" type="text" style={{width:60, height: "25px",border:"1px solid rgba(26, 79, 131, .5)", marginRight:"5px"}}/>
+                        <label style={{color:"rgba(26, 79, 131, .75)"}}>年</label>
+                    </div>
+                    <div style={{marginRight: "20px"}}>
+                        <input name="class" type="text" style={{width:60, height: "25px",border:"1px solid rgba(26, 79, 131, .5)", marginRight:"5px"}}/>
+                        <label style={{color:"rgba(26, 79, 131, .75)"}}>組</label>
+                    </div>
+                </div>
+                {/* <div style={{marginBottom: "13px"}}>
                     <div>年</div>
                     <input name="grade" type="text"></input>
                 </div>
                 <div style={{marginBottom: "13px"}}>
                     <div>クラス</div>
                     <input name="class" type="text"></input>
-                </div>
+                </div> */}
             </div>
-            <button>次へ</button>
+            <button style={{padding: "7px 80px", borderRadius: "20px",backgroundColor:"white",border:"1px solid #1A4F83", color: "#1A4F83"}}>次へ</button>
         </form>
     </div>
   );
