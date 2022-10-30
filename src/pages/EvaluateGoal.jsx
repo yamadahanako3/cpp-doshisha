@@ -110,8 +110,8 @@ const EvaluateGoal = () => {
                 </div>
                 <div style={free}>
                     <div style={freeTitle}>自由記入欄</div>
-                    <textarea s
-                        tyle={textarea} 
+                    <textarea
+                        style={textarea} 
                         placeholder="評価を具体的に書いてみよう" 
                         name="freeResult" 
                         onChange={(e)=>setContent(e.target.value)} 

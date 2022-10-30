@@ -120,6 +120,9 @@ const RecordNow = () => {
         color: "#1A4F83",
         margin: "0 20px 0 0",
         fontSize: "15px",
+        whiteSpace:"nowrap",
+        overflow:"hidden",
+        textOverflow:"ellipsis",
     }
     const content = {
         margin: 0,
@@ -201,15 +204,27 @@ const RecordNow = () => {
                     <div style={record} onClick={()=>navigate('/recordmyself', {state:{myselfData:myselfData,grade:grade}})}>記録する</div>
                 </div>
                 <div style={title}>１年の振り返り</div>
-                
+
                 <div>
                     <Swiper modules={[Navigation, Pagination]} pagination={{clickable:true}} className="mySwiper" >
-                        
+
                         {
                             year?.map((list, index)=>
                             <SwiperSlide key={index} style={{paddingBottom: "50px"}}>
-                                <div style={{margin:"0 auto",borderStyle:"solid",borderColor:template[index].color,borderWidth:"1px",borderRadius:"10px",color:"#1A4F83",fontWeight: "bold",backgroundColor: "white"}}>
-                                    <div style={{backgroundColor: template[index].backColor,padding: "10px"}}>{template[index].title}</div>
+                                <div style={{
+                                    margin:"0 auto",
+                                    borderStyle:"solid",
+                                    borderColor:template[index].color,
+                                    borderWidth:"1px",
+                                    borderRadius:"10px",
+                                    color:"#1A4F83",
+                                    fontWeight: "bold",
+                                    backgroundColor: "white"}}>
+                                    <div style={
+                                        {backgroundColor: template[index].backColor,
+                                        padding: "10px"}}>
+                                            {template[index].title}
+                                    </div>
                                     <div style={{width: "292px",height: "60px", display: "flex",alignItems: "center"}}>
                                         <img style={{paddingRight: "20px",paddingLeft: "20px"}} src={finished} />
                                         <div style={abilityName}>{list.effort}</div>
@@ -221,7 +236,6 @@ const RecordNow = () => {
                                     </div>
                                 </div>
                             </SwiperSlide>
-                            
                             )
                         }
                     </Swiper>

@@ -22,7 +22,7 @@ ChartJS.register(
 const RadarChart = (props) => {
   const data = {
     labels: [
-      "同志社国際生としての力",
+      "同志社香里生としての力",
       ["人間関係形成","社会形成能力"],
       ["　キャリア","プランニング"],
       "課題対応能力",
@@ -36,7 +36,7 @@ const RadarChart = (props) => {
       borderWidth:3,
       pointRadius: 0,
     }, {
-      label: "7月",
+      label: "3月",
       data: props.data2,
       fill: false,
       borderColor: "rgb(255,174,128)",
@@ -48,19 +48,19 @@ const RadarChart = (props) => {
     plugins:{
       legend:{
         position:"bottom"
-      },      
+      },
     },
     scales: {
       r: {
         min: 0,
         max: 5,
         beginAtZero: true,
-     },
+      },
     },
     maintainAspectRatio: false,
     responsive: false,
   };
-  
+
   return (
     <div style={{width:"260px", height:"240px"}}>
       <Radar data={data} options={option} width={260} height={240} />

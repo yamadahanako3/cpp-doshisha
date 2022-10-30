@@ -98,7 +98,6 @@ const Home = () => {
                     <Swiper modules={[Navigation, Pagination]} pagination={{clickable:true}} className="mySwiper" style={{width: "100%"}}>
                         <SwiperSlide><div style={main} onClick={handleClick1} >
                             <div style={mainTitle}>高校一年生</div>
-                            <p style={sub}>これは例文です。これは例文です。これは例文です。</p>
                             <RadarChart data1={firstData1} data2={firstData2} />
                         </div></SwiperSlide>
                         <SwiperSlide><div style={main} onClick={handleClick2} >
