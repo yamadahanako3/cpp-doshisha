@@ -1,3 +1,4 @@
+import {Header} from '../molecules/index';
 import { useAuthContext } from '../context/Authcontext';
 import React, {useState, useEffect} from 'react';
 import { db } from '../firebase';
@@ -8,12 +9,13 @@ const Profile = () => {
     const { user } = useAuthContext();
     const dateObj = new Date();
     const navigate = useNavigate();
+    const height = (window.innerHeight - 200) + "px";
     let date1 = dateObj.getFullYear();
     const lists = [
         {title:"年",name:"grade"},
-        {title:"クラス",name:"class"},
-        {title:"出席番号",name:"num"},
-        {title:"名前",name:"name"},
+        {title:"組",name:"class"},
+        {title:"番",name:"num"},
+        // {title:"名前",name:"name"},
     ]
     const [datas, setDatas] = useState()
     useEffect(()=>{
@@ -65,24 +67,61 @@ const Profile = () => {
             navigate('/home')
         });
     }
+
+    const title = {
+        paddingTop: "150px",
+        marginLeft: "40px",
+        color: "rgba(26, 79, 131, .75)",
+        fontSize: "25px"
+    };
+    const form = {
+        paddingTop: "20px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center"
+    };
+    const label = {
+        color: "rgba(26, 79, 131, .75)",
+        fontSize: "13px"
+    };
+    const input = {
+        width: "260px",
+        border: "none",
+        borderBottom: "1px solid rgba(26, 79, 131, .5)"
+    };
+    const button = {
+        marginTop: "30px",
+        color: "white",
+        padding: "8px 100px",
+        backgroundColor: "#43CBC3",
+        border: "none",
+        borderRadius: "20px",
+        fontSize: "15px"
+    };
     return(
     <div>
-        <form onSubmit={handleSubmit}>
-            <div>ユーザー登録</div>
-            <div>
+        <Header />
+        <div style={title}>プロフィール</div>
+        <form onSubmit={handleSubmit} style={form}>
+            <div style={{display:"flex"}}>
                 {
                     lists.map((list, index)=>
-                        <div key={index} style={{marginBottom: "13px"}} >
-                            <div>{list.title}</div>
-                            <input name={list.name} type="text" id={list.name}/>
+                        <div key={index} style={{padding: "18px"}} >
+                            <input name={list.name} type="text" id={list.name} style={{width:40,border:"1px solid rgba(26, 79, 131, .5)"}}/>
+                            <label style={{color:"rgba(26, 79, 131, .75)"}}>{list.title}</label>
                         </div>
                     )
                 }
             </div>
-            <button>次へ</button>
+            <div style={{marginTop: "30px"}}>
+                <div style={label}>名前</div>
+                <input style={input} name="name" type="text" id="name"></input>
+            </div>
+            <button style={button}>次へ</button>
         </form>
     </div>
-  );
+    );
 };
 
 export default Profile;
