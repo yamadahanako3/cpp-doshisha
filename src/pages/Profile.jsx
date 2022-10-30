@@ -36,17 +36,12 @@ const Profile = () => {
         const ID = date1 + "-" + event.target.grade.value + "-" + event.target.class.value;
         const userDocumentRef = doc(db, 'register', ID);
         const update_data = datas
-        console.log(event.target.name.value)
-        console.log(event.target.num.value)
-        console.log(event.target.class.value)
-        console.log(event.target.grade.value)
         const v = {
             name:event.target.name.value,
             num:event.target.num.value,
             class:event.target.class.value,
             grade:event.target.grade.value,
         }
-        console.log(datas)
         update_data["user_info"] = v
         setDoc(doc(db,'users',user.uid),update_data)
         await getDoc(userDocumentRef).then(async(ref)=>{
@@ -70,10 +65,12 @@ const Profile = () => {
                     "name":event.target.name.value
                 }
                 list.push(data)
-                setDoc(userDocumentRef, data, {merge:true});
+                setDoc(userDocumentRef, userData, {merge:true});
             }
-            navigate('/home')
+        }).catch((e)=>{
+            console.log(e.message)
         });
+        navigate('/home')
     }
 
     const title = {
