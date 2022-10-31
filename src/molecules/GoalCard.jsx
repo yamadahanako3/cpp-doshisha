@@ -10,7 +10,7 @@ const GoalCard = (props) => {
         width: props.teacher ? "200px" : "280px",
         backgroundColor: "white",
         boxShadow: "0px 2px 10px rgba(26, 79, 131, .1)",
-        paddingBottom: props.goalContent2 != null ? "200px" : "50px",
+        paddingBottom: props.goalContent2 != null && props.teacher != null ? "200px" : "50px",
         height:props.teacher ? "300px" : "auto",
         borderRadius: "5px",
         borderStyle: "solid",
