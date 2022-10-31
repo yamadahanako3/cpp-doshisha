@@ -293,7 +293,7 @@ const TeachersConsole = () => {
                                 </Swiper>
                             </div>
                             <div style={record}>
-                                <div style={{marginBottom: "25px"}}>高校２年生の記録</div>
+                                <div style={{marginBottom: "25px"}}>高校１年生の記録</div>
                                 <div style={{backgroundColor: "white",boxShadow: "1px 0px 10px rgba(114, 119, 122, .1)",borderRadius: "5px",display: "inline-block",padding: "20px 10px",marginLeft: "25px"}}>
                                     <div style={{display:"flex", fontSize:"14px"}}>
                                         <div style={{position: "relative",minHeight: "180px",padding: "20px"}}>
@@ -521,7 +521,7 @@ const TeachersConsole = () => {
                                 </Swiper>
                             </div>
                             <div style={record}>
-                                <div style={{marginBottom: "25px"}}>高校２年生の記録</div>
+                                <div style={{marginBottom: "25px"}}>高校３年生の記録</div>
                                 <div style={{backgroundColor: "white",boxShadow: "1px 0px 10px rgba(114, 119, 122, .1)",borderRadius: "5px",display: "inline-block",padding: "20px 10px",marginLeft: "25px"}}>
                                     <div style={{display:"flex", fontSize:"14px"}}>
                                         <div style={{position: "relative",minHeight: "180px",padding: "20px"}}>
