@@ -30,14 +30,14 @@ const TheachersUserList = () => {
   return (
     <div style={{margin: "40px",display: "flex", justifyContent: "center", alignItems: "center", height: "100%", minHeight:"80vh"}}>
       <div className="">
-        <div style={{marginLeft: "-40px", color: "#1A4F83", borderLeft: "2px solid #43CBC3", paddingLeft:"10px",fontSize: "20px"}}>生徒一覧</div>
+        <div style={{marginLeft: "-80px", color: "#1A4F83", borderLeft: "2px solid #43CBC3", paddingLeft:"10px",fontSize: "20px"}}>生徒一覧</div>
         {
         userData?(
           <div>
             {
               userData.map((data,index)=>
-              <div key={index} onClick={handleClick} name={data.name}>
-                <p>{data.name}</p>
+              <div key={index} onClick={handleClick} name={data.name} style={{borderBottom: "1px solid gray", width:"200px", display:"flex"}}>
+                <p style={{marginRight: "30px"}}>{index + 1}</p><p>{data.name}</p>
               </div>
               )
             }

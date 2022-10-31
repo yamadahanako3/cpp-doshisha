@@ -23,6 +23,7 @@ const TeachersConsole = () => {
     const [thirdData1, setThirdData1] = useState(null);
     const [thirdData2, setThirdData2] = useState(null);
     const [goalCard, setGoalCard] = useState(null);
+    const [buttonColor, setBtnColor] = useState(null);
 
     useEffect(()=>{
         getDoc(userDocumentRef).then((ref)=>{
@@ -148,24 +149,108 @@ const TeachersConsole = () => {
                                 <div style={{backgroundColor: "white",boxShadow: "1px 0px 10px rgba(114, 119, 122, .1)",borderRadius: "5px",display: "inline-block",padding: "20px 10px",margin: "0 30px"}}>
                                     <RadarChart data1={firstData1} data2={firstData2} />
                                 </div>
-                                <div style={{backgroundColor: "white",boxShadow: "1px 0px 10px rgba(114, 119, 122, .1)",borderRadius: "5px",display: "inline-block",padding: "20px 10px",marginRight: "80px"}}>
-                                    <div style={{display:"flex"}}>
-                                        <div style={{position: "relative",minHeight: "180px",padding: "20px"}}>
-                                            <div>伸ばしたいところ</div>
-                                            <p style={{fontSize: "14px"}}>{data?.first_grader.ability[0].goal}</p>
-                                            <div style={line}></div>
+                            </div>
+                            <div className="">
+                                <Tabs style={{backgroundColor:"white", width:"1000px",marginLeft: "30px",boxShadow: "1px 0px 10px rgba(114, 119, 122, .1)",borderRadius: "5px"}}>
+                                    <TabList style={{listStyle: "none", display:"flex", paddingLeft:"0", paddingRight:"0"}}>
+                                        <Tab onClick={()=>{setBtnColor(0)}} style={{width:"200px",padding:"10px 0",textAlign:"center", marginRight: "3px", fontSize:"13px",backgroundColor: buttonColor == 0 ? "rgba(114, 119, 122, .1)" : "white"}}>同志社香里生としての力</Tab>
+                                        <Tab onClick={()=>{setBtnColor(1)}} style={{width:"200px",padding:"10px 0",textAlign:"center", marginRight: "3px", fontSize:"13px",backgroundColor: buttonColor == 1 ? "rgba(114, 119, 122, .1)" : "white"}}>人間関係形成・社会形成能力</Tab>
+                                        <Tab onClick={()=>{setBtnColor(2)}} style={{width:"200px",padding:"10px 0",textAlign:"center", marginRight: "3px", fontSize:"13px",backgroundColor: buttonColor == 2 ? "rgba(114, 119, 122, .1)" : "white"}}>キャリアプランニング</Tab>
+                                        <Tab onClick={()=>{setBtnColor(3)}} style={{width:"200px",padding:"10px 0",textAlign:"center", marginRight: "3px", fontSize:"13px",backgroundColor: buttonColor == 3 ? "rgba(114, 119, 122, .1)" : "white"}}>課題対応能力</Tab>
+                                        <Tab onClick={()=>{setBtnColor(4)}} style={{width:"200px",padding:"10px 0",textAlign:"center", marginRight: "3px", fontSize:"13px",backgroundColor: buttonColor == 4 ? "rgba(114, 119, 122, .1)" : "white"}}>自己理解・自己管理能力</Tab>
+                                    </TabList>
+                                    <TabPanel>
+                                        <div style={{display:"flex"}}>
+                                            <div style={{position: "relative",minHeight: "180px",margin: "10px 30px",width:"420px"}}>
+                                                <div>伸ばしたいところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[0].goal}</p>
+                                                <div style={line}></div>
+                                            </div>
+                                            <div style={{position: "relative",minHeight: "180px",margin: "10px 10px",width:"420px"}}>
+                                                <div>成長できたところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[0].goal}</p>
+                                                <div style={line}>a</div>
+                                            </div>
+                                            <div style={{margin: "10px 10px",width:"420px"}}>
+                                                <div>さらに成長したいところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[0].goal}</p>
+                                            </div>
                                         </div>
-                                        <div style={{position: "relative",minHeight: "180px",padding: "20px"}}>
-                                            <div>成長できたところ</div>
-                                            <p style={{fontSize: "14px"}}>{data?.first_grader.ability[0].goal}</p>
-                                            <div style={line}>a</div>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <div style={{display:"flex"}}>
+                                            <div style={{position: "relative",minHeight: "180px",margin: "10px 30px",width:"420px"}}>
+                                                <div>伸ばしたいところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[1].goal}</p>
+                                                <div style={line}></div>
+                                            </div>
+                                            <div style={{position: "relative",minHeight: "180px",margin: "10px 10px",width:"420px"}}>
+                                                <div>成長できたところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[1].goal}</p>
+                                                <div style={line}>a</div>
+                                            </div>
+                                            <div style={{margin: "10px 10px",width:"420px"}}>
+                                                <div>さらに成長したいところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[1].goal}</p>
+                                            </div>
                                         </div>
-                                        <div style={{padding: "20px"}}>
-                                            <div>さらに成長したいところ</div>
-                                            <p style={{fontSize: "14px"}}>{data?.first_grader.ability[0].goal}</p>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <div style={{display:"flex"}}>
+                                            <div style={{position: "relative",minHeight: "180px",margin: "10px 30px",width:"420px"}}>
+                                                <div>伸ばしたいところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[2].goal}</p>
+                                                <div style={line}></div>
+                                            </div>
+                                            <div style={{position: "relative",minHeight: "180px",margin: "10px 10px",width:"420px"}}>
+                                                <div>成長できたところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[2].goal}</p>
+                                                <div style={line}>a</div>
+                                            </div>
+                                            <div style={{margin: "10px 10px",width:"420px"}}>
+                                                <div>さらに成長したいところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[2].goal}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <div style={{display:"flex"}}>
+                                            <div style={{position: "relative",minHeight: "180px",margin: "10px 30px",width:"420px"}}>
+                                                <div>伸ばしたいところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[3].goal}</p>
+                                                <div style={line}></div>
+                                            </div>
+                                            <div style={{position: "relative",minHeight: "180px",margin: "10px 10px",width:"420px"}}>
+                                                <div>成長できたところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[3].goal}</p>
+                                                <div style={line}>a</div>
+                                            </div>
+                                            <div style={{margin: "10px 10px",width:"420px"}}>
+                                                <div>さらに成長したいところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[3].goal}</p>
+                                            </div>
+                                        </div>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <div style={{display:"flex"}}>
+                                            <div style={{position: "relative",minHeight: "180px",margin: "10px 30px",width:"420px"}}>
+                                                <div>伸ばしたいところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[4].goal}</p>
+                                                <div style={line}></div>
+                                            </div>
+                                            <div style={{position: "relative",minHeight: "180px",margin: "10px 10px",width:"420px"}}>
+                                                <div>成長できたところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[4].goal}</p>
+                                                <div style={line}>a</div>
+                                            </div>
+                                            <div style={{margin: "10px 10px",width:"420px"}}>
+                                                <div>さらに成長したいところ</div>
+                                                <p style={{fontSize: "14px"}}>{data?.first_grader.ability[4].goal}</p>
+                                            </div>
+                                        </div>
+                                    </TabPanel>
+                                    
+                                </Tabs>
                             </div>
                             <div style={card}>
                                 <div>目標カード</div>
@@ -279,24 +364,6 @@ const TeachersConsole = () => {
                                 <div style={{backgroundColor: "white",boxShadow: "1px 0px 10px rgba(114, 119, 122, .1)",borderRadius: "5px",display: "inline-block",padding: "20px 10px",margin: "0 30px"}}>
                                     <RadarChart data1={secondData1} data2={secondData2} />
                                 </div>
-                                <div style={{backgroundColor: "white",boxShadow: "1px 0px 10px rgba(114, 119, 122, .1)",borderRadius: "5px",display: "inline-block",padding: "20px 10px",marginRight: "80px"}}>
-                                    <div style={{display:"flex"}}>
-                                        <div style={{position: "relative",minHeight: "180px",padding: "20px"}}>
-                                            <div>伸ばしたいところ</div>
-                                            <p style={{fontSize: "14px"}}>{data?.second_grader.ability[0].goal}</p>
-                                            <div style={line}></div>
-                                        </div>
-                                        <div style={{position: "relative",minHeight: "180px",padding: "20px"}}>
-                                            <div>成長できたところ</div>
-                                            <p style={{fontSize: "14px"}}>{data?.second_grader.ability[0].goal}</p>
-                                            <div style={line}>a</div>
-                                        </div>
-                                        <div style={{padding: "20px"}}>
-                                            <div>さらに成長したいところ</div>
-                                            <p style={{fontSize: "14px"}}>{data?.second_grader.ability[0].goal}</p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                             <div style={card}>
                                 <div>目標カード</div>
@@ -409,24 +476,6 @@ const TeachersConsole = () => {
                         <div style={top}>
                                 <div style={{backgroundColor: "white",boxShadow: "1px 0px 10px rgba(114, 119, 122, .1)",borderRadius: "5px",display: "inline-block",padding: "20px 10px",margin: "0 30px"}}>
                                     <RadarChart data1={thirdData1} data2={thirdData2} />
-                                </div>
-                                <div style={{backgroundColor: "white",boxShadow: "1px 0px 10px rgba(114, 119, 122, .1)",borderRadius: "5px",display: "inline-block",padding: "20px 10px",marginRight: "80px"}}>
-                                    <div style={{display:"flex"}}>
-                                        <div style={{position: "relative",minHeight: "180px",padding: "20px"}}>
-                                            <div>伸ばしたいところ</div>
-                                            <p style={{fontSize: "14px"}}>{data?.third_grader.ability[0].goal}</p>
-                                            <div style={line}></div>
-                                        </div>
-                                        <div style={{position: "relative",minHeight: "180px",padding: "20px"}}>
-                                            <div>成長できたところ</div>
-                                            <p style={{fontSize: "14px"}}>{data?.third_grader.ability[0].goal}</p>
-                                            <div style={line}>a</div>
-                                        </div>
-                                        <div style={{padding: "20px"}}>
-                                            <div>さらに成長したいところ</div>
-                                            <p style={{fontSize: "14px"}}>{data?.third_grader.ability[0].goal}</p>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                             <div style={card}>

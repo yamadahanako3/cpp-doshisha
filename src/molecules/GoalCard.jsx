@@ -10,7 +10,7 @@ const GoalCard = (props) => {
         width: props.teacher ? "200px" : "280px",
         backgroundColor: "white",
         boxShadow: "0px 2px 10px rgba(26, 79, 131, .1)",
-        paddingBottom: props.goalContent2 != null && props.teacher != null ? "200px" : "50px",
+        paddingBottom: props.goalContent2 != null && props.teacher != null ? "50px" : "50px",
         height:props.teacher ? "300px" : "auto",
         borderRadius: "5px",
         borderStyle: "solid",
@@ -66,12 +66,12 @@ const GoalCard = (props) => {
                         <p style={sub}>{props.now}→{date2}</p>
                     </div>
                 </div>
-                <div style={content1} onClick={handleClick1}>
+                <div style={content1} onClick={props.teacher==null ? handleClick1 : ""}>
                     {props.goalContent1}
                 </div>
             </div>
             <div style={{backgroundColor: "rgba(244, 246, 249, .5)",display: props.goalContent2 == null ? "none" : "block"}}>
-                <div style={content2} onClick={handleClick2}>
+                <div style={content2} onClick={props.teacher==null ? handleClick2 : ""}>
                     {props.goalContent2}
                 </div>
 
