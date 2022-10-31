@@ -172,6 +172,7 @@ const MenuButton = () => {
           </ul>
         </li>
         <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/aboutcareerpassport')}}>saporiについて</li>
+        <li style={{margin: "20px 10px"}} onClick={()=>{navigate('/survey')}}>アンケート</li>
         <li style={{margin: "20px 10px"}} onClick={handleLogout}>ログアウト</li>
       </ul>
     </div>
