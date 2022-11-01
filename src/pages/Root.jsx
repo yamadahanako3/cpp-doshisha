@@ -17,6 +17,12 @@ const Root = () => {
     const userDocumentRef = doc(db, 'users', user.uid);
     const docSnap = await getDoc(userDocumentRef);
     userData.email = user.email;
+    const isAdmin = JSON.parse(localStorage.getItem("admin_sapori_true"))
+    console.log(isAdmin.admin)
+    if (isAdmin.admin){
+      navigate("/TeachersProfile")
+      return
+    }
     if (!docSnap.exists()) {
       setDoc(userDocumentRef, userData)
       navigate('/profile')

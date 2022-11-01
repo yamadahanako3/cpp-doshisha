@@ -21,6 +21,8 @@ const SignIn = () => {
             return;
         }
         await signInWithEmailAndPassword(auth, email.value, password.value).then(()=>{
+            const data = {admin:false}
+            localStorage.setItem("admin_sapori_true",JSON.stringify(data))
             navigate('/');
         }).catch((e)=>{
             let error_message = "";

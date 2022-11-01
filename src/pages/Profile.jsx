@@ -56,7 +56,7 @@ const Profile = () => {
                     ]
                 }
                 setDoc(userDocumentRef, defaultData)
-            }else {
+            } else {
                 const userData = ref.data();
                 const list = userData.member;
                 const data = {

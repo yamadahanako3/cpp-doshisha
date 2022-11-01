@@ -2,6 +2,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState } from 'react';
 import { auth } from '../firebase';
+import {getAuth} from 'firebase/auth'
 import accountImage from '../images/accountImage.png';
 
 const TeachersSignIn = () => {
@@ -12,12 +13,13 @@ const TeachersSignIn = () => {
     const RegExpNetworkRequestFailed = /network-request-failed/g;
     const RegExpInvalidEmail = /invalid-email/g;
     const RegExpInternalError = /internal-error/g;
-    
+
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
         const { email, password } = event.target.elements;
+        const data = {admin:true}
         await signInWithEmailAndPassword(auth, email.value, password.value).then(()=>{
+            localStorage.setItem("admin_sapori_true",JSON.stringify(data))
             navigate('/',{state:{judge:"teachers"}});
         }).catch((e)=>{
             let error_message = "";
